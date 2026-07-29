@@ -1,0 +1,14 @@
+pass_id	purpose	role	identity	input_sha256	output_sha256	artifact	issues_opened	issues_closed	status
+01	story-contract	lead_writer				paper-charter.md			pending
+02	macro-prose-audit	prose_referee				macro-prose-audit.md			pending
+03	economics-rewrite	lead_writer				manuscript			pending
+04	evidence-prominence	lead_writer				manuscript			pending
+05	development-translation	lead_writer				manuscript			pending
+06	anti-defense	lead_writer				manuscript			pending
+07	reader-context	lead_writer				manuscript			pending
+08	finance-register	lead_writer				manuscript			pending
+09	closest-paper-positioning	lead_writer				manuscript			pending
+10	continuity	lead_writer				manuscript			pending
+11	cold-reader	cold_reader				cold-reader-report.md			pending
+12	evidence-audit	evidence_auditor				claim-evidence-ledger.csv			pending
+13	final-whole-paper-read	cold_reader				completion-report.md			pending

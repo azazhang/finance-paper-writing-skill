@@ -32,6 +32,7 @@ FILES_BY_MODE = {
     | {
         "claim-evidence-ledger.csv",
         "section-story-map.md",
+        "caveat-registry.csv",
         "cold-reader-report.md",
         "completion-report.md",
     },
@@ -86,6 +87,48 @@ PASS_VALUES = {"pass", "passed", "complete", "completed"}
 CLOSED_VALUES = {"closed", "resolved", "fixed"}
 NOT_APPLICABLE = {"not-applicable", "not_applicable", "n/a"}
 DISPOSITION_VALUES = {"resolved", "accepted-with-reason"}
+REVIEW_CLASS_VALUES = {
+    "editor-detected",
+    "demonstrated-defect",
+    "verification-question",
+    "optional-extension",
+}
+REVIEW_GENERATED_CLASSES = {
+    "demonstrated-defect",
+    "verification-question",
+    "optional-extension",
+}
+SUPPORTED_SCHEMA_VERSIONS = {1, 2}
+CAVEAT_FUNCTION_VALUES = {
+    "unnecessary-disclaimer",
+    "redundant-clarification",
+    "necessary-scope-condition",
+    "methodological-limitation",
+    "evidence-based-qualification",
+    "useful-conceptual-contrast",
+}
+CAVEAT_DISPOSITION_VALUES = {
+    "retain-here",
+    "relocate",
+    "positive-scope",
+    "merge-duplicate",
+    "delete-noninformative",
+}
+DELETABLE_CAVEAT_FUNCTIONS = {
+    "unnecessary-disclaimer",
+    "redundant-clarification",
+}
+EVIDENCE_PROVENANCE_VALUES = {"current", "legacy", "unknown"}
+EVIDENCE_VERIFICATION_VALUES = {"verified", "provisional", "failed", "planned"}
+INFERENTIAL_STATUS_VALUES = {
+    "descriptive",
+    "associational",
+    "predictive",
+    "mechanism-consistent",
+    "quasi-causal",
+    "causal",
+}
+NON_MANUSCRIPT_LOCATIONS = {"omit", "active-development", "active development"}
 HASH_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 GATES_BY_MODE = {
     "full-manuscript": {
@@ -292,13 +335,23 @@ def main() -> int:
         raise SystemExit(f"run.json not found: {run_dir}")
 
     run = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
+    try:
+        schema_version = int(run.get("schema_version", 1))
+    except (TypeError, ValueError):
+        schema_version = 1
+        errors.append("schema_version is invalid")
+    if schema_version not in SUPPORTED_SCHEMA_VERSIONS:
+        errors.append(f"unsupported schema_version: {schema_version}")
     mode = run.get("mode", "")
     if mode not in FILES_BY_MODE:
         errors.append(f"unknown run mode: {mode}")
         mode = "full-manuscript"
 
+    required_files = set(FILES_BY_MODE[mode])
+    if schema_version == 1 and mode == "section-revision":
+        required_files.discard("caveat-registry.csv")
     missing = sorted(
-        name for name in FILES_BY_MODE[mode] if not (run_dir / name).is_file()
+        name for name in required_files if not (run_dir / name).is_file()
     )
     errors.extend(f"missing required artifact: {name}" for name in missing)
     if missing:
@@ -329,6 +382,8 @@ def main() -> int:
         errors.append(
             "editing mode contains no manuscript state change; use prose-audit for a no-change outcome"
         )
+    if mode == "prose-audit" and current_hash and baseline_hash != current_hash:
+        errors.append("prose-audit mode must not change the manuscript")
 
     lead_editor = run.get("lead_editor", "").strip()
     if not lead_editor:
@@ -409,14 +464,74 @@ def main() -> int:
             errors.append(f"accepted lint finding lacks reason: {finding_id}")
 
     issues = read_tsv(run_dir / "issue-ledger.tsv")
+    issue_ids: set[str] = set()
     for issue in issues:
+        issue_id = issue.get("issue_id", "").strip()
         severity = issue.get("severity", "").strip().lower()
         status = issue.get("status", "").strip().lower()
+        reviewer = issue.get("reviewer", "").strip()
+        review_class = issue.get("review_class", "").strip().lower()
+        review_resolution = issue.get("review_resolution", "").strip()
+        if schema_version >= 2:
+            if not issue_id or issue_id in issue_ids:
+                errors.append(f"blank or duplicate issue_id: {issue_id!r}")
+            issue_ids.add(issue_id)
+            if review_class not in REVIEW_CLASS_VALUES:
+                errors.append(f"issue lacks valid review_class: {issue_id}")
+            if review_class in REVIEW_GENERATED_CLASSES and not reviewer:
+                errors.append(f"review-generated issue lacks reviewer identity: {issue_id}")
+            if (
+                review_class in REVIEW_GENERATED_CLASSES
+                and status in CLOSED_VALUES
+                and len(review_resolution.split()) < 3
+            ):
+                errors.append(f"closed review issue lacks resolution evidence: {issue_id}")
         if severity in {"critical", "major"} and status not in CLOSED_VALUES:
             errors.append(
-                f"unresolved {severity} issue: {issue.get('issue_id', '')} "
+                f"unresolved {severity} issue: {issue_id} "
                 f"{issue.get('description', '')}".strip()
             )
+        if (
+            schema_version >= 2
+            and review_class in {"demonstrated-defect", "verification-question"}
+            and status not in CLOSED_VALUES
+        ):
+            errors.append(f"unresolved review finding: {issue_id} ({review_class})")
+
+    if mode in {"full-manuscript", "section-revision"} and schema_version >= 2:
+        with (run_dir / "caveat-registry.csv").open(encoding="utf-8", newline="") as handle:
+            caveats = list(csv.DictReader(handle))
+        caveat_ids: set[str] = set()
+        for caveat in caveats:
+            caveat_id = caveat.get("caveat_id", "").strip()
+            function = caveat.get("function", "").strip().lower()
+            disposition = caveat.get("disposition", "").strip().lower()
+            status = caveat.get("status", "").strip().lower()
+            primary_location = caveat.get("primary_location", "").strip()
+            final_wording = caveat.get("final_wording", "").strip()
+            if not caveat_id or caveat_id in caveat_ids:
+                errors.append(f"blank or duplicate caveat_id: {caveat_id!r}")
+            caveat_ids.add(caveat_id)
+            if function not in CAVEAT_FUNCTION_VALUES:
+                errors.append(f"invalid caveat function for {caveat_id}: {function}")
+            if disposition not in CAVEAT_DISPOSITION_VALUES:
+                errors.append(
+                    f"invalid caveat disposition for {caveat_id}: {disposition}"
+                )
+            if (
+                disposition == "delete-noninformative"
+                and function not in DELETABLE_CAVEAT_FUNCTIONS
+            ):
+                errors.append(
+                    f"material caveat cannot be deleted as noninformative: {caveat_id}"
+                )
+            if status not in CLOSED_VALUES:
+                errors.append(f"unresolved caveat registry row: {caveat_id}")
+            if disposition != "delete-noninformative":
+                if not primary_location:
+                    errors.append(f"caveat lacks primary location: {caveat_id}")
+                if not final_wording:
+                    errors.append(f"caveat lacks final calibrated wording: {caveat_id}")
 
     passes = read_tsv(run_dir / "pass-log.tsv")
     pass_ids: set[str] = set()
@@ -488,6 +603,8 @@ def main() -> int:
             row = completed.get("final-whole-paper-read")
             if row and row.get("input_sha256", "").strip() != current_hash:
                 errors.append("final-whole-paper-read review is stale")
+            if row and row.get("identity", "").strip() == lead_editor:
+                errors.append("final whole-paper reader is not independent of the lead editor")
 
         cold_row = completed.get("cold-reader", {})
         cold_identity = cold_row.get("identity", "").strip()
@@ -519,8 +636,42 @@ def main() -> int:
         with (run_dir / "claim-evidence-ledger.csv").open(
             encoding="utf-8", newline=""
         ) as handle:
-            if not list(csv.DictReader(handle)):
-                errors.append("claim-evidence ledger has no affected claims")
+            claims = list(csv.DictReader(handle))
+        if not claims:
+            errors.append("claim-evidence ledger has no affected claims")
+        claim_ids: set[str] = set()
+        for claim in claims:
+            claim_id = claim.get("claim_id", "").strip()
+            provenance = claim.get("provenance", "").strip().lower()
+            verification = claim.get("verification_status", "").strip().lower()
+            inferential_status = claim.get("inferential_status", "").strip().lower()
+            paper_location = claim.get("paper_location", "").strip()
+            allowed_verbs = claim.get("allowed_verbs", "").strip()
+            if not claim_id or claim_id in claim_ids:
+                errors.append(f"blank or duplicate claim_id: {claim_id!r}")
+            claim_ids.add(claim_id)
+            if provenance not in EVIDENCE_PROVENANCE_VALUES:
+                errors.append(f"invalid evidence provenance for {claim_id}: {provenance}")
+            if verification not in EVIDENCE_VERIFICATION_VALUES:
+                errors.append(
+                    f"invalid evidence verification status for {claim_id}: {verification}"
+                )
+            if not paper_location:
+                errors.append(f"claim lacks paper_location: {claim_id}")
+                manuscript_facing = True
+            else:
+                manuscript_facing = paper_location.lower() not in NON_MANUSCRIPT_LOCATIONS
+            if manuscript_facing:
+                if provenance != "current" or verification != "verified":
+                    errors.append(
+                        f"manuscript-facing claim is not current and verified: {claim_id}"
+                    )
+                if inferential_status not in INFERENTIAL_STATUS_VALUES:
+                    errors.append(
+                        f"invalid inferential status for manuscript claim {claim_id}: {inferential_status}"
+                    )
+                if not allowed_verbs:
+                    errors.append(f"manuscript-facing claim lacks allowed_verbs: {claim_id}")
         completion = (run_dir / "completion-report.md").read_text(
             encoding="utf-8", errors="replace"
         )

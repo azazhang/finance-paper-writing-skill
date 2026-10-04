@@ -54,6 +54,14 @@ decision:
 
 ## Major Issues
 
+For every material review comment that could trigger a manuscript change, classify it as `demonstrated-defect`, `verification-question`, or `optional-extension` before recommending an edit.
+
+
+## Reviewer-to-Manuscript Triage
+
+| Issue | Review class | Verification needed | Manuscript change warranted | Reason |
+|---|---|---|---|---|
+
 
 ## Copy-Level Issues
 

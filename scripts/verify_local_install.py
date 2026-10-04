@@ -10,6 +10,7 @@ from pathlib import Path
 SKILL_NAME = "finance-paper-writing"
 MANIFEST = ".finance-paper-writing-install.json"
 PROVIDERS = {
+    "agents": Path.home() / ".agents" / "skills" / SKILL_NAME,
     "codex": Path.home() / ".codex" / "skills" / SKILL_NAME,
     "claude": Path.home() / ".claude" / "skills" / SKILL_NAME,
     "cursor": Path.home() / ".cursor" / "skills" / SKILL_NAME,
@@ -19,7 +20,12 @@ PROVIDERS = {
 def tree_hash(root: Path) -> str:
     digest = hashlib.sha256()
     for path in sorted(root.rglob("*")):
-        if not path.is_file() or path.name == MANIFEST:
+        if (
+            not path.is_file()
+            or path.name == MANIFEST
+            or "__pycache__" in path.parts
+            or path.suffix == ".pyc"
+        ):
             continue
         digest.update(path.relative_to(root).as_posix().encode("utf-8"))
         digest.update(b"\0")

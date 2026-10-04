@@ -40,7 +40,7 @@ No provider-specific copy is maintained in the repository. This prevents silent 
 
 The universal core covers empirical finance prose, evidence ordering, closest-paper positioning, reader context, author voice, and caveat discipline.
 
-Design-specific material belongs in optional references. Version 0.1.0 contains one such module for text-based measures. Loading that module is conditional; it does not change the core requirements for ordinary corporate-finance, asset-pricing, banking, or household-finance papers.
+Design-specific material belongs in optional references. The repository currently contains one such module for text-based measures. Loading that module is conditional; it does not change the core requirements for ordinary corporate-finance, asset-pricing, banking, or household-finance papers.
 
 ## Companion Skills
 

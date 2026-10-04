@@ -103,7 +103,7 @@ class ValidateRunStateTests(unittest.TestCase):
             encoding="utf-8",
         )
         (run_dir / "issue-ledger.tsv").write_text(
-            "issue_id\tlocation\tcategory\tseverity\tdescription\tproposed_repair\tstatus\treviewer\n",
+            "issue_id\tlocation\tcategory\tseverity\tdescription\tproposed_repair\treview_class\treview_resolution\tstatus\treviewer\n",
             encoding="utf-8",
         )
 
@@ -364,7 +364,7 @@ Final manuscript: {current_hash}
             self.assertFalse((run_dir / "cold-reader-report.md").exists())
             self.assertFalse((run_dir / "claim-evidence-ledger.csv").exists())
 
-    def test_section_revision_omits_full_only_artifacts(self) -> None:
+    def test_section_revision_tracks_affected_caveats_but_omits_full_only_passes(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             root = Path(temp_dir)
             (root / ".git").mkdir()
@@ -387,11 +387,190 @@ Final manuscript: {current_hash}
                 check=True,
             )
             run_dir = Path(init.stdout.splitlines()[0])
-            self.assertFalse((run_dir / "caveat-registry.csv").exists())
+            self.assertTrue((run_dir / "caveat-registry.csv").exists())
             with (run_dir / "pass-log.tsv").open(encoding="utf-8", newline="") as handle:
                 purposes = {row["purpose"] for row in csv.DictReader(handle, delimiter="\t")}
             self.assertNotIn("final-whole-paper-read", purposes)
             self.assertNotIn("closest-paper-positioning", purposes)
+
+    def test_reviewer_issue_requires_review_class(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "issue-ledger.tsv").write_text(
+                "issue_id\tlocation\tcategory\tseverity\tdescription\tproposed_repair\treview_class\treview_resolution\tstatus\treviewer\n"
+                "I1\tIntroduction\tcaveat\tminor\tPossible robustness concern\tVerify the concern\t\tChecked current evidence\tclosed\treviewer-c\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("issue lacks valid review_class", result.stdout)
+
+    def test_methodological_limitation_cannot_be_deleted_as_noninformative(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "caveat-registry.csv").write_text(
+                "caveat_id,limitation,claim_affected,function,disposition,primary_location,earlier_cross_reference_needed,final_wording,status\n"
+                "CAV1,No exogenous shock,causal interpretation,methodological-limitation,delete-noninformative,Research Design,no,,closed\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("material caveat cannot be deleted as noninformative", result.stdout)
+
+    def test_closed_verification_question_requires_resolution_evidence(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "issue-ledger.tsv").write_text(
+                "issue_id\tlocation\tcategory\tseverity\tdescription\tproposed_repair\treview_class\treview_resolution\tstatus\treviewer\n"
+                "I1\tResults\trobustness\tminor\tAlternative cutoff may matter\tCheck current evidence\tverification-question\t\tclosed\treviewer-c\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("closed review issue lacks resolution evidence", result.stdout)
+
+    def test_review_generated_issue_requires_reviewer_identity(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "issue-ledger.tsv").write_text(
+                "issue_id\tlocation\tcategory\tseverity\tdescription\tproposed_repair\treview_class\treview_resolution\tstatus\treviewer\n"
+                "I1\tResults\trobustness\tminor\tAlternative cutoff may matter\tCheck current evidence\tverification-question\tCurrent table resolves concern\tclosed\t\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("review-generated issue lacks reviewer identity", result.stdout)
+
+    def test_necessary_scope_condition_cannot_be_deleted_as_noninformative(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "caveat-registry.csv").write_text(
+                "caveat_id,limitation,claim_affected,function,disposition,primary_location,earlier_cross_reference_needed,final_wording,status\n"
+                "CAV1,Sample covers public lenders,external validity,necessary-scope-condition,delete-noninformative,Data,no,,closed\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("material caveat cannot be deleted as noninformative", result.stdout)
+
+    def test_nondeleted_caveat_requires_location_and_final_wording(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "caveat-registry.csv").write_text(
+                "caveat_id,limitation,claim_affected,function,disposition,primary_location,earlier_cross_reference_needed,final_wording,status\n"
+                "CAV1,No exogenous shock,causal interpretation,methodological-limitation,retain-here,,no,,closed\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("caveat lacks primary location", result.stdout)
+            self.assertIn("caveat lacks final calibrated wording", result.stdout)
+
+    def test_manuscript_facing_claim_must_be_current_and_verified(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "claim-evidence-ledger.csv").write_text(
+                "claim_id,economic_claim,evidence_source,exhibit,sample,unit,timing,estimate,uncertainty,provenance,verification_status,inferential_status,allowed_verbs,paper_location,caveat_home,notes\n"
+                "C1,Legacy headline result,old.csv,Table 2,Firms,firm-quarter,quarterly,-0.02,0.01,legacy,planned,associational,is associated with,main text,design section,\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("manuscript-facing claim is not current and verified", result.stdout)
+
+    def test_active_development_claim_may_remain_planned(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "claim-evidence-ledger.csv").write_text(
+                "claim_id,economic_claim,evidence_source,exhibit,sample,unit,timing,estimate,uncertainty,provenance,verification_status,inferential_status,allowed_verbs,paper_location,caveat_home,notes\n"
+                "C1,Planned extension,,,,,,,,legacy,planned,,,active-development,,\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+
+    def test_open_minor_verification_question_blocks_completion(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            (run_dir / "issue-ledger.tsv").write_text(
+                "issue_id\tlocation\tcategory\tseverity\tdescription\tproposed_repair\treview_class\treview_resolution\tstatus\treviewer\n"
+                "I1\tResults\trobustness\tminor\tAlternative cutoff may matter\tCheck current evidence\tverification-question\t\topen\treviewer-c\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("unresolved review finding", result.stdout)
+
+    def test_final_whole_paper_reader_must_be_independent(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            with (run_dir / "pass-log.tsv").open(encoding="utf-8", newline="") as handle:
+                rows = list(csv.DictReader(handle, delimiter="\t"))
+            for row in rows:
+                if row["purpose"] == "final-whole-paper-read":
+                    row["identity"] = "writer-a"
+            with (run_dir / "pass-log.tsv").open("w", encoding="utf-8", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=rows[0].keys(), delimiter="\t")
+                writer.writeheader()
+                writer.writerows(rows)
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("final whole-paper reader is not independent", result.stdout)
+
+    def test_unsupported_schema_version_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            run_path = run_dir / "run.json"
+            run = json.loads(run_path.read_text(encoding="utf-8"))
+            run["schema_version"] = 0
+            run_path.write_text(json.dumps(run, indent=2), encoding="utf-8")
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("unsupported schema_version", result.stdout)
+
+    def test_prose_audit_rejects_manuscript_changes(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            (root / ".git").mkdir()
+            manuscript = root / "main.tex"
+            manuscript.write_text("\\section{Introduction}\nA finance question.\n", encoding="utf-8")
+            init = subprocess.run(
+                [sys.executable, str(INIT_SCRIPT), str(manuscript), "--mode", "prose-audit", "--project-root", str(root), "--lead-editor", "auditor-a"],
+                text=True,
+                capture_output=True,
+                check=True,
+            )
+            run_dir = Path(init.stdout.splitlines()[0])
+            manuscript.write_text("\\section{Introduction}\nThe manuscript was changed.\n", encoding="utf-8")
+            current_hash = manuscript_sha256(manuscript)
+            (run_dir / "prose-lint.json").write_text(
+                json.dumps({"manuscript_sha256": current_hash, "hard_failure_count": 0, "warning_count": 0, "modules": [], "findings": []}),
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 1)
+            self.assertIn("prose-audit mode must not change the manuscript", result.stdout)
+
+    def test_schema_v1_run_remains_backward_compatible(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            run_path = run_dir / "run.json"
+            run = json.loads(run_path.read_text(encoding="utf-8"))
+            run["schema_version"] = 1
+            run["skill_version"] = "0.1.0"
+            run_path.write_text(json.dumps(run, indent=2), encoding="utf-8")
+            (run_dir / "issue-ledger.tsv").write_text(
+                "issue_id\tlocation\tcategory\tseverity\tdescription\tproposed_repair\tstatus\treviewer\n"
+                "I1\tIntroduction\tcaveat\tminor\tLegacy reviewer issue\tLegacy repair\tclosed\treviewer-c\n",
+                encoding="utf-8",
+            )
+            (run_dir / "caveat-registry.csv").write_text(
+                "caveat_id,limitation,claim_affected,primary_location,earlier_cross_reference_needed,final_wording,status\n"
+                "CAV1,Legacy design boundary,causal interpretation,Research Design,no,Legacy wording,closed\n",
+                encoding="utf-8",
+            )
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
 
 if __name__ == "__main__":

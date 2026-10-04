@@ -23,7 +23,7 @@ Ask:
 
 > Revise the introduction with finance-paper-writing. Diagnose argument order and defensive prose before rewriting, then run a cold-reader check on the revised section.
 
-The section still needs a charter excerpt and evidence mapping. It does not require a complete whole-paper convergence exercise.
+The section still needs a charter excerpt, evidence mapping, and a caveat registry limited to material limitations affected by that section. It does not require a complete whole-paper convergence exercise.
 
 ## Read-Only Audit
 

@@ -10,6 +10,7 @@ from pathlib import Path
 
 SKILL_NAME = "finance-paper-writing"
 PROVIDERS = {
+    "agents": Path.home() / ".agents" / "skills" / SKILL_NAME,
     "codex": Path.home() / ".codex" / "skills" / SKILL_NAME,
     "claude": Path.home() / ".claude" / "skills" / SKILL_NAME,
     "cursor": Path.home() / ".cursor" / "skills" / SKILL_NAME,
@@ -20,7 +21,12 @@ MANIFEST = ".finance-paper-writing-install.json"
 def tree_hash(root: Path) -> str:
     digest = hashlib.sha256()
     for path in sorted(root.rglob("*")):
-        if not path.is_file() or path.name == MANIFEST:
+        if (
+            not path.is_file()
+            or path.name == MANIFEST
+            or "__pycache__" in path.parts
+            or path.suffix == ".pyc"
+        ):
             continue
         relative = path.relative_to(root).as_posix()
         digest.update(relative.encode("utf-8"))
@@ -35,10 +41,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--providers",
         default="codex",
-        help="Comma-separated providers: codex, claude, cursor. Default: codex.",
+        help="Comma-separated providers: agents, codex, claude, cursor. Default: codex.",
     )
     parser.add_argument("--mode", choices=("symlink", "copy"), default="symlink")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument(
+        "--discard-local-changes",
+        action="store_true",
+        help="Allow --force to replace a managed copy whose installed files changed after installation.",
+    )
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -65,11 +76,22 @@ def is_managed_copy(destination: Path, source: Path) -> bool:
     )
 
 
+def managed_copy_has_local_changes(destination: Path) -> bool:
+    manifest_path = destination / MANIFEST
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return True
+    installed_at_hash = str(manifest.get("source_tree_sha256", ""))
+    return not installed_at_hash or tree_hash(destination) != installed_at_hash
+
+
 def install_one(
     provider: str,
     source: Path,
     mode: str,
     force: bool,
+    discard_local_changes: bool,
     dry_run: bool,
 ) -> str:
     destination = PROVIDERS[provider]
@@ -86,6 +108,17 @@ def install_one(
             )
         if not force:
             return f"skipped managed installation without --force: {destination}"
+        if (
+            destination.is_dir()
+            and not destination.is_symlink()
+            and managed_copy_has_local_changes(destination)
+            and not discard_local_changes
+        ):
+            raise SystemExit(
+                "refusing to replace a managed copy with local changes; "
+                "rerun with --force --discard-local-changes to discard them: "
+                f"{destination}"
+            )
         if not dry_run:
             if destination.is_symlink() or destination.is_file():
                 destination.unlink()
@@ -120,8 +153,20 @@ def main() -> int:
     if not (source / "SKILL.md").is_file():
         raise SystemExit(f"canonical skill not found: {source}")
 
+    if args.discard_local_changes and not args.force:
+        raise SystemExit("--discard-local-changes requires --force")
+
     for provider in provider_list(args.providers):
-        print(install_one(provider, source, args.mode, args.force, args.dry_run))
+        print(
+            install_one(
+                provider,
+                source,
+                args.mode,
+                args.force,
+                args.discard_local_changes,
+                args.dry_run,
+            )
+        )
     return 0
 
 

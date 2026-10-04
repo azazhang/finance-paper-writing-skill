@@ -30,7 +30,7 @@ PATTERNS: list[tuple[str, str, re.Pattern[str], str]] = [
     (
         "hard",
         "local-path",
-        re.compile(r"(?:/Users/|/home/|file://|[A-Za-z]:\\\\Users\\\\|(?<!\w)~/)"),
+        re.compile(r"(?:/Users/|/home/|file://|[A-Za-z]:\\Users\\|(?<!\w)~/)"),
         "Reader-facing prose appears to contain a local filesystem path.",
     ),
     (
@@ -43,7 +43,7 @@ PATTERNS: list[tuple[str, str, re.Pattern[str], str]] = [
         "Use ordinary author voice or a precise coding-role description.",
     ),
     (
-        "hard",
+        "warning",
         "development-record",
         re.compile(
             r"\b(?:locally archived|stored locally|on (?:my|the) computer|"
@@ -99,12 +99,35 @@ PATTERNS: list[tuple[str, str, re.Pattern[str], str]] = [
         "warning",
         "defensive-phrase",
         re.compile(
-            r"\b(?:should not be interpreted as|we do not claim|"
-            r"cannot establish|need not (?:imply|display|be)|"
-            r"is not designed to|association is not causation)\b",
+            r"\b(?:should not be interpreted as|should not be taken to mean|"
+            r"we do not claim|we do not attempt|cannot establish|"
+            r"need not (?:imply|display|be)|is not designed to|"
+            r"this does not mean|this is not to say|the goal is not|"
+            r"rather than arguing|association is not causation|"
+            r"to be clear|it is worth noting)\b",
             re.IGNORECASE,
         ),
-        "Check whether this qualification is necessary here and stated only once.",
+        "Check whether this qualification advances the argument, can be stated as positive scope, or belongs only once in its primary home.",
+    ),
+    (
+        "warning",
+        "negative-scope",
+        re.compile(
+            r"\b(?:we do not claim|we do not attempt|is not intended to|"
+            r"is not designed to|the goal is not|should not be interpreted as)\b",
+            re.IGNORECASE,
+        ),
+        "Consider stating the actual sample, estimand, design, horizon, comparison, or inferential scope positively without broadening the claim.",
+    ),
+    (
+        "warning",
+        "self-minimizing",
+        re.compile(
+            r"\b(?:merely|modest (?:attempt|contribution)|preliminary attempt|"
+            r"only (?:a )?(?:small|limited|preliminary) (?:step|attempt|contribution))\b",
+            re.IGNORECASE,
+        ),
+        "Replace ritual self-minimization with a precise statement of the paper's research job and supported contribution.",
     ),
 ]
 
@@ -138,6 +161,25 @@ REPEATED_PHRASES = {
 NEGATIVE_OPENING = re.compile(
     r"^(?:although|while|despite|however|nevertheless)\b|"
     r"\b(?:cannot|need not|is not designed to|a limitation|a concern)\b",
+    re.IGNORECASE,
+)
+
+HEDGE_MARKER = re.compile(
+    r"\b(?:might|could|possibly|potentially|perhaps|arguably)\b",
+    re.IGNORECASE,
+)
+LOWERCASE_MAY = re.compile(r"\bmay\b")
+SENTENCE_SPLIT = re.compile(r"(?<=[.!?])\s+(?=[A-Z0-9\\])")
+
+HIGH_IMPACT_HEADING = re.compile(
+    r"\b(?:abstract|introduction|contributions?|main results|empirical results|results|conclusion)\b",
+    re.IGNORECASE,
+)
+
+HIGH_IMPACT_DEFENSE = re.compile(
+    r"\b(?:we do not claim|we do not attempt|cannot establish|"
+    r"should not be interpreted as|should not be taken to mean|"
+    r"this does not mean|this is not to say|the goal is not|is not designed to)\b",
     re.IGNORECASE,
 )
 
@@ -218,8 +260,27 @@ def is_heading(raw: str, suffix: str) -> bool:
 def heading_text(raw: str, suffix: str) -> str:
     if suffix == ".md":
         return raw.lstrip("#").strip()
-    match = re.search(r"\{(.+)\}", raw)
+    match = re.search(r"\{([^}]*)\}", raw)
     return match.group(1).strip() if match else raw.strip()
+
+
+def heading_remainder(raw: str, suffix: str) -> str:
+    if suffix != ".tex":
+        return ""
+    match = re.match(
+        r"^\s*\\(?:part|chapter|section|subsection|subsubsection)\*?\{[^}]*\}\s*(.*)$",
+        strip_tex_comment(raw),
+    )
+    return match.group(1).strip() if match else ""
+
+
+def hedge_count(text: str) -> int:
+    return len(HEDGE_MARKER.findall(text)) + len(LOWERCASE_MAY.findall(text))
+
+
+def sentence_units(prose_lines: list[str]) -> list[str]:
+    corpus = " ".join(prose_lines)
+    return [unit.strip() for unit in SENTENCE_SPLIT.split(corpus) if unit.strip()]
 
 
 def lint_file(
@@ -231,8 +292,14 @@ def lint_file(
     pending_heading: tuple[int, str] | None = None
 
     for line_number, raw in enumerate(path.read_text(encoding="utf-8", errors="replace").splitlines(), 1):
-        if is_heading(raw, path.suffix.lower()):
-            title = heading_text(raw, path.suffix.lower())
+        suffix = path.suffix.lower()
+        if suffix == ".tex" and re.search(r"\\begin\{abstract\}", strip_tex_comment(raw)):
+            pending_heading = (line_number, "Abstract")
+            raw = re.sub(r".*?\\begin\{abstract\}\s*", "", raw, count=1)
+            if not raw.strip():
+                continue
+        elif is_heading(raw, suffix):
+            title = heading_text(raw, suffix)
             if COMPLIANCE_HEADING.search(title):
                 findings.append(
                     Finding(
@@ -245,9 +312,18 @@ def lint_file(
                     )
                 )
             pending_heading = (line_number, title)
-            continue
+            raw = heading_remainder(raw, suffix)
+            if not raw:
+                continue
 
-        prose = normalized_prose(raw, path.suffix.lower())
+        raw_prose = strip_tex_comment(raw) if suffix == ".tex" else raw
+        for severity, category, pattern, message in active_patterns:
+            if category == "local-path" and pattern.search(raw_prose):
+                findings.append(
+                    Finding(severity, category, str(path), line_number, raw_prose.strip()[:180], message)
+                )
+
+        prose = normalized_prose(raw, suffix)
         if not prose:
             continue
         all_prose.append(prose)
@@ -264,17 +340,46 @@ def lint_file(
                         f"Section '{pending_heading[1]}' appears to open with a caveat or defense.",
                     )
                 )
+            if HIGH_IMPACT_HEADING.search(pending_heading[1]) and (
+                HIGH_IMPACT_DEFENSE.search(prose)
+                or hedge_count(prose) >= 2
+            ):
+                findings.append(
+                    Finding(
+                        "warning",
+                        "high-impact-defense",
+                        str(path),
+                        line_number,
+                        prose[:180],
+                        f"High-impact section '{pending_heading[1]}' opens with defensive framing or stacked uncertainty.",
+                    )
+                )
             pending_heading = None
 
         for severity, category, pattern, message in active_patterns:
+            if category == "local-path":
+                continue
             if pattern.search(prose):
                 findings.append(
                     Finding(severity, category, str(path), line_number, prose[:180], message)
                 )
 
+    for sentence in sentence_units(all_prose):
+        if hedge_count(sentence) >= 2:
+            findings.append(
+                Finding(
+                    "warning",
+                    "hedge-stack",
+                    str(path),
+                    0,
+                    sentence[:180],
+                    "This sentence stacks uncertainty markers; identify the concrete source of uncertainty and state it once.",
+                )
+            )
+
         negations = re.findall(
             r"\b(?:not|cannot|does not|do not|need not|should not)\b",
-            prose,
+            sentence,
             flags=re.IGNORECASE,
         )
         if len(negations) >= 3:
@@ -283,8 +388,8 @@ def lint_file(
                     "warning",
                     "negation-chain",
                     str(path),
-                    line_number,
-                    prose[:180],
+                    0,
+                    sentence[:180],
                     "This sentence contains a chain of denials; reconstruct it around the supported claim.",
                 )
             )

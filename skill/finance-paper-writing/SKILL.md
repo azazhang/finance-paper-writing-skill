@@ -12,7 +12,7 @@ allowed-tools:
   - AskUserQuestion
   - Task
 metadata:
-  version: "0.1.0"
+  version: "0.2.1"
   domain: empirical-finance
   primary_capability: manuscript-prose
 ---
@@ -60,7 +60,7 @@ Read [multi-pass-adherence.md](references/multi-pass-adherence.md) for the enfor
 | Mode | Use | Required artifacts |
 |---|---|---|
 | `full-manuscript` | New draft or whole-paper revision | Charter, affected-claim ledger, story map, caveat registry, audits, pass log, cold read, completion report |
-| `section-revision` | An abstract, introduction, literature, data, results, or other substantive section | Charter excerpt, affected-claim ledger, section map, audit, issue and pass logs, cold read |
+| `section-revision` | An abstract, introduction, literature, data, results, or other substantive section | Charter excerpt, affected-claim ledger, section map, affected-caveat registry, audit, issue and pass logs, cold read |
 | `prose-audit` | Diagnose without editing | Charter excerpt, macro-prose audit, issue and pass logs, lint dispositions |
 | `paragraph-edit` | One isolated passage that does not change paper-level or section-level argument | Brief diagnosis and rewrite; no run directory required |
 
@@ -143,7 +143,7 @@ Use one pass for one job. Record each pass in `pass-log.tsv`.
 | Economics | Make the question, result, and interpretation explicit | Numbers or evidence status |
 | Evidence prominence | Put claim-critical evidence where a skimming reader sees it | Estimates |
 | Development translation | Replace project history with data, sample, and method descriptions | Reproducibility facts |
-| Anti-defense | Remove weakness-first framing and repeated qualifications | Material limitations |
+| Anti-defense | Diagnose defensive units, convert negative boundaries to positive scope when faithful, collapse hedge stacks, and prevent reviewer-objection leakage | Material limitations and claim ceilings |
 | Reader context | Define samples, units, timing, groups, and acronyms at first use | Construct definitions |
 | Finance register | Make syntax, author voice, and terminology natural for finance | Claim strength |
 | Closest-paper positioning | Establish the neighboring economic object before differentiation | The cited paper’s actual contribution |
@@ -156,6 +156,10 @@ Apply the paragraph order:
 **economic point → evidence → interpretation → one bounded qualification when needed**
 
 Do not force that sequence mechanically when a shorter paragraph is clearer.
+
+During the anti-defense pass, classify each material defensive unit as an unnecessary disclaimer, redundant clarification, necessary scope condition, real methodological limitation, evidence-based qualification, or useful conceptual contrast. Choose an explicit disposition before rewriting. Record every affected material limitation in `caveat-registry.csv`, scoped to the whole paper in full-manuscript mode and to the affected section in section-revision mode. Prefer positive statements of sample, estimand, design, horizon, comparison, or inferential status to negative self-protection when they preserve the same boundary. Do not remove a qualification if doing so broadens the claim beyond the evidence.
+
+Treat null, mixed, or unfavorable evidence as evidence first. State the condition and finding directly, then narrow or withdraw the affected claim when required. Do not convert adverse evidence into generic self-criticism or hide it behind a limitations label.
 
 Read [anti-defensive-prose.md](references/anti-defensive-prose.md) and [closest-paper-positioning.md](references/closest-paper-positioning.md).
 
@@ -188,7 +192,7 @@ Run at least:
 
 For a closest-paper discussion, add a fairness test: would the other paper’s authors recognize their contribution and the stated distinction?
 
-Fresh agents report issues; one lead editor owns manuscript changes.
+Fresh agents report issues; one lead editor owns manuscript changes. Before any review comment becomes manuscript text, classify it as a **demonstrated defect**, **verification question**, or **optional extension**; classify non-reviewer issues as `editor-detected`. Demonstrated defects should be repaired. Verification questions must be checked before they are treated as problems, and a closed verification question must record what evidence resolved it. Optional extensions do not become caveats merely because a reviewer can imagine them; if the author elects to pursue one, record that decision rather than relabeling it as a defect. Repair accepted problems at the level of claim, evidence, design explanation, scope, or architecture rather than appending prophylactic language.
 
 Complete the scorecard embedded in `cold-reader-report.md`. Full manuscripts must score all eight prose dimensions; section reviews may mark genuinely irrelevant dimensions `n/a`. Passing requires at least 87.5% of available points and no critical failure.
 
@@ -229,6 +233,9 @@ Optional modules may add checks. They may not replace the universal prose and ev
 - Do not insert ethics, AI-use, funding, authorship, limitations, or conflict sections unless the venue requires them or they materially inform the study.
 - Do not call planned empirical work a result.
 - Do not let the drafting agent serve as the only final reviewer.
+- Do not turn hypothetical reviewer objections or optional extensions into manuscript caveats by default.
+- Do not convert a necessary limitation into a stronger positive statement that the design cannot support.
+- Do not relabel a material null or adverse result as a generic limitation to reduce its prominence.
 - Do not use a prose linter as evidence that the manuscript is persuasive.
 
 ## Completion Gate
@@ -248,7 +255,7 @@ For `full-manuscript`, completion requires:
 5. the closest paper is represented fairly and differentiated economically;
 6. fresh review finds no unresolved major prose or architecture problem;
 7. numbers, references, citations, and rendered pages pass inspection; and
-8. two consecutive whole-paper reads produce only copy-level changes.
+8. the final-hash cold-reader pass and the subsequent final whole-paper read form two consecutive acceptance reads and produce only copy-level comments.
 
 For `section-revision`, completion instead requires:
 

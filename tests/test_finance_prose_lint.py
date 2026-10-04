@@ -63,7 +63,7 @@ The human principal investigator then reviewed the locally archived files.
 """
         )
         self.assertEqual(result.returncode, 1)
-        self.assertGreaterEqual(data["hard_failure_count"], 4)
+        self.assertGreaterEqual(data["hard_failure_count"], 2)
         categories = {item["category"] for item in data["findings"]}
         self.assertIn("local-path", categories)
         self.assertIn("development-record", categories)
@@ -233,7 +233,7 @@ Standard errors are clustered by state.
             data = json.loads(report.read_text(encoding="utf-8"))
             self.assertEqual(result.returncode, 1)
             self.assertIn(str(section.resolve()), data["files_scanned"])
-            self.assertGreaterEqual(data["hard_failure_count"], 2)
+            self.assertGreaterEqual(data["hard_failure_count"], 1)
 
     def test_commented_tex_input_is_not_scanned(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -264,6 +264,97 @@ Standard errors are clustered by state.
             data = json.loads(report.read_text(encoding="utf-8"))
             self.assertEqual(result.returncode, 0)
             self.assertNotIn(str(unused.resolve()), data["files_scanned"])
+
+    def test_negative_scope_and_self_minimizing_language_are_flagged(self) -> None:
+        result, data = self.run_lint(
+            r"""
+\section{Introduction}
+We do not claim to resolve every financing friction; this paper merely provides a preliminary attempt to study refinancing risk.
+"""
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertIn("negative-scope", categories)
+        self.assertIn("self-minimizing", categories)
+        self.assertIn("high-impact-defense", categories)
+
+    def test_stacked_uncertainty_is_flagged(self) -> None:
+        result, data = self.run_lint(
+            r"""
+\section{Results}
+The estimates may potentially indicate that refinancing activity could perhaps decline after the shock.
+"""
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertIn("hedge-stack", categories)
+        self.assertIn("high-impact-defense", categories)
+
+    def test_single_calibrated_uncertainty_marker_is_not_a_hedge_stack(self) -> None:
+        result, data = self.run_lint(
+            r"""
+\section{Results}
+Sampling error may account for the imprecise estimate in the post-2020 subsample.
+"""
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertNotIn("hedge-stack", categories)
+        self.assertNotIn("high-impact-defense", categories)
+
+    def test_wrapped_hedge_stack_is_flagged_at_sentence_level(self) -> None:
+        result, data = self.run_lint(
+            "\\section{Results}\nThe estimate may\npotentially reflect selection.\n"
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertIn("hedge-stack", categories)
+
+    def test_separate_sentences_do_not_form_a_hedge_stack(self) -> None:
+        result, data = self.run_lint(
+            "Sampling error may explain the imprecision. Selection could explain the sign.\n"
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertNotIn("hedge-stack", categories)
+
+    def test_month_may_is_not_treated_as_an_uncertainty_marker(self) -> None:
+        result, data = self.run_lint("The May announcement could affect trading.\n")
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertNotIn("hedge-stack", categories)
+
+    def test_abstract_environment_receives_high_impact_scrutiny(self) -> None:
+        result, data = self.run_lint(
+            "\\begin{abstract}\nWe do not claim causality.\n\\end{abstract}\n"
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertIn("high-impact-defense", categories)
+
+    def test_inline_tex_section_opening_is_linted(self) -> None:
+        result, data = self.run_lint(
+            "\\section{Results} We do not claim that the estimate is causal.\n"
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertIn("high-impact-defense", categories)
+        self.assertIn("negative-scope", categories)
+
+    def test_legitimate_local_storage_wording_is_warning_not_hard_failure(self) -> None:
+        result, data = self.run_lint(
+            "Confidential borrower records are stored locally under the data agreement.\n"
+        )
+        self.assertEqual(result.returncode, 0)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertIn("development-record", categories)
+        self.assertEqual(data["hard_failure_count"], 0)
+
+    def test_windows_local_path_is_a_hard_failure(self) -> None:
+        result, data = self.run_lint(r"The data are at C:\Users\name\project.\n")
+        self.assertEqual(result.returncode, 1)
+        categories = {item["category"] for item in data["findings"]}
+        self.assertIn("local-path", categories)
 
 
 if __name__ == "__main__":

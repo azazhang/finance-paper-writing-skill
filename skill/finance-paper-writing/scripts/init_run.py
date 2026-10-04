@@ -32,6 +32,7 @@ TEMPLATES_BY_MODE = {
         "paper-charter.md",
         "claim-evidence-ledger.csv",
         "section-story-map.md",
+        "caveat-registry.csv",
         "macro-prose-audit.md",
         "issue-ledger.tsv",
         "pass-log.tsv",

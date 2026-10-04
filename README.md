@@ -16,6 +16,8 @@ The skill enforces:
 - separation of manuscript, active development, and replication records;
 - main-text evidence ordering from the reader’s perspective;
 - disciplined treatment of caveats and noncausal evidence;
+- functional anti-defense diagnosis with positive-scope and hedge calibration;
+- reviewer-to-manuscript triage that separates demonstrated defects from unverified objections and optional extensions;
 - fair closest-paper positioning;
 - fresh read-only review after substantive edits;
 - deterministic checks for recurring prose problems; and
@@ -81,20 +83,20 @@ Install for Codex:
 python3 scripts/install_local.py --providers codex
 ```
 
-Install for several Agent Skills-compatible tools:
+Install across the portable OpenAI Agent Skills root and the locally supported agent-specific roots:
 
 ```bash
-python3 scripts/install_local.py --providers codex,claude,cursor
+python3 scripts/install_local.py --providers agents,codex,claude,cursor
 ```
 
-Use `--mode copy` instead of the default symlink when preferred.
+Use `--mode copy` instead of the default symlink when preferred. Managed copies with post-install local edits are protected from `--force` replacement unless `--discard-local-changes` is also supplied explicitly.
 
 ## Verify
 
 ```bash
 python3 scripts/verify_repo.py
 python3 -m unittest discover -s tests -v
-python3 scripts/verify_local_install.py --providers codex
+python3 scripts/verify_local_install.py --providers agents,codex,claude,cursor
 ```
 
 The skill-definition validator can also be run directly:

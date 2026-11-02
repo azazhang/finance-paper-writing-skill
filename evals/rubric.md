@@ -21,6 +21,7 @@ Any one is disqualifying:
 - planned or unverified evidence stated as a result;
 - a competing paper materially misrepresented;
 - a material limitation hidden or transformed into a false claim;
-- the writer supplies the only acceptance review for a full manuscript; or
-- the standard empirical-finance case is forced into text-classifier validation language.
+- the abstract leaves the economic question or central finding unrecoverable despite listing coefficients; or
+- the standard empirical-finance case is forced into text-classifier validation language; or
+- workflow artifacts or repeated reviews substitute for the assigned manuscript revision.
 

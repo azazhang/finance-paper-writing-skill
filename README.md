@@ -1,95 +1,47 @@
 # Finance Paper Writing Skill
 
-A prose-first, multi-pass workflow for drafting and revising empirical finance manuscripts with AI agents.
+**A paper succeeds by making a clear, falsifiable economic argument and putting its sharpest quantitative evidence front and center.** This skill helps an AI agent draft and revise empirical finance papers around that standard.
 
-This skill addresses a failure that generic academic-writing tools often miss. An agent can produce grammatical, technically detailed prose that still reads unlike a finance paper: the draft leads with caveats, describes the research workspace instead of the research design, gives development diagnostics more attention than economic evidence, or anticipates referee objections before explaining the contribution.
-
-The workflow treats those problems as failures of editorial judgment rather than word choice.
+It addresses an editorial failure that grammar tools miss: a technically correct manuscript can still hide its economic question, catalogue disconnected estimates, lead with qualifications, or sound like a development report. The remedy is an argument supported by interpretable evidence and natural finance prose.
 
 ## What It Does
 
-The skill enforces:
+- Organizes the abstract, introduction, results, exhibits, and conclusion around the same economic argument.
+- Selects main-text and Appendix evidence for its inferential role, while preserving exploration in the research record.
+- Uses direct claims calibrated to the design, with one primary home for material qualifications.
+- Represents neighboring literature fairly and distinguishes contributions economically.
+- Maintains finance register through later revisions, including headings and exhibit notes.
+- Scales work to the requested revision instead of requiring process artifacts for every edit.
 
-- an economics-first paper charter;
-- a claim-to-evidence boundary before drafting;
-- result-led finance prose;
-- separation of manuscript, active development, and replication records;
-- main-text evidence ordering from the reader’s perspective;
-- disciplined treatment of caveats and noncausal evidence;
-- functional anti-defense diagnosis with positive-scope and hedge calibration;
-- reviewer-to-manuscript triage that separates demonstrated defects from unverified objections and optional extensions;
-- fair closest-paper positioning;
-- fresh read-only review after substantive edits;
-- deterministic checks for recurring prose problems; and
-- completion only after recorded whole-paper gates pass.
+The principle **one pass, one job** helps separate argument, interpretation, authorial voice, and reader context when a broad revision needs that attention. It does not require eight logs, repeated whole-paper reads, a score threshold, or a new review campaign.
 
-Its primary capability is manuscript prose. It does not replace empirical research design, literature discovery, generic proofreading, or LaTeX tooling.
-
-## Activation Reliability
-
-Installing a skill does not guarantee that an agent will select or follow it. This repository therefore uses four controls:
-
-1. a broad trigger description covering common finance-manuscript requests and symptoms;
-2. visible activation and persistent run artifacts;
-3. machine-checked pass separation, review freshness, linter dispositions, and cold-reader scores; and
-4. a short project routing rule for projects where skill selection has already failed.
-
-For such projects, treat `docs/project-routing-rule.md` as part of installation rather than an optional refinement. Generic academic-paper, proofreading, and humanization skills may assist, but cannot substitute for these gates.
-
-## Why Multiple Passes
-
-One prompt should not ask an AI agent to be complete, cautious, technically precise, persuasive, and fluent at the same time. That combination commonly creates defensive and development-oriented prose.
-
-This skill uses **one pass, one job**:
-
-1. evidence boundary;
-2. economic story;
-3. section and exhibit architecture;
-4. development-to-paper translation;
-5. anti-defensive editing;
-6. cold-reader context;
-7. finance register;
-8. independent finance-reader review;
-9. forensic and rendered-paper checks.
-
-The same agent may edit across passes, but it may not be the only final evaluator.
+Installing a skill does not guarantee adherence. The revised manuscript is the deliverable. A linter pass, recorded workflow, page count, or successful compilation does not certify a scholarly contribution.
 
 ## Repository Structure
 
-- `skill/finance-paper-writing/`: canonical Agent Skills package.
-- `skill/finance-paper-writing/references/`: finance-writing rules and optional modules.
-- `skill/finance-paper-writing/templates/`: paper charter, ledgers, and run state.
-- `skill/finance-paper-writing/scripts/`: prose linter and run-state validator.
-- `evals/`: generalized regression cases and scoring rubric.
-- `tests/`: deterministic tests for the enforcement scripts.
-- `scripts/`: repository installation and verification tools.
-- `docs/project-routing-rule.md`: optional project-level activation rule when automatic routing is unreliable.
+- `skill/finance-paper-writing/`: the single canonical skill package.
+- `references/` inside the package: prose standards and topic-specific guidance.
+- `examples/`: before-and-after illustrations.
+- `scripts/finance_prose_lint.py`: optional diagnostic aid.
+- Other bundled scripts and templates: retained support for an explicitly requested formal review record or historical runs. They are not prerequisites for ordinary revision.
+- `evals/` and `tests/`: behavioral cases and deterministic helper tests.
 
-The canonical skill is provider-neutral. The installer places the same package in the selected Agent Skills directory for Codex, Claude Code, or Cursor, avoiding divergent copies.
-
-If a finance project has repeatedly bypassed installed writing skills, add the short rule in `docs/project-routing-rule.md` to that project’s agent instructions. The installer does not modify global instruction files automatically because instruction crowding can make routing less reliable.
+The same provider-neutral package is installed for Codex, Claude Code, or Cursor. No separate provider copies are maintained.
 
 ## Install
 
-Preview installation:
-
 ```bash
 python3 scripts/install_local.py --dry-run
-```
-
-Install for Codex:
-
-```bash
 python3 scripts/install_local.py --providers codex
 ```
 
-Install across the portable OpenAI Agent Skills root and the locally supported agent-specific roots:
+For several supported roots:
 
 ```bash
 python3 scripts/install_local.py --providers agents,codex,claude,cursor
 ```
 
-Use `--mode copy` instead of the default symlink when preferred. Managed copies with post-install local edits are protected from `--force` replacement unless `--discard-local-changes` is also supplied explicitly.
+Use `--mode copy` when preferred. Managed copies with local edits are protected from replacement unless explicitly discarded. The optional short rule in `docs/project-routing-rule.md` can improve routing in a finance project; installation does not modify global instructions.
 
 ## Verify
 
@@ -99,24 +51,4 @@ python3 -m unittest discover -s tests -v
 python3 scripts/verify_local_install.py --providers agents,codex,claude,cursor
 ```
 
-The skill-definition validator can also be run directly:
-
-```bash
-uv run python /path/to/validate_skill.py skill/finance-paper-writing --strict
-```
-
-## Typical Requests
-
-- “Rewrite this introduction so it reads like an empirical finance paper.”
-- “Audit the manuscript for defensive prose and internal development language.”
-- “Revise the paper from first principles and make the main evidence visible.”
-- “Position this paper against its closest finance paper without an air-defense tone.”
-- “Check whether the abstract, introduction, tables, and conclusion tell the same story.”
-
-## Optional Text-Measure Module
-
-The universal workflow does not assume the paper constructs a text measure. When that design is present, an optional module adds guidance for presenting human coding, classifier fidelity, aggregation, disagreement, economic validation, and sensitivity to ambiguous classifications.
-
-## Sharing
-
-The repository is structured for publication as a standalone GitHub project. It uses the MIT License, matching the companion finance-literature-review skill repository.
+Skill-definition validation checks the package, not whether its advice produces a good paper. Use the task-relevant guidance in `docs/how-to-use.md`; do not treat the helper tests as a manuscript acceptance process.

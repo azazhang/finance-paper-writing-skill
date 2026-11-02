@@ -4,7 +4,7 @@ Use this rubric for empirical corporate finance, asset pricing, banking, househo
 
 ## Primary Standard
 
-A finance reader should be able to recover:
+**A paper succeeds by making a clear, falsifiable economic argument and putting its sharpest quantitative evidence front and center.** A finance reader should be able to recover:
 
 1. the economic question;
 2. why it matters;
@@ -32,6 +32,8 @@ If those answers are obscure, cleaner sentences do not solve the main prose prob
 | Competitor air defense | Rebuttal and overlap mechanics precede a fair account of the neighboring paper | Can the reader state both economic objects before the comparison statistics? | Explain the neighboring contribution, boundary, and incremental question first |
 | Epistemic drift | Association becomes mechanism or prediction becomes causality | What design feature licenses the chosen verb? | Use the strongest verb supported by the design |
 | Template accretion | Generic ethics, AI, authorship, funding, or limitations sections appear automatically | Is the section required or materially informative? | Apply a venue- and study-specific inclusion test |
+| Coefficient catalogue | The abstract lists subsamples and estimates with no connected interpretation | Can the reader say what the paper does after one reading? | Rebuild around tension, question, design, main finding, and meaning |
+| Process capture | Logs, gates, reviews, and scores displace the requested revision | Did the manuscript argument actually improve? | Implement and check the substantive revision without another artifact cycle |
 | Literal repair | Flagged words disappear while the paragraph’s defensive job survives | Would this paragraph be written this way from a blank page? | Rebuild or remove the paragraph |
 
 ## Paragraph Test
@@ -88,5 +90,5 @@ Review the following as one document:
 5. main table and figure titles, panels, and notes;
 6. conclusion.
 
-Write what the paper appears to ask, find, contribute, and not establish. Any mismatch with the paper charter is a major prose issue.
+Check whether the paper asks, finds, and contributes the same thing in these positions. Resolve a mismatch through argument and evidence order. This reading is an editorial aid, not a requirement for a new report, score, or repeated reviewer cycle.
 

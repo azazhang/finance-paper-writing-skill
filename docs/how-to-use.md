@@ -1,61 +1,35 @@
 # How to Use
 
-## Full Manuscript
+## Whole paper
 
-Ask:
+> Use finance-paper-writing to revise this empirical finance paper. Make the economic argument and sharpest evidence clear, preserve claim calibration, and keep the abstract, introduction, results, and conclusion coherent.
 
-> Use finance-paper-writing to revise this empirical finance manuscript from first principles. Treat prose as the primary problem, preserve the evidence boundary, and use a fresh finance reader before declaring completion.
+The agent should read the current manuscript and relevant established evidence, implement the requested argument and prose changes, check affected quantitative claims and references, compile edited LaTeX, and report the actual change. Argument and evidence order deserve attention before sentence polishing. A new charter, run directory, scorecard, or reviewer campaign is not required.
 
-The agent should:
+## Section or passage
 
-1. announce skill use;
-2. initialize `.finance-writing/runs/...`;
-3. complete the charter and evidence ledger;
-4. audit macro prose before editing;
-5. run distinct rewrite passes;
-6. obtain a hash-current cold read;
-7. run deterministic and forensic checks; and
-8. return a gate-status table.
+> Revise the introduction so a finance reader understands the tension, question, main finding, and contribution after the first two pages.
 
-## Section Revision
+> Rewrite this abstract as connected prose. Keep the sharpest quantitative evidence and explain its economic meaning.
 
-Ask:
+> Rewrite this paragraph in empirical-finance register while preserving the supported claim.
 
-> Revise the introduction with finance-paper-writing. Diagnose argument order and defensive prose before rewriting, then run a cold-reader check on the revised section.
+Read the affected section and transitions after editing. Scale checks to the substantive changes; do not promote a paragraph revision into a full research restart.
 
-The section still needs a charter excerpt, evidence mapping, and a caveat registry limited to material limitations affected by that section. It does not require a complete whole-paper convergence exercise.
+## Review when requested
 
-## Read-Only Audit
+> Read this paper and identify the few structural problems that prevent its argument from being understood. Do not edit or start new empirical work.
 
-Ask:
+A bounded reader assessment is useful when requested or when it answers a concrete unresolved structural question. Distinguish demonstrated defects, verification questions, and optional extensions. The latter two do not automatically become manuscript caveats.
 
-> Audit this manuscript’s prose using finance-paper-writing. Do not edit. Focus on development-language leakage, weakness-first exposition, evidence prominence, closest-paper framing, reader context, and repetitive caveats.
+## Text-based measures
 
-The output should be a severity-ranked issue ledger, not a generic referee report.
+Use the optional text-measure reference when presenting a text construct. Describe the established measure and its actual validity evidence. A writing task does not authorize another source-reading, classifier, or coding cycle.
 
-## Isolated Passage
+## Optional formal records
 
-Ask:
+The older initializer, templates, hashes, and run-state validator remain available for an explicitly requested formal record. Their strict schema describes that selected package. They are not the default workflow and cannot override a project's prohibition on gates, audits, or repeated reviews.
 
-> Rewrite this paragraph in empirical-finance register. Preserve the supported claim and explain why the original reads defensively.
+## Report back
 
-The lightweight mode does not create a run directory.
-
-## Text-Based Measure
-
-Ask:
-
-> This paper constructs a measure from text. Use the optional text-measure module, but keep its validation vocabulary out of the general economic story unless needed.
-
-## What Good Completion Looks Like
-
-The handoff should identify:
-
-- manuscript files changed;
-- substantive prose problems corrected;
-- main evidence moved or reframed;
-- independent reviewer identity and manuscript hash;
-- unresolved research issues kept outside the paper;
-- deterministic validation commands and results; and
-- any gate that remains unverified.
-
+Explain the substantive argument, interpretation, and passages improved in self-contained prose. Link the revised manuscript or compiled PDF when relevant. Mention a remaining consequential research decision directly. Do not substitute worklogs or process status for the paper.

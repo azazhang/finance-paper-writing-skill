@@ -4,7 +4,7 @@ Build the paper from evidence that exists, but organize it around the economic q
 
 ## Evidence States
 
-Track three separate dimensions:
+Distinguish three dimensions when selecting evidence; a new ledger is optional:
 
 | Dimension | Values |
 |---|---|
@@ -12,7 +12,7 @@ Track three separate dimensions:
 | Verification | verified, provisional, failed, planned |
 | Paper treatment | main, appendix, discussion, omit, active-development |
 
-Only `current + verified` evidence may appear as a quantitative manuscript result. Legacy evidence can be salvaged only after its inputs, code, unit, and output are reverified.
+Quantitative claims must use the current, established evidence and the correct cohort and financial definitions. Do not reopen every legacy analysis: verify only a specific result needed for the assigned revision, using its existing outputs and code when sufficient.
 
 ## Inferential Status
 
@@ -38,15 +38,7 @@ Place evidence in the main text when it is required to believe:
 - the timing or design supports the claimed inference; or
 - a salient concern would otherwise dominate a skimming reviewer’s judgment.
 
-Use the Appendix for:
-
-- extended specification grids;
-- secondary outcomes;
-- implementation details;
-- exhaustive sensitivity checks;
-- additional examples;
-- source-by-source reconciliations; and
-- reproducibility material not needed to follow the main argument.
+Use the Appendix for supporting comparisons and methodological detail that help assess the retained argument. Keep uninformative exploratory grids, development diagnostics, and the full attempted-test archive in the research record. Additional examples illustrate an established empirical pattern; they do not supply the main evidence.
 
 Do not bury the strongest validation or differentiation evidence while displaying every internal diagnostic.
 
@@ -67,7 +59,7 @@ The sentence need not repeat every field when the surrounding text and table mak
 
 ## Null and Adverse Results
 
-Do not hide a material null or adverse result. Decide its placement by its relevance to the headline claim:
+An informative null requires a credible design and sufficient precision to bear on an economic prediction. A wide interval is not evidence of no effect. Do not hide a material adverse result. Decide placement by relevance to the headline claim:
 
 - main text if it narrows or materially qualifies the contribution;
 - Appendix with a main-text pointer if it addresses a secondary horizon or outcome;

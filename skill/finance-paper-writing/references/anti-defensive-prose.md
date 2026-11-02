@@ -23,7 +23,7 @@ Before editing a defensive-looking sentence, classify its function. Do not treat
 | Evidence-based qualification | Attach directly to the affected claim or interpretation |
 | Useful conceptual contrast | Retain only when the contrast itself advances the economic argument |
 
-Record material limitations in the caveat registry with both their function and disposition. In section-revision mode, scope the registry to caveats affected by that section rather than inventorying the whole paper. A limitation should not disappear merely because its original wording was defensive.
+Choose the disposition before rewriting; a separate registry is optional. Use existing notes if a material relocation needs to be retained. A limitation should not disappear merely because its original wording was defensive.
 
 ## Positive Scope
 
@@ -129,7 +129,7 @@ Do not replace modesty with unsupported novelty or importance claims. State the 
 
 ## Unfavorable, Null, and Mixed Evidence
 
-A weaker specification, null, heterogeneous effect, failed robustness test, or adverse comparison is an empirical result before it is a "limitation."
+Preserve attempted specifications in the research record. An imprecise estimate is not a substantive null finding. Select manuscript evidence for the economic argument; retain unfavorable comparisons that change a reported claim. Such evidence should be interpreted directly rather than hidden under a generic "limitation."
 
 For each unfavorable result:
 
@@ -161,9 +161,9 @@ Only demonstrated defects, and verification questions that are verified as real 
 
 When a reviewer comment is accepted, repair the underlying claim, evidence, design explanation, or scope. Do not simply append a protective sentence.
 
-## Caveat Registry
+## One Primary Home
 
-For each material limitation, record:
+For each material limitation, keep clear:
 
 - limitation;
 - claim affected;

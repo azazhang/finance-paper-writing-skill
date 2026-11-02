@@ -1,10 +1,7 @@
 # Optional Project Routing Rule
 
-Add the following rule to a finance project’s `AGENTS.md`, `CLAUDE.md`, or equivalent instruction file when automatic skill selection has been unreliable:
+Add this short rule to a finance project's agent instructions when automatic selection has been unreliable:
 
-> For any drafting, rewriting, or substantive polishing of an empirical-finance manuscript, invoke the `finance-paper-writing` skill before editing. Generic academic-paper, proofreading, or humanization workflows may be used as helpers, but they do not replace its paper charter, prose passes, independent cold read, or completion gates. Keep active empirical development and replication records outside reader-facing manuscript prose.
+> Whenever drafting or revising an empirical-finance manuscript, use finance-paper-writing. Center a clear, falsifiable economic argument and its sharpest quantitative evidence; apply its authorial voice, claim calibration, and finance register throughout the revision. Scale work to the assigned task and honor project prohibitions. Do not replace substantive writing with workflow artifacts or repeated reviews.
 
-This rule is intentionally short. Installing many overlapping global writing instructions can create routing ambiguity and instruction crowding.
-
-Do not add it to projects outside finance unless the manuscript follows empirical-finance conventions.
-
+Keep the rule local to relevant finance projects. More overlapping global instructions can crowd out the guidance that matters.

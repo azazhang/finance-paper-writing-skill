@@ -23,5 +23,5 @@ Do not use the agent that designed the skill as the only evaluator.
 - no development-language or local-path leakage; and
 - the evaluator can recover the intended economic question, result, contribution, and claim boundary.
 
-The deterministic unit tests cover linter and gate mechanics. These cases test editorial judgment and must be reviewed by a human or fresh model.
+These are optional development evaluations for changes to the skill, not mandatory stages of each manuscript revision. Deterministic tests cover helper behavior, including the retained formal-record schema. They do not establish editorial judgment or publication quality.
 

@@ -1,282 +1,89 @@
 ---
 name: finance-paper-writing
-description: "Draft and revise empirical finance manuscript prose through an economics-first, exhibit-linked, multi-pass workflow. Enforces finance-paper register, result-led argument, closest-paper positioning, caveat discipline, reader context, and independent whole-paper review. Use when writing or revising a finance paper, abstract, introduction, literature positioning, results narrative, or when prose sounds defensive, overly technical, generic, or like an internal development report. Not for literature discovery alone or generic proofreading."
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Glob
-  - Grep
-  - Bash(python3*)
-  - Bash(latexmk*)
-  - AskUserQuestion
-  - Task
+description: "Draft and revise empirical finance manuscript prose around a clear economic argument and its strongest quantitative evidence. Apply whenever writing an abstract, introduction, literature positioning, results narrative, or finance paper revision, including defensive or development-oriented drafts. Not for literature discovery alone or generic proofreading."
 metadata:
-  version: "0.2.1"
+  version: "0.3.0"
   domain: empirical-finance
   primary_capability: manuscript-prose
 ---
 
 # Finance Paper Writing
 
-Produce finance-facing manuscript prose, not a polished research log. Treat prose quality as a substantive part of the paper: the order of claims, evidence, qualifications, and comparisons determines what a finance reader believes the paper contributes.
+**A paper succeeds by making a clear, falsifiable economic argument and putting its sharpest quantitative evidence front and center.** Write as an author explaining what the evidence teaches finance, with claims calibrated to the design. A polished catalogue of analyses or qualifications is still a weak paper.
 
-## When to Use
+Apply this guidance throughout the assigned revision. Current user instructions, the agreed research plan, and project restrictions control. This skill supplies editorial judgment; it does not authorize new analysis, repeated reviews, or an alternative agenda.
 
-Use this skill for:
+## Start with the paper, then revise it
 
-- drafting or revising an empirical finance manuscript;
-- rewriting an abstract, introduction, related-literature discussion, data section, or results narrative;
-- removing defensive, generic, technical, or development-oriented prose;
-- deciding what a main-text reader must see;
-- conducting a first-principles finance-prose audit; or
-- integrating completed evidence into a paper.
+Announce use of this skill. Recover the current manuscript, the author's request, and the established evidence needed for that request. Keep the following in working context: the economic question, tension or mechanism, main finding and magnitude, design, closest contribution, and the passage being improved. Use the existing research state rather than creating a new charter or inventory every time work resumes.
 
-Do not use it as a substitute for:
+Scale effort to the revision. Edit an isolated passage directly. A section revision needs its argument, relevant evidence, and surrounding transitions. A whole-paper revision needs coherent abstract, introduction, exhibits, results, and conclusion. None automatically requires a run directory, ledger, scorecard, reviewer campaign, or acceptance certificate.
 
-- literature discovery: use a finance literature-review workflow;
-- new empirical analysis or causal-design selection;
-- mechanical proofreading alone;
-- formal response-to-referee planning; or
-- LaTeX compilation alone.
+Use [finance-prose-rubric.md](references/finance-prose-rubric.md) for the substantive standard. Read the other references only when their topic is relevant. [multi-pass-adherence.md](references/multi-pass-adherence.md) explains proportionate revision and the optional legacy workflow tools.
 
-## Core Contract
+## Make an economic argument
 
-For every manuscript-level task:
+The question is about an economically meaningful behavior, friction, allocation, or price. A regression specification, dataset, disclosure category, or institutional fact is not itself the question.
 
-1. Announce that this skill is being used.
-2. Select a mode and record it.
-3. Create the required run artifacts before editing.
-4. Complete distinct passes with one objective each.
-5. Use at least one fresh read-only evaluator after substantive editing.
-6. Report which gates passed and which did not.
+Explain the competing forces and what observation would distinguish the paper's interpretation from a plausible alternative. State a directional prediction when the theory supplies one; do not invent formal hypotheses to decorate exploratory research. Organize completed assets by their role in that argument, rather than when they were produced or how much effort they consumed.
 
-Never claim that an installed companion skill ran unless it was actually invoked. Never declare a manuscript finished from an unrecorded self-review.
+The first two pages should make clear what the paper asks, why a finance reader should care, what the paper does, the sharpest evidence, and how that evidence changes understanding. If the argument is obscure, rebuild its order before polishing individual sentences. Do not shrink the contribution around a superficial literature comparison. Use finance-literature-review when the revision requires new literature work; represent neighboring papers' actual economic objects and evidence fairly.
 
-Read [multi-pass-adherence.md](references/multi-pass-adherence.md) for the enforcement protocol and [finance-prose-rubric.md](references/finance-prose-rubric.md) for the prose standard.
+## Write an abstract a reader can understand
 
-## Modes
+Write connected prose with a causal logic the reader can follow:
 
-| Mode | Use | Required artifacts |
-|---|---|---|
-| `full-manuscript` | New draft or whole-paper revision | Charter, affected-claim ledger, story map, caveat registry, audits, pass log, cold read, completion report |
-| `section-revision` | An abstract, introduction, literature, data, results, or other substantive section | Charter excerpt, affected-claim ledger, section map, affected-caveat registry, audit, issue and pass logs, cold read |
-| `prose-audit` | Diagnose without editing | Charter excerpt, macro-prose audit, issue and pass logs, lint dispositions |
-| `paragraph-edit` | One isolated passage that does not change paper-level or section-level argument | Brief diagnosis and rewrite; no run directory required |
+- the economic tension and question;
+- the setting, measure, or identifying variation that makes the question answerable;
+- the principal finding with one or a few interpretable magnitudes;
+- the economic implication.
 
-Use `section-revision`, not `paragraph-edit`, whenever the request names a manuscript section or requires contribution, evidence-order, closest-paper, or main-versus-Appendix judgment. Default to `full-manuscript` when the request concerns the paper’s overall contribution, main-text evidence, or several sections.
+This is a useful sequence, not a sentence-count template. Keep secondary sample counts, model labels, specification catalogues, and technical qualifications in the paper. A list of percentages from disconnected subsamples leaves the reader to supply the argument. Choose quantitative evidence for its centrality and interpretability; including every estimate weakens the abstract.
 
-In `paragraph-edit` mode, still diagnose the paragraph’s economic job, remove repeated claim-boundary language, and apply the finance-prose rubric before returning the rewrite.
+Read the finished abstract as ordinary prose. Can a finance reader explain what the paper does and what it teaches after one reading? If not, rewrite the abstract rather than appending another result. Preserve an effective coauthor draft when it states the argument better; improve factual precision without dismantling its logic or authorial voice.
 
-## Phase 0: Route and Inspect
+## Give each exhibit an economic job
 
-Before editing:
+Select main-text evidence that establishes, distinguishes, or materially qualifies the paper's argument. The Appendix is for relevant supporting evidence and detail, not an archive of all attempted tests. Preserve baseline and material exploratory specifications in the research record, including uncertainty and selection decisions.
 
-1. Locate the active manuscript and rendered paper.
-2. Identify the target venue and intended audience when available.
-3. Separate current verified evidence from active development, legacy material, and provenance records.
-4. Read prior author feedback and the nearest completed exhibits.
-5. Select optional modules only when their trigger applies.
+An inconclusive exploratory coefficient does not earn a manuscript table merely because it was estimated. A negative or null effect is a finding when credible, sufficiently precise evidence supports the relevant no-effect prediction or otherwise materially informs the economic question. Retain evidence that changes the interpretation of a reported claim, and change the claim when warranted. Do not select exhibits solely by statistical significance, hide contrary evidence, or mechanically discard informative comparisons because a simultaneous interval spans zero.
 
-For `full-manuscript`, `section-revision`, and `prose-audit`, initialize:
+Make the decisive exhibit visible and explain its economic magnitude, unit, timing, comparison, and uncertainty. Distinguish descriptive, associational, predictive, mechanism-consistent, and causal evidence through the design and chosen verbs. [evidence-and-claims.md](references/evidence-and-claims.md) gives placement and claim guidance.
 
-```bash
-python3 <skill-directory>/scripts/init_run.py <manuscript-file> --mode <mode>
-```
+## Write as an author
 
-This creates `.finance-writing/runs/<date>-<slug>/` in the project root. Keep these workflow artifacts out of the manuscript directory and out of reader-facing prose.
+Default paragraph logic is **economic point → evidence → interpretation**, followed by a bounded qualification when needed. Vary this order when the passage reads more clearly another way. Results prose interprets evidence; it does not narrate each table column or the research process.
 
-If an optional module applies, record it during initialization, for example `--module text-measure`. If a requested revision produces no manuscript change, convert the run to `prose-audit`; do not report a no-change audit as a completed revision.
+Lead with the supported claim. Use the strongest verb earned by the design, such as documents, is associated with, predicts, or reduces. Give each material identification or measurement qualification one primary home where it changes inference. Elsewhere, calibrated verbs carry the scope. Preserve substantive uncertainty and contrary evidence while removing repeated self-protection.
 
-Ask the author only when the economic question, intended contribution, or claim boundary cannot be inferred without a consequential assumption.
+Do not negotiate with an imagined referee in the abstract, contribution, result openings, or conclusion. Optional extensions and speculative objections do not become limitations by default. A verified problem calls for repairing the claim, design explanation, or evidence; a protective sentence is rarely the repair. See [anti-defensive-prose.md](references/anti-defensive-prose.md).
 
-## Phase 1: Lock the Paper’s Economic Job
+Explain a neighboring paper's contribution before distinguishing the present paper. Different data can reveal a mechanism, challenge a conventional interpretation, or resolve an economic question; novelty need not be confined to a new method. See [closest-paper-positioning.md](references/closest-paper-positioning.md).
 
-Complete the paper charter before polishing sentences. Record:
+## Maintain finance register on every revision
 
-- economic question;
-- why a finance reader should care;
-- construct or treatment;
-- unit of observation;
-- research design and inferential status;
-- strongest defensible finding;
-- closest paper or construct;
-- intended contribution;
-- target reader promise; and
-- material claim boundaries.
+Use firms, managers, investors, lenders, portfolios, prices, cash flows, and financing choices as sentence subjects. Define financial objects, denominators, timing, and units before interpreting them. Use ordinary finance headings that identify the economic content, such as Data and Measurement, Investment, or Financing Adjustment.
 
-Then build the claim-evidence ledger for headline claims and for quantitative claims added or changed in the current scope. In a new full manuscript, cover every quantitative claim. Each row must map to current verified evidence, a sample and unit, an exhibit, an inferential status, and allowed verbs.
+Translate internal development language into descriptions of the actual research. Headings such as “Financial definitions” or “Economic coverage,” when merely labels for internal organization, obscure what the reader will learn. Do not apply a word blacklist: source, historical, deployment, and similar words can be appropriate in context. Judge syntax and economic meaning rather than replacing tokens mechanically.
 
-### Gate 1: Evidence Boundary
+Maintain the same standard after adding a table, incorporating a review, or making a later correction. An earlier prose pass does not protect later revisions from drift. Reread the affected paragraph or section as connected prose after editing; a successful word substitution says little about its argument.
 
-Do not draft a result as established when its ledger status is planned, provisional, failed, legacy, or unknown. Do not silently omit a material null merely because it complicates the preferred story.
+## Revise efficiently and stop
 
-Read [evidence-and-claims.md](references/evidence-and-claims.md).
+For a broad revision, separate the intellectual jobs when useful: argument and evidence order first, interpretation and authorial voice next, then reader context, finance register, numbers, and rendering. “One pass, one job” is a way to focus attention, not a requirement to produce eight logs or repeat eight whole-paper reads.
 
-## Phase 2: Build the Reader-Facing Architecture
+Use existing results to check changed quantitative claims. Verify changes to samples, units, references, and claim verbs. Compile edited LaTeX with the available compiler and inspect affected pages when layout matters. Ordinary computational traceability is sufficient unless a formal audit is explicitly assigned.
 
-Complete a section story map:
+An independent reader can help when requested or when one bounded reading would resolve a concrete structural issue. Do not launch serial reviewer cycles, use scores as publication certification, or make another review a dependency when the user has prohibited it. Finish when the requested substantive revision is implemented and checked; do not prolong it with taste-driven rewrites or process artifacts.
 
-| Field | Required question |
-|---|---|
-| Reader question | Why does this section exist? |
-| Section answer | What should the reader believe after it? |
-| Decisive evidence | Which exhibit or citation earns that belief? |
-| Interpretation | What is the economic meaning? |
-| Transition | Why does the next section follow? |
-| Caveat home | Which qualification belongs here, if any? |
+## Topic-specific guidance
 
-Order the main exhibits before drafting long narrative. A reviewer who reads only the abstract, introduction, headings, main exhibits, and conclusion must encounter the strongest complete version of the argument.
+- Section purposes: [empirical-finance-section-jobs.md](references/empirical-finance-section-jobs.md).
+- Text-based measures: [text-measure-papers.md](references/text-measure-papers.md), only when relevant. Describe established constructs and completed validity evidence; writing is not authorization to restart measurement.
+- Lessons from repeated failures: [research-to-prose-lessons.md](references/research-to-prose-lessons.md), when a revision is drifting into process, caveats, or disconnected results.
 
-Read [empirical-finance-section-jobs.md](references/empirical-finance-section-jobs.md).
+The bundled linter is an optional aid for recognizable prose problems. Its matches require editorial judgment. The initializer, templates, manuscript hashes, and run-state validator support a separately requested formal review workflow; passing them does not establish a persuasive argument or A* quality.
 
-### Gate 2: Architecture
+## Report the substantive change
 
-Do not preserve a paragraph merely because it already exists. If its economic job is unclear, delete, combine, or rebuild it from a blank page.
-
-## Phase 3: Draft or Rewrite in Distinct Passes
-
-Use one pass for one job. Record each pass in `pass-log.tsv`.
-
-| Pass | Objective | Do not change |
-|---|---|---|
-| Economics | Make the question, result, and interpretation explicit | Numbers or evidence status |
-| Evidence prominence | Put claim-critical evidence where a skimming reader sees it | Estimates |
-| Development translation | Replace project history with data, sample, and method descriptions | Reproducibility facts |
-| Anti-defense | Diagnose defensive units, convert negative boundaries to positive scope when faithful, collapse hedge stacks, and prevent reviewer-objection leakage | Material limitations and claim ceilings |
-| Reader context | Define samples, units, timing, groups, and acronyms at first use | Construct definitions |
-| Finance register | Make syntax, author voice, and terminology natural for finance | Claim strength |
-| Closest-paper positioning | Establish the neighboring economic object before differentiation | The cited paper’s actual contribution |
-| Continuity | Repair headings, openings, transitions, and conclusion alignment | Evidence boundary |
-
-`run.json` records `required_edit_passes`. Full-manuscript mode requires all eight. Section mode initializes the seven universal prose passes; after the macro audit, add `closest-paper-positioning` when the affected scope compares contributions or constructs. Do not replace several named passes with a catch-all rewrite.
-
-Apply the paragraph order:
-
-**economic point → evidence → interpretation → one bounded qualification when needed**
-
-Do not force that sequence mechanically when a shorter paragraph is clearer.
-
-During the anti-defense pass, classify each material defensive unit as an unnecessary disclaimer, redundant clarification, necessary scope condition, real methodological limitation, evidence-based qualification, or useful conceptual contrast. Choose an explicit disposition before rewriting. Record every affected material limitation in `caveat-registry.csv`, scoped to the whole paper in full-manuscript mode and to the affected section in section-revision mode. Prefer positive statements of sample, estimand, design, horizon, comparison, or inferential status to negative self-protection when they preserve the same boundary. Do not remove a qualification if doing so broadens the claim beyond the evidence.
-
-Treat null, mixed, or unfavorable evidence as evidence first. State the condition and finding directly, then narrow or withdraw the affected claim when required. Do not convert adverse evidence into generic self-criticism or hide it behind a limitations label.
-
-Read [anti-defensive-prose.md](references/anti-defensive-prose.md) and [closest-paper-positioning.md](references/closest-paper-positioning.md).
-
-## Phase 4: Run the Prose Enforcement Checks
-
-Run:
-
-```bash
-python3 <skill-directory>/scripts/finance_prose_lint.py <manuscript-source> \
-  --manuscript <main-manuscript-file> \
-  --json-output <run-directory>/prose-lint.json
-```
-
-Treat its output as leads for judgment, not automatic edits. The linter detects recurring development language, reviewer-directed prose, repeated disclaimers, awkward author roles, and local path leakage. It cannot decide whether the economic story works.
-
-When the optional text-measure module applies, add `--module text-measure`.
-
-Record every linter finding in `lint-dispositions.tsv` as `resolved` or `accepted-with-reason`. A final run may not retain a hard finding. Classify every material prose issue in `issue-ledger.tsv`. After local repairs, reread the full affected section; never close an issue based only on replacing the flagged phrase.
-
-## Phase 5: Independent Finance-Reader Review
-
-For `full-manuscript` and `section-revision`, use a fresh read-only agent that did not perform the immediately preceding edit. Give it the manuscript or rendered paper and the reader rubric, but withhold development notes unless needed to verify a specific claim. Record reviewer identity and the composite manuscript SHA-256 in `pass-log.tsv`.
-
-Run at least:
-
-1. **Skim test:** title, abstract, first two introduction pages, headings, main exhibits, conclusion.
-2. **Finance-reader test:** importance, contribution, evidence order, interpretation, and prose credibility.
-3. **Cold-context test:** undefined samples, timing, units, groups, acronyms, and unexplained comparisons.
-4. **Forensic test:** numbers, signs, table references, citations, and claim verbs.
-
-For a closest-paper discussion, add a fairness test: would the other paper’s authors recognize their contribution and the stated distinction?
-
-Fresh agents report issues; one lead editor owns manuscript changes. Before any review comment becomes manuscript text, classify it as a **demonstrated defect**, **verification question**, or **optional extension**; classify non-reviewer issues as `editor-detected`. Demonstrated defects should be repaired. Verification questions must be checked before they are treated as problems, and a closed verification question must record what evidence resolved it. Optional extensions do not become caveats merely because a reviewer can imagine them; if the author elects to pursue one, record that decision rather than relabeling it as a defect. Repair accepted problems at the level of claim, evidence, design explanation, scope, or architecture rather than appending prophylactic language.
-
-Complete the scorecard embedded in `cold-reader-report.md`. Full manuscripts must score all eight prose dimensions; section reviews may mark genuinely irrelevant dimensions `n/a`. Passing requires at least 87.5% of available points and no critical failure.
-
-### Gate 3: Independent Review
-
-Do not self-certify. If fresh review finds a recurring structural problem, return to the charter, exhibit order, or section job rather than applying another sentence-level patch.
-
-## Phase 6: Integrity and Rendered-Paper Check
-
-Cross-check:
-
-- every prose number against its exhibit;
-- sample sizes and units across text and tables;
-- causal, predictive, and descriptive verbs against the design;
-- all table, figure, section, and citation references;
-- title, abstract, introduction, main exhibits, and conclusion for the same contribution; and
-- the compiled PDF for table prominence, legibility, and awkward page-level flow.
-
-Use companion skills for bibliography validation, formal proofreading, or PDF inspection when available. Record actual invocations in the pass log.
-
-## Optional Modules
-
-Load optional guidance only when applicable:
-
-- For papers that construct or validate measures from text, classifiers, or LLM labels, read [text-measure-papers.md](references/text-measure-papers.md).
-- For all other empirical finance papers, do not import classifier-validation terminology or requirements.
-
-Optional modules may add checks. They may not replace the universal prose and evidence gates.
-
-## Never Do These
-
-- Do not convert an internal development report into a paper through word substitution alone.
-- Do not lead a section with what the design cannot establish before stating what it does establish.
-- Do not repeat “association is not causation” when calibrated verbs already communicate the boundary.
-- Do not describe local files, version labels, hashes, model generations, repair history, or governance records as manuscript contributions.
-- Do not allocate main-text space according to which analysis consumed the most development effort.
-- Do not introduce a competing paper through rebuttal or overlap statistics before explaining its economic object.
-- Do not insert ethics, AI-use, funding, authorship, limitations, or conflict sections unless the venue requires them or they materially inform the study.
-- Do not call planned empirical work a result.
-- Do not let the drafting agent serve as the only final reviewer.
-- Do not turn hypothetical reviewer objections or optional extensions into manuscript caveats by default.
-- Do not convert a necessary limitation into a stronger positive statement that the design cannot support.
-- Do not relabel a material null or adverse result as a generic limitation to reduce its prominence.
-- Do not use a prose linter as evidence that the manuscript is persuasive.
-
-## Completion Gate
-
-Validate the run state:
-
-```bash
-python3 <skill-directory>/scripts/validate_run_state.py <run-directory>
-```
-
-For `full-manuscript`, completion requires:
-
-1. every material claim is linked to current evidence and within its claim ceiling;
-2. the first two pages establish importance, question, evidence, and contribution without project-development language;
-3. main-text exhibits carry the paper’s central argument;
-4. each material caveat has one primary home;
-5. the closest paper is represented fairly and differentiated economically;
-6. fresh review finds no unresolved major prose or architecture problem;
-7. numbers, references, citations, and rendered pages pass inspection; and
-8. the final-hash cold-reader pass and the subsequent final whole-paper read form two consecutive acceptance reads and produce only copy-level comments.
-
-For `section-revision`, completion instead requires:
-
-1. every affected claim is linked to current evidence and within its claim ceiling;
-2. the section opening states its economic job without development or weakness-first language;
-3. claim-critical evidence and context are visible within the affected scope;
-4. each affected caveat has one primary home;
-5. closest-paper framing passes the fairness test when that comparison is in scope;
-6. a hash-current cold read finds no unresolved major prose problem;
-7. numbers, citations, exhibits, and terminology in the section pass inspection; and
-8. the section and its surrounding transitions have been reread after the final edit.
-
-If any condition is unverified, state that explicitly. Do not report the manuscript as finished.
-
-## Output
-
-Return:
-
-- revised manuscript or prose;
-- run artifact directory for manuscript-level work;
-- concise issue summary;
-- gate-status table;
-- unresolved research or evidence questions kept outside the manuscript; and
-- exact validation commands and results.
+Give a concise, self-contained explanation of the argument, evidence interpretation, and manuscript passages improved, with a link to the revised manuscript or compiled PDF when relevant. State a material unresolved research decision directly. Do not replace the report with Markdown worklogs, gate tables, linter results, file counts, or claims that the skill was followed. The revised paper is the deliverable.

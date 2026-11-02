@@ -14,7 +14,8 @@ Do not maintain separate provider copies of `SKILL.md`, references, templates, e
 - Keep the universal workflow applicable to empirical finance generally.
 - Keep text-measure and classifier guidance in the optional module.
 - Preserve the distinction between manuscript evidence, active development, legacy material, and replication records.
-- Require recorded gates and fresh read-only review for manuscript-level completion.
+- Scale revision to the assigned task. Keep formal run artifacts optional and use bounded independent reading only when it serves a concrete need within user restrictions.
+- Make the economic argument and strongest quantitative evidence the primary standard; do not certify prose or publication quality from helper-script success.
 - Never weaken a material limitation merely to make prose more persuasive.
 - Never add generic compliance sections without a venue or study-specific reason.
 - Keep provider instructions aligned with the canonical skill.

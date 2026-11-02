@@ -12,7 +12,7 @@ Answer in compact form:
 4. What is their economic interpretation?
 5. What changes relative to the existing literature?
 
-Prefer finance language over technical implementation detail. Include a material boundary only when omitting it would change the apparent contribution.
+Connect the economic tension to the question, approach, main evidence, and implication. Use a few interpretable magnitudes rather than listing every subsample and coefficient. Preserve an effective coauthor formulation when it communicates this logic better; correct facts without replacing its structure by a catalogue. Prefer finance language over technical implementation detail. Include a material boundary only when omitting it would change the apparent contribution.
 
 ## Introduction
 

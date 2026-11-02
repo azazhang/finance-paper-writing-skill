@@ -23,7 +23,9 @@ Use [finance-prose-rubric.md](references/finance-prose-rubric.md) for the substa
 
 ## Make an economic argument
 
-The question is about an economically meaningful behavior, friction, allocation, or price. A regression specification, dataset, disclosure category, or institutional fact is not itself the question.
+The question is about an economically meaningful behavior, friction, allocation, or price. A regression specification, dataset, disclosure category, or institutional fact is not itself the question. The paper must advance an answer: decide what the reader should believe, why the economic mechanism yields that claim, which quantitative comparison most strongly supports it, and how it changes understanding relative to the closest literature. Use those judgments to write the argument directly; they do not require a new template or planning artifact. A claim-free summary or list of results is an unsuccessful manuscript deliverable, even when its individual statements are accurate.
+
+“Falsifiable” means that an economic claim can be confronted with evidence. It does not demand an axiom, theorem, deductive certainty, or a causal estimator for every contribution. An informative empirical characterization, predictive relation, mechanism comparison, or causal result can support an argument at its appropriate scope. Uncertainty calibrates that argument; it must not erase the claim or become the paper's central message. Several complementary comparisons may support one integrated interpretation.
 
 Explain the competing forces and what observation would distinguish the paper's interpretation from a plausible alternative. State a directional prediction when the theory supplies one; do not invent formal hypotheses to decorate exploratory research. Organize completed assets by their role in that argument, rather than when they were produced or how much effort they consumed.
 

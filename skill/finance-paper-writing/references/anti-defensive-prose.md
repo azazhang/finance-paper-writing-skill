@@ -8,6 +8,18 @@ The objective is not stronger-sounding prose. It is **calibrated assertiveness**
 
 Advance the supported claim directly. Write as an author explaining an economic argument to a finance reader, not as an author negotiating with an imagined referee.
 
+The author has to advance an economic answer, not merely present material for the reader to assemble. Falsifiability is the ordinary requirement that evidence can challenge the answer; it is not a demand for deductive proof before making a claim. Establish the mechanism and strongest comparison, then use uncertainty to state the claim at the scope that comparison supports.
+
+Weak:
+
+> We collect sensitivity disclosures, analyze earnings calls, and compare financial accounts, while acknowledging that these exercises do not establish every aspect of managerial choice.
+
+Better:
+
+> Protecting period income and preserving financing capital are distinct risk-management outcomes. Paired portfolio responses reveal income–wealth divergence, while managers' prospective yields and interim valuations show why improved reinvestment terms can accompany erosion of the wealth supporting new positions.
+
+The second passage gives the evidence an economic interpretation. Its scope can be refined in the relevant design discussion without replacing the argument with a catalogue of qualifications.
+
 Never remove a limitation merely to make the paper sound more persuasive. If deleting a qualification would change the validity, interpretation, scope, research design, or proper use of a result, the qualification is material and must remain.
 
 ## Functional Diagnosis Before Rewriting

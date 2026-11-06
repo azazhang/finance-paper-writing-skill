@@ -199,6 +199,10 @@ Allowed dispositions should ordinarily be one of:
 
 Use `delete-noninformative` only for an `unnecessary-disclaimer` or `redundant-clarification`. A necessary scope condition, methodological limitation, evidence-based qualification, or useful conceptual contrast may be rewritten, relocated, or merged, but not deleted as noninformative when it changes the reader's inference.
 
+## Automated screening cannot enforce this guidance
+
+The optional prose scanner recognizes a limited set of literal/regex patterns. Many generic, unsupported, defensive, or disconnected arguments evade those rules, and legitimate prose can contain the flagged words. Zero matches cannot establish calibrated assertiveness or publication-quality finance writing. Never remove or paraphrase a flagged term solely to clear a scan. Diagnose and repair the economic object, substantive claim, evidence, inferential language, and placement of limitations in the actual paragraph and surrounding manuscript.
+
 ## Search Heuristics
 
 Inspect concentrations of:

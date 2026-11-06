@@ -54,6 +54,40 @@ The estimate is economically meaningful relative to average quarterly investment
         self.assertEqual(data["hard_failure_count"], 0)
         self.assertEqual(data["warning_count"], 0)
 
+    def test_weak_generic_finance_prose_can_match_zero_patterns(self) -> None:
+        # Negative control: no keyword match is not evidence of academic writing.
+        result, data = self.run_lint(
+            "Financial outcomes arise through a complex interplay of factors. "
+            "This paper offers a transformative perspective on the evolving "
+            "nature of firms and financial markets. The findings reveal "
+            "important implications for stakeholders and a multifaceted issue.\\n",
+            suffix=".txt",
+        )
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(data["hard_failure_count"], 0)
+        self.assertEqual(data["warning_count"], 0)
+        self.assertFalse(data["scholarly_quality_assessed"])
+        self.assertFalse(data["skill_compliance_assessed"])
+        self.assertIsNone(data["manuscript_quality_passed"])
+        self.assertTrue(data["false_negatives_possible"])
+        self.assertEqual(data["pattern_candidate_count"], 0)
+        self.assertEqual(data["potential_sensitive_or_internal_leak_count"], 0)
+        self.assertIn("NO MANUSCRIPT-QUALITY RESULT", result.stdout)
+        self.assertNotIn("summary: 0 hard, 0 warning", result.stdout)
+
+    def test_flagged_pattern_remains_diagnostic_without_quality_verdict(self) -> None:
+        result, data = self.run_lint(
+            "The estimate may potentially suggest changes in borrowing.\\n",
+            suffix=".txt",
+        )
+        self.assertEqual(result.returncode, 0)
+        self.assertGreater(data["warning_count"], 0)
+        self.assertTrue(data["pattern_matches_only"])
+        self.assertFalse(data["scholarly_quality_assessed"])
+        self.assertFalse(data["skill_compliance_assessed"])
+        self.assertIn("REVIEW CANDIDATE", result.stdout)
+        self.assertIn("NO MANUSCRIPT-QUALITY RESULT", result.stdout)
+
     def test_development_and_local_path_leakage_fail(self) -> None:
         result, data = self.run_lint(
             r"""

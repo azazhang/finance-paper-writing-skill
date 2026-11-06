@@ -22,7 +22,7 @@ Do not turn imagined objections into caveat catalogues or pursue reviewer scores
 
 A formal package is inappropriate when it would violate project prohibitions, repeat completed work, or displace the requested revision. A validator checks its record format; it cannot establish the economic contribution, validity, identification, or quality of the prose. Neither a passing package nor a manuscript length certifies publication readiness.
 
-The prose linter can be run independently without initializing a package. Treat matches as leads, preserve appropriate finance terms, and read the surrounding passage before changing it.
+The optional prose linter is a bounded keyword/regex scanner. Its matches are merely leads; zero matches are equally compatible with excellent scholarly prose and extremely weak generic writing. Even a passing software test suite measures only code behavior. Preserve appropriate finance terms and consequential limitations; never perform synonym replacement to satisfy a pattern. The writing agent must independently establish the economic claim, evidence, mechanism, manuscript continuity, and publication register.
 
 ## Completion
 

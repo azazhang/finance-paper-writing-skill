@@ -1,8 +1,8 @@
 ---
 name: finance-paper-writing
-description: "Draft and revise empirical finance manuscript prose around a clear economic argument and its strongest quantitative evidence. Apply whenever writing an abstract, introduction, literature positioning, results narrative, or finance paper revision, including defensive or development-oriented drafts. Not for literature discovery alone or generic proofreading."
+description: "Write, revise, polish, and proofread scholarly finance manuscripts, from a single sentence to a full paper, around an economic argument and credible quantitative evidence. Apply to abstracts, introductions, literature positioning, results, conclusions, and any finance-paper prose change, including small corrections and defensive drafts. Excludes literature discovery without a writing task and unrelated general-purpose proofreading."
 metadata:
-  version: "0.3.5"
+  version: "0.3.6"
   domain: empirical-finance
   primary_capability: manuscript-prose
 ---
@@ -92,7 +92,7 @@ Use existing results to check changed quantitative claims against the cited tabl
 - Text-based measures: [text-measure-papers.md](references/text-measure-papers.md), only when relevant. Describe established constructs and completed validity evidence; writing is not authorization to restart measurement.
 - Lessons from repeated failures: [research-to-prose-lessons.md](references/research-to-prose-lessons.md), when a revision is drifting into process, caveats, or disconnected results.
 
-The bundled prose linter and manuscript-hash utility remain optional. When the author **explicitly requests a formal record**, `init_run.py` creates a concise writer-first record (schema v3): manuscript hashes, the writer’s integrated-reading notes, and **independent-reader notes only if separately selected**. `validate_run_state.py` checks provenance and recorded work, without an eight-pass log, reviewer score threshold, mandatory cold reader, or acceptance certificate. Archived v1/v2 records remain readable; their old templates are isolated in `templates/legacy/` and require an explicit `--legacy-format` option to initialize. Ordinary manuscript writing needs no formal package, and file validation cannot certify scholarly quality.
+The bundled prose-pattern scanner (`finance_prose_lint.py`) and manuscript-hash utility remain optional. **The scanner performs a finite set of literal/pattern checks, principally development-language and defensive-wording indicators. It cannot detect most weak economic arguments, generic AI prose, patchwork writing, or violations of the publication voice. No matches, exit code 0, and any number of passing Python tests are never evidence that the manuscript meets this skill. Never game a scanner by swapping flagged words: write and read the economic argument itself. Never describe a manuscript as “passed” or “compliant” because of a scanner result.** When the author **explicitly requests a formal record**, `init_run.py` creates a concise writer-first record (schema v3): manuscript hashes, the writer’s integrated-reading notes, and **independent-reader notes only if separately selected**. `validate_run_state.py` checks provenance and recorded work, without an eight-pass log, reviewer score threshold, mandatory cold reader, or acceptance certificate. Archived v1/v2 records remain readable; their old templates are isolated in `templates/legacy/` and require an explicit `--legacy-format` option to initialize. Ordinary manuscript writing needs no formal package, and file validation cannot certify scholarly quality.
 
 ## Report the substantive change
 

@@ -2,7 +2,9 @@
 
 The closest paper should make the new paper easier to understand, not trigger an anticipatory response letter.
 
-## Comparison Sequence
+## Comparison Reasoning
+
+Use the following steps selectively when they help explain the paper’s actual economic contribution. They are reasoning cues for the prose, not mandatory stages, artifacts, or reasons to defer the assigned writing.
 
 1. State the closest paper’s economic question and contribution fairly.
 2. Define its economic object, unit, timing, and principal outcomes.
@@ -19,11 +21,11 @@ The closest paper should make the new paper easier to understand, not trigger an
 
 A valid opening must positively state the neighboring economic object or the paper’s own economic question. Do not open with “the contribution does not rest on,” “the question is not whether,” or an equivalent negative contrast.
 
-If the neighboring paper’s question, construct, principal result, or outcome is missing, do not draft final comparison prose. Return a short missing-evidence checklist and a positive paragraph outline. Never fill those facts from generic expectations.
+When a material fact about the nearest paper is missing, first check accessible primary literature and existing project sources. State only distinctions that the available evidence supports. Continue **writing the assigned manuscript passage** using the present paper’s established question, mechanism, and findings; a defensible narrower contribution can be stated without an unverified detailed comparison. If one precise comparator assertion remains unverifiable, omit or narrow that assertion, and flag the specific unresolved attribution outside the manuscript when it is consequential. **Do not replace requested prose with an outline, missing-evidence checklist, or new preliminary review task.** Never invent the neighbor’s research question, findings, or identifying assumptions.
 
-## Comparison Matrix
+## Relevant Comparison Dimensions
 
-Record:
+Examine the dimensions material to the claim, using accessible evidence. No comparison-matrix document is required unless expressly requested. Write the supported economic comparison in the paper itself. Relevant dimensions include:
 
 - economic object;
 - data and disclosure unit;

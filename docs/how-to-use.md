@@ -34,6 +34,10 @@ When effective author- or coauthor-approved passages already exist, preserve the
 
 For a substantive introduction or results revision, connect the economically important unresolved question, plausible mechanisms, decisive quantitative comparison, and incremental insight. Reconcile the affected magnitudes, units, uncertainty, and exhibit references directly with established results.
 
+## Optional literal-pattern diagnostics
+
+The finance prose scanner searches a finite set of patterns. Use it only when accidental local paths, internal version labels, or recognizable development-language leakage might be useful to flag. It is never a certification step. A clean scan cannot tell whether an agent wrote a coherent economic argument, verified claims against exhibits, used the finance-journal register, or obeyed the writing skill. Flagged phrases may be legitimate. Never replace words simply to make the scanner quiet. The actual prose and evidence are what the agent must evaluate and repair.
+
 ## GPT/Codex anti-defensive guidance
 
 For every finance-manuscript prose revision by Codex or any GPT-family model, read and apply `references/anti-defensive-prose.md` even when editing a single sentence. When underlying model identity is unknown, apply it. Confirmed non-GPT/non-Codex agents may use it selectively. Apply the standard during writing and check the affected passage; no separate audit report is needed.

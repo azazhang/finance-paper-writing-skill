@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.6 — 2026-11-06
+
+- Explicitly included finance-manuscript proofreading and polishing, including single-sentence changes, in skill activation.
+- Changed closest-paper positioning to continue substantive writing from verified evidence when neighboring-study information is incomplete, without replacing the assigned draft with a checklist.
+- Reframed the regex prose linter as a limited pattern scanner; its CLI and JSON outputs disclaim manuscript-quality and skill-compliance evaluation.
+- Prohibited mechanical synonym substitution to game scanner results; added negative-control testing for bad generic finance prose that escapes all configured patterns.
+- Updated guidance distinguishing deterministic software tests from agent behavior and scholarly writing quality.
+
 ## 0.3.5 — 2026-11-06
 
 - Redesigned the explicitly selected formal-run default as schema v3 around the writer’s integrated reading of the assembled manuscript and current hash checks, with one independent reader only when deliberately chosen.

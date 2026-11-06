@@ -21,6 +21,10 @@ The principle **one pass, one job** helps separate argument, interpretation, and
 
 Installing a skill does not guarantee adherence. The revised manuscript is the deliverable. A linter pass, recorded workflow, page count, or successful compilation does not certify a scholarly contribution. The optional formal record validates evidence of completed record-keeping, not whether the writer truly read or improved the paper.
 
+## Limits of the Optional Prose Scanner
+
+The finance prose scanner uses finite regular expressions to find a few recognizable wording and local-path patterns. It cannot evaluate scholarly finance voice, the economic argument, evidence interpretation, or manuscript coherence. A manuscript can be very poorly written and still produce zero pattern matches. The scanner always says that it has performed no manuscript-quality or skill-compliance assessment. No zero-match result, successful exit status, or number of passing Python helper tests can validate the prose. Do not substitute synonyms merely to silence a flagged pattern; repair the actual scholarly writing. The writer's integrated reading remains essential for substantial revisions.
+
 ## Repository Structure
 
 - `skill/finance-paper-writing/`: the single canonical skill package.

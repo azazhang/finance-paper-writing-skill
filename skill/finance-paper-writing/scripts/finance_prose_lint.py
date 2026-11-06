@@ -398,11 +398,20 @@ def lint_file(
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Flag recurring finance-manuscript prose failures.")
+    parser = argparse.ArgumentParser(
+        description=(
+            "Find a finite set of literal/pattern prose risk indicators. "
+            "Not a scholarly prose evaluator or writing-skill compliance check."
+        )
+    )
     parser.add_argument("target", type=Path)
     parser.add_argument("--manuscript", type=Path)
     parser.add_argument("--json-output", type=Path)
-    parser.add_argument("--strict", action="store_true")
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="Set nonzero exit code on pattern candidates; NEVER indicates manuscript-quality failure.",
+    )
     parser.add_argument(
         "--all-text",
         action="store_true",
@@ -479,8 +488,31 @@ def main() -> int:
         "manuscript_sha256": manuscript_hash,
         "hard_failure_count": hard_count,
         "warning_count": warning_count,
+        "potential_sensitive_or_internal_leak_count": hard_count,
+        "pattern_candidate_count": len(findings),
+        "legacy_field_notice": (
+            "hard_failure_count and warning_count are backward-compatible pattern counts, "
+            "not manuscript-quality or academic-writing failure indicators."
+        ),
         "modules": sorted(set(args.module)),
         "findings": [asdict(item) for item in findings],
+        "diagnostic_type": "bounded-heuristic-pattern-screen",
+        "pattern_matches_only": True,
+        "false_negatives_possible": True,
+        "false_positives_possible": True,
+        "scholarly_quality_assessed": False,
+        "skill_compliance_assessed": False,
+        "manuscript_quality_passed": None,
+        "exit_code_scope": (
+            "Exit status reflects configured matching rules and runtime execution only. "
+            "No exit code certifies a coherent scholarly manuscript, a persuasive "
+            "economic argument, or adherence to the finance-paper-writing skill."
+        ),
+        "interpretation": (
+            "Findings are review candidates, not proof of a writing defect. "
+            "Zero findings mean no configured pattern was matched, not that "
+            "the text has been independently read or evaluated."
+        ),
     }
 
     if args.json_output:
@@ -488,13 +520,27 @@ def main() -> int:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
 
+    print(
+        "BOUNDED PATTERN SCREEN — only literal/regex candidates; "
+        "no scholarly reading, evidence checking, or skill-compliance assessment."
+    )
     for item in findings:
         location = f"{item.file}:{item.line}" if item.line else item.file
-        print(f"{item.severity.upper()} [{item.category}] {location}")
+        indicator = "POSSIBLE LEAK" if item.severity == "hard" else "REVIEW CANDIDATE"
+        print(f"{indicator} [{item.category}] {location}")
         print(f"  {item.message}")
         if item.excerpt:
             print(f"  {item.excerpt}")
-    print(f"summary: {hard_count} hard, {warning_count} warning")
+    print(
+        f"pattern matches: {hard_count} potential sensitive/internal disclosures, "
+        f"{warning_count} wording candidates"
+    )
+    print(
+        "NO MANUSCRIPT-QUALITY RESULT: zero matches, exit code 0, and "
+        "passing unit tests do not demonstrate finance publication style, "
+        "economic argumentation, accurate evidence, or compliance with the skill. "
+        "Do not remove keywords merely to silence this tool."
+    )
 
     if hard_count or (args.strict and warning_count):
         return 1

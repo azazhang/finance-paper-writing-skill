@@ -800,7 +800,7 @@ def main() -> int:
     if errors:
         print(f"validation failed: {len(errors)} error(s), {len(warnings)} warning(s)")
         return 1
-    print(f"validation passed: 0 errors, {len(warnings)} warning(s)")
+    print(f"legacy record format valid: 0 schema errors, {len(warnings)} warning(s); no manuscript-quality or skill-compliance judgment")
     return 0
 
 

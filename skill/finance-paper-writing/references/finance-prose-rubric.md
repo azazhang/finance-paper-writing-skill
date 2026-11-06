@@ -1,6 +1,6 @@
 # Finance Prose Rubric
 
-Use this rubric for empirical corporate finance, asset pricing, banking, household finance, and adjacent accounting manuscripts. Judge prose by the reader’s inference, not by grammatical polish alone.
+Use this rubric for empirical corporate finance, asset pricing, banking, household finance, and adjacent accounting manuscripts. Evaluate the result in the **scholarly publication register of financial economics**, using the core [voice-calibration](voice-calibration.md) reference. The priority is disciplinary argumentation and economic inference, with personal authorial style as a secondary consideration. Judge prose by the reader’s inference, not by grammatical polish alone.
 
 ## Primary Standard
 
@@ -34,7 +34,7 @@ If those answers are obscure, cleaner sentences do not solve the main prose prob
 | Template accretion | Generic ethics, AI, authorship, funding, or limitations sections appear automatically | Is the section required or materially informative? | Apply a venue- and study-specific inclusion test |
 | Coefficient catalogue | The abstract lists subsamples and estimates with no connected interpretation | Can the reader say what the paper does after one reading? | Rebuild around tension, question, design, main finding, and meaning |
 | Empty contribution rhetoric | Novel data or methods are presented as the paper's economic contribution; broad importance claims lack a mechanism or implication | What substantive uncertainty is resolved, for whom, and by which comparison? | State the economic advance and show the evidence that earns it |
-| Formulaic model voice | Artificial antitheses, generic importance adjectives, ritual parallel lists, or grand claims displace specific reasoning | Does the rhetorical pattern convey a real financial mechanism, distinction, or inference? | Write the financial object, observed comparison, and interpretation directly in the author's voice |
+| Formulaic model voice | Artificial antitheses, generic importance adjectives, ritual parallel lists, or grand claims displace specific reasoning | Does the rhetorical pattern convey a real financial mechanism, distinction, or inference? | Write the financial object, observed comparison, and interpretation in natural scholarly finance prose |
 | Process capture | Logs, gates, reviews, and scores displace the requested revision | Did the manuscript argument actually improve? | Implement and check the substantive revision without another artifact cycle |
 | Literal repair | Flagged words disappear while the paragraph’s defensive job survives | Would this paragraph be written this way from a blank page? | Rebuild or remove the paragraph |
 
@@ -69,7 +69,7 @@ Prefer:
 - concrete data descriptions: source, coverage, sample, dates, filters;
 - design-calibrated verbs: documents, is associated with, predicts, responds to, estimates;
 - coefficient interpretations with units and economically meaningful magnitudes;
-- ordinary author voice: “I” for a solo author’s coding or design judgment, otherwise natural impersonal prose; and
+- natural scholarly publication voice: “I” when appropriate for solo-authored design decisions, “we” when consistent with authorship, or clear impersonal prose; and
 - short technical definitions followed by economic language.
 
 Avoid:

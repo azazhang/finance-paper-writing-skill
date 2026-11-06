@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.3 — 2026-11-05
+
+- Promoted scholarly financial-economics publication style to the primary voice standard; personal authorial preferences remain secondary.
+- Replaced the optional authorial-voice module with the core `references/voice-calibration.md` reference, with source-grounded JF/JFE/RFS examples spanning empirical, theoretical, asset-pricing, corporate-finance, banking, and monetary research.
+- Clarified section-sensitive scholarly prose, economics-centered paragraphs, evidence and citation discipline, and concise manuscript-native voice.
+- Preserved GPT/Codex mandatory anti-defensive prose requirements and the optional formal review system; independent-reader redesign remains a separate review topic.
+
 ## 0.3.2 — 2026-11-05
 
 - Strengthened the skill's mandate to construct economic arguments, introductions, contributions, and interpretation using the assigned study's evidence.

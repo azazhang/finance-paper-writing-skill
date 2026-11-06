@@ -2,14 +2,14 @@
 name: finance-paper-writing
 description: "Draft and revise empirical finance manuscript prose around a clear economic argument and its strongest quantitative evidence. Apply whenever writing an abstract, introduction, literature positioning, results narrative, or finance paper revision, including defensive or development-oriented drafts. Not for literature discovery alone or generic proofreading."
 metadata:
-  version: "0.3.2"
+  version: "0.3.3"
   domain: empirical-finance
   primary_capability: manuscript-prose
 ---
 
 # Finance Paper Writing
 
-**A paper succeeds by making a clear, falsifiable economic argument and putting its sharpest quantitative evidence front and center.** Write as an author explaining what the evidence teaches finance, with claims calibrated to the design. A polished catalogue of analyses or qualifications is still a weak paper.
+**A paper succeeds by making a clear, falsifiable economic argument and putting its sharpest quantitative evidence front and center.** Write in the **scholarly publication register of financial economics**, as expected in rigorous journal articles and finance seminars. Explain what the evidence teaches finance, with claims calibrated to the design. The discipline's norms for economic reasoning and academic exposition govern before individual author preferences. A polished catalogue of analyses or qualifications is still a weak paper.
 
 Apply this guidance throughout the assigned revision. Current user instructions, the agreed research plan, and project restrictions control. This skill supplies editorial judgment; it does not authorize new analysis, repeated reviews, or an alternative agenda. **The agent is responsible for developing and writing the economic argument, including the introduction, contribution, and interpretation when assigned.** Use the author's established question, evidence, and direction to exercise substantive editorial judgment and produce the draft itself. Identify a genuinely consequential unresolved scientific choice when necessary; do not defer writing to the author or substitute an outline of possible arguments for the requested prose.
 
@@ -21,7 +21,7 @@ Announce use of this skill. Recover the current manuscript, the author's request
 
 Scale effort to the revision. Edit an isolated passage directly. A section revision needs its argument, relevant evidence, and surrounding transitions. A whole-paper revision needs coherent abstract, introduction, exhibits, results, and conclusion. None automatically requires a run directory, ledger, scorecard, reviewer campaign, or acceptance certificate.
 
-Use [finance-prose-rubric.md](references/finance-prose-rubric.md) for the substantive standard. For GPT/Codex, the anti-defensive reference above is also always active. Read remaining references selectively when the assigned writing task needs them. [Authorial voice](references/authorial-voice.md) explains how to draw on existing author-approved prose when useful; it never requires a new voice-profile exercise. The [model passages](examples/before-after.md) illustrate finished finance prose and economic argumentation using explicitly synthetic results. [multi-pass-adherence.md](references/multi-pass-adherence.md) explains proportionate revision and the optional formal full-paper workflow.
+Read [finance-prose-rubric.md](references/finance-prose-rubric.md) and [voice-calibration.md](references/voice-calibration.md) as **core standards for substantive finance-manuscript writing**. The latter calibrates to verified JF/JFE/RFS publication conventions across research designs; personal authorial voice is secondary. Their distilled standards suffice in ordinary work; do not start an exemplar-reading campaign. For GPT/Codex, the anti-defensive reference above is also always active on **every** prose edit. Read other references selectively when needed. The [model passages](examples/before-after.md) illustrate original, synthetic finance prose. [multi-pass-adherence.md](references/multi-pass-adherence.md) explains proportionate revision and the optional formal full-paper workflow.
 
 ## Make an economic argument
 
@@ -74,7 +74,7 @@ Use firms, managers, investors, lenders, portfolios, prices, cash flows, and fin
 
 Translate internal development language into descriptions of the actual research. Headings such as “Financial definitions” or “Economic coverage,” when merely labels for internal organization, obscure what the reader will learn. Do not apply a word blacklist: source, historical, deployment, and similar words can be appropriate in context. Judge syntax and economic meaning rather than replacing tokens mechanically.
 
-Maintain the same standard after adding a table, incorporating a review, or making a later correction. An earlier prose pass does not protect later revisions from drift. Reread the affected paragraph or section as connected prose after editing; a successful word substitution says little about its argument. When the author has supplied effective prior prose, preserve its stance, explanatory rhythm, and terminology while adapting to the current evidence. Use [authorial-voice.md](references/authorial-voice.md) selectively; an agent should improve the author's argument rather than overwrite the voice with generic AI rhetoric.
+Maintain the same standard after adding a table, incorporating a review, or making a later correction. An earlier prose pass does not protect later revisions from drift. Reread the affected paragraph or section as connected prose after editing; a successful word substitution says little about its argument. Apply the disciplinary [voice-calibration](references/voice-calibration.md) standard in every substantive revision. Where effective author-approved prose exists, preserve its natural terminology, rhythm, and argument within the scholarly finance register. Do not substitute generic AI exposition for this disciplinary style.
 
 ## Revise efficiently and stop
 

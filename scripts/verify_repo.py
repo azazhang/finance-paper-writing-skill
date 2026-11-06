@@ -17,7 +17,7 @@ REQUIRED = {
     "docs/project-routing-rule.md",
     "skill/finance-paper-writing/SKILL.md",
     "skill/finance-paper-writing/references/finance-prose-rubric.md",
-    "skill/finance-paper-writing/references/authorial-voice.md",
+    "skill/finance-paper-writing/references/voice-calibration.md",
     "skill/finance-paper-writing/references/multi-pass-adherence.md",
     "skill/finance-paper-writing/references/evidence-and-claims.md",
     "skill/finance-paper-writing/references/empirical-finance-section-jobs.md",
@@ -63,6 +63,8 @@ def main() -> int:
             errors.append("SKILL.md does not declare manuscript prose as primary capability")
         if "text-measure-papers.md" not in content:
             errors.append("SKILL.md does not route the optional text-measure module")
+        if "voice-calibration.md" not in content:
+            errors.append("SKILL.md does not activate the scholarly publication voice standard")
         if "Mandatory anti-defensive guidance for GPT/Codex" not in content:
             errors.append("SKILL.md is missing mandatory GPT/Codex prose routing")
         version_line = next((line for line in content.splitlines() if line.strip().startswith("version:")), "")

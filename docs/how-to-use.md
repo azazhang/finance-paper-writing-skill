@@ -26,11 +26,13 @@ A bounded reader assessment is useful when requested or when it answers a concre
 
 Use the optional text-measure reference when presenting a text construct. Describe the established measure and its actual validity evidence. A writing task does not authorize another source-reading, classifier, or coding cycle.
 
-## Authorial voice and economic contribution
+## Scholarly publication voice and economic contribution
 
-Where effective author-written passages already exist, use `references/authorial-voice.md` to preserve the author's stance, argument progression, evidence treatment, and natural finance register. Draft the requested section yourself using the present study's evidence. No stand-alone voice profile, source-collection campaign, or approval cycle is needed. A reusable voice guide is optional when the author explicitly requests one.
+For every substantive finance-manuscript writing task, apply `references/voice-calibration.md` alongside the finance prose rubric. The primary target is the writing convention of scholarly financial economics: economic question, mechanism, informed comparison, inferentially calibrated claim, interpreted magnitude, and contribution to knowledge. The reference annotates verified JF/JFE/RFS examples; its distilled guidance ordinarily suffices without opening exemplar articles again. Draft the requested section yourself using the study's established evidence.
 
-For a substantive introduction or results revision, connect the economically important unresolved question, plausible mechanisms, decisive quantitative comparison, and incremental insight rather than merely polishing prose or listing estimates. Reconcile the affected magnitudes, units, uncertainty, and exhibit references directly with established results.
+When effective author- or coauthor-approved passages already exist, preserve their natural terminology and rhythm as secondary preferences consistent with scholarly finance style. No mandatory personal voice profile, source-collection campaign, or approval cycle is needed.
+
+For a substantive introduction or results revision, connect the economically important unresolved question, plausible mechanisms, decisive quantitative comparison, and incremental insight. Reconcile the affected magnitudes, units, uncertainty, and exhibit references directly with established results.
 
 ## GPT/Codex anti-defensive guidance
 

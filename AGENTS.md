@@ -1,33 +1,9 @@
-# Repository Context
+# Repository Notes
 
-This repository packages a prose-first empirical-finance manuscript workflow for multiple AI agents.
+The canonical package is `skill/finance-paper-writing/`. Maintain **one** shared version for all local agents. The repository's only executable tool is `scripts/install_local.py`.
 
-## Canonical Source
+Keep the writing skill short, task-focused, and specific to scholarly financial economics. The agent must write the substantive argument, calibrate it to the paper's evidence, apply publication voice, and read the assembled manuscript when undertaking substantial whole-paper work. GPT/Codex applies the anti-defensive reference to every manuscript prose edit.
 
-`skill/finance-paper-writing/` is the canonical skill package.
+Use distinct reference modules only when they add task-specific writing judgment. Do not introduce linter scripts, workflow validators, scoring gates, structured run templates, mandatory logs, or repeating review campaigns. The writer conducts an actual intellectual manuscript review and repairs the paper directly; a fresh independent reader is optional and bounded.
 
-Do not maintain separate provider copies of `SKILL.md`, references, templates, examples, or enforcement scripts. Provider adapters must point users or installers to the canonical package.
-
-## Working Rules
-
-- Treat finance-manuscript prose as the primary capability, calibrated to the publication conventions of financial economics.
-- Keep the universal workflow applicable to empirical finance generally.
-- Keep text-measure and classifier guidance in the optional module. Treat voice-calibration.md as a core scholarly-finance publication standard for substantive prose; use personal authorial style only as a secondary preference and avoid a new voice-profile stage.
-- Preserve the distinction between manuscript evidence, active development, legacy material, and replication records.
-- Scale revision to the assigned task. For substantive whole-paper writing, the writing agent itself must read the assembled manuscript from beginning to end and repair patchwork paragraphs, inconsistent definitions, cross-section contradictions, and broken transitions before requesting an independent reader. For local edits, read affected context. Use at most one bounded independent scholarly cold read when useful and permitted, then implement material fixes; no automatic reviewer cycles. Keep formal run artifacts optional; current v3 records have no score gate, and historical templates are archived.
-- Make the economic argument and strongest quantitative evidence the primary standard. Agents assigned introductions, contribution paragraphs, and results interpretations must draft the substantive economic answer from the author's evidence rather than offering only reviewer comments or outlines. Do not certify prose or publication quality from helper-script success, a no-match regex scan, a zero exit code, or any passing unit-test count. Never game the scanner by mechanical word substitution.
-- Never weaken a material limitation merely to make prose more persuasive. Independent readers reconstruct the manuscript's economic argument before criticism; scientific referee simulations are separate assignments.
-- Never add generic compliance sections without a venue or study-specific reason.
-- For Codex and GPT-family models, keep the anti-defensive-prose reference active on every finance-manuscript prose edit, including small edits; use it when model identity is uncertain. Other known model families can consult it selectively.
-- Keep provider instructions aligned with the canonical skill.
-- Add a regression case when fixing a recurring workflow failure.
-- Run repository verification and unit tests after changes.
-
-## Validation
-
-```bash
-python3 scripts/verify_repo.py
-python3 -m unittest discover -s tests -v
-```
-
-Also run the external skill validator against `skill/finance-paper-writing/` when available.
+Check source links, cross-references, and the real installed package after edits. Judge writing by reading the manuscript, not by tests or success counts.

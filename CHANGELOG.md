@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0 — 2026-11-06
+
+- Rebuilt the skill as concise, manuscript-first scholarly writing guidance. The main skill is under 800 words and routes to six focused references.
+- Removed all programmatic writing scanners, hashing and run-state validators, formal-run templates, Python unit tests, behavioral-evaluation harness and scoring rubric, and CI validation workflow. The local installation script is the sole remaining executable.
+- Consolidated overlapping prose rubric, section-jobs, research-to-prose lessons, and workflow-adherence modules into the core skill and focused references.
+- Made verification an **agentic reading of the actual assembled manuscript**, with direct repair of economic argument, claims, evidence, cohesion, and finance publication voice; independent scholarly reading remains optional after the writer's own review.
+- Condensed the scholarly voice and GPT/Codex anti-defensive guidance; retained proportionate evidence checks, nearest-literature positioning, and text-measure distinctions.
+- Simplified repository documentation; previous implementation remains available in Git history.
+
 ## 0.3.6 — 2026-11-06
 
 - Explicitly included finance-manuscript proofreading and polishing, including single-sentence changes, in skill activation.

@@ -1,270 +1,33 @@
-# Anti-Defensive Prose
+# Anti-Defensive Finance Prose
 
-**Activation:** Mandatory whenever a GPT-family model or Codex drafts, edits, or revises finance-manuscript prose, regardless of revision size or whether defensiveness was mentioned in the request. If model identity is uncertain, apply this reference. Agents confirmed to be neither GPT-family nor Codex may use it selectively. Apply the principles while writing and reread the affected prose after editing; no separate audit or process artifact is required.
+**Mandatory for every GPT-family or Codex finance-manuscript prose edit, including proofreading a sentence.** Apply when model identity is unknown. Confirmed other model families may consult it selectively.
 
-Candor and persuasion are compatible. Defensive prose becomes a problem when rebuttal arrives before the reader understands the claim, when negative statements substitute for a precise description of scope, or when repeated qualifications make the reader reconstruct the result from what the paper denies.
+## Calibrated assertiveness
 
-The objective is not stronger-sounding prose. It is **calibrated assertiveness**: state the strongest claim supported by the design, define its scope positively when possible, and place each material limitation where it changes inference.
+State the supported economic claim and its scope clearly. Give the reader the finding before rebutting an imagined objection. Write as an author explaining an economic result, with limitations where they affect inference.
 
-## Core Rule
+- **Negative-first and self-minimizing prose:** Replace ritual disclaimers or statements of what the paper fails to do with the actual economic object, comparison, and supported answer. Keep negative language when it expresses a genuine mechanism or necessary boundary.
+- **Hedge stacking:** Identify the source of uncertainty—precision, identification, measurement, external validity, or theory—and express it directly. Do not accumulate *may*, *potentially*, *perhaps*, and *might* to sound cautious.
+- **Reviewer-directed writing:** Translate speculative objections into positive statements of the tested mechanism and evidence. Add a qualification only when it changes the reader's justified inference.
+- **GPT rhetorical habits:** Avoid artificial “not X but Y” contrasts, ritual three-part lists, generic claims of novelty or importance, and elaborate sentences that conceal a simple financial-economic result. Genuine conceptual contrasts are appropriate.
+- **Repetition:** Give a material limitation one clear home. Repeat only when needed to prevent misunderstanding elsewhere in the paper. Preserve adverse findings that narrow or contradict the main claim.
 
-Advance the supported claim directly. Write as an author explaining an economic argument to a finance reader, not as an author negotiating with an imagined referee.
+## Examples of substantive repair
 
-The author has to advance an economic answer, not merely present material for the reader to assemble. Falsifiability is the ordinary requirement that evidence can challenge the answer; it is not a demand for deductive proof before making a claim. Establish the mechanism and strongest comparison, then use uncertainty to state the claim at the scope that comparison supports.
+*Weak:* “We do not claim that disclosure identifies an exogenous treatment effect.”
 
-Weak:
+*Better, when supported:* “The disclosure measure predicts subsequent firm-specific volatility after conditioning on pre-call risk.” Explain the observational design's inferential boundary where readers evaluate the result.
 
-> We collect sensitivity disclosures, analyze earnings calls, and compare financial accounts, while acknowledging that these exercises do not establish every aspect of managerial choice.
+*Weak:* “Our findings may potentially suggest that refinancing constraints could perhaps matter.”
 
-Better:
+*Better, when supported:* “Firms with less covenant headroom invest less over the following year, particularly when debt matures soon.” Quantify the difference where the established evidence allows.
 
-> Protecting period income and preserving financing capital are distinct risk-management outcomes. Paired portfolio responses reveal income–wealth divergence, while managers' prospective yields and interim valuations show why improved reinvestment terms can accompany erosion of the wealth supporting new positions.
+*Weak:* “The measure is not merely an accounting metric but a crucial lens into complex financial relationships.”
 
-The second passage gives the evidence an economic interpretation. Its scope can be refined in the relevant design discussion without replacing the argument with a catalogue of qualifications.
+*Better, when supported:* “Covenant proximity is associated with lower investment before a formal violation; the relation is strongest among firms facing near-term refinancing.”
 
-Never remove a limitation merely to make the paper sound more persuasive. If deleting a qualification would change the validity, interpretation, scope, research design, or proper use of a result, the qualification is material and must remain.
+These repairs work because they reconstruct the claim around actual finance evidence. **Removing a flagged word or deleting a valid limitation cannot establish good writing.** Keep identification limits, imprecise estimates, contradictory results, and other material qualifications. If a critique identifies a real defect, repair the underlying claim or evidence interpretation; do not append defensive text.
 
-## Functional Diagnosis Before Rewriting
+## Read the prose as a finance scholar
 
-Before editing a defensive-looking sentence, classify its function. Do not treat every hedge or negative construction as equivalent.
-
-| Function | Typical disposition |
-|---|---|
-| Unnecessary disclaimer | Delete |
-| Redundant clarification | Delete or consolidate with its primary home |
-| Necessary scope condition | Prefer positive scope when the same boundary can be stated precisely |
-| Real methodological limitation | Retain once where it changes inference |
-| Evidence-based qualification | Attach directly to the affected claim or interpretation |
-| Useful conceptual contrast | Retain only when the contrast itself advances the economic argument |
-
-Choose the disposition before rewriting; a separate registry is optional. Use existing notes if a material relocation needs to be retained. A limitation should not disappear merely because its original wording was defensive.
-
-## Positive Scope
-
-When possible, replace a negative boundary with the actual object the paper estimates, observes, predicts, compares, or identifies.
-
-Weak:
-
-> We do not claim that the disclosure measure identifies an exogenous treatment effect.
-
-Better:
-
-> The design estimates the predictive relation between disclosure content and subsequent firm-specific risk conditional on pre-disclosure controls.
-
-Weak:
-
-> The sample should not be interpreted as representative of all lenders.
-
-Better:
-
-> The sample covers publicly reporting U.S. lenders observed from 2001 through 2025.
-
-Positive scope is not permission to overclaim. Use it only when the rewritten sentence preserves the same inferential boundary. If the omitted negative statement contains information that the positive description does not convey, keep a concise qualification at the point where it matters.
-
-## Calibrated Uncertainty
-
-Do not stack epistemic modifiers to manufacture caution.
-
-Weak:
-
-> The results may potentially suggest that the shock could perhaps affect refinancing activity.
-
-Better when the design is predictive:
-
-> The shock predicts lower refinancing activity over the next quarter.
-
-Better when uncertainty is substantive:
-
-> The estimate is imprecise in the post-2020 subsample, so the data do not distinguish a smaller effect from no effect in that period.
-
-When uncertainty is real, identify its source: statistical precision, identification, measurement, external validity, theory, timing, or another concrete design feature. One specific boundary is more informative than several generic hedges.
-
-Do not mechanically delete `may`, `could`, `suggests`, `appears`, or similar terms. Keep them when the evidence warrants them.
-
-## Common Defensive Shapes
-
-### Negative-first opening
-
-Weak:
-
-> Annual regressions cannot determine whether the disclosure causes the outcome.
-
-Better:
-
-> The measure predicts the subsequent distribution of firm-specific returns after conditioning on risk observed before the disclosure.
-
-Add the causal boundary later if it is material to interpreting that evidence.
-
-### Disclaimer chain
-
-Weak:
-
-> This result is not causal, does not identify a disclosure shock, does not isolate managerial intent, and should not be interpreted as an exogenous treatment effect.
-
-Better:
-
-> The estimates show that the disclosure contains information about subsequent firm-specific risk.
-
-Use the design section or the affected interpretation to state why the evidence is predictive rather than causal.
-
-### Comparator air defense
-
-Weak:
-
-> The two measures need not nest empirically because they use different sources, filters, denominators, and alignment rules.
-
-Better:
-
-> The neighboring measure captures reported shortages of available labor. This paper asks whether a broader set of disturbances to an organizational input carries incremental information about firm outcomes.
-
-Methodological differences can be discussed after the economic distinction and evidence.
-
-### Reviewer-directed prose
-
-Weak:
-
-> The appropriate test is therefore the asymmetric overlap rather than kappa.
-
-Better:
-
-> I test whether the broader measure retains explanatory content after removing observations identified by the narrower construct.
-
-### Self-minimizing contribution language
-
-Weak:
-
-> This paper merely provides a preliminary attempt to examine the relation.
-
-Better:
-
-> This paper examines whether the relation predicts financing outcomes and identifies the settings in which it is strongest.
-
-Do not replace modesty with unsupported novelty or importance claims. State the research job and evidence directly.
-
-## Unfavorable, Null, and Mixed Evidence
-
-Preserve attempted specifications in the research record. An imprecise estimate is not a substantive null finding. Select manuscript evidence for the economic argument; retain unfavorable comparisons that change a reported claim. Such evidence should be interpreted directly rather than hidden under a generic "limitation."
-
-For each unfavorable result:
-
-1. determine whether it changes the central conclusion or its interpretation;
-2. state the condition, estimate, metric, or comparison directly;
-3. narrow or withdraw any claim that the result no longer supports;
-4. distinguish a local boundary from a general defect; and
-5. do not invent a mechanism for the unfavorable result when its cause is unknown.
-
-Prefer:
-
-> The relation is concentrated among firms with short debt maturity and is economically small in the long-maturity subsample.
-
-over:
-
-> One limitation is that the result does not hold everywhere.
-
-If the result overturns the headline interpretation, say so. Anti-defensive editing must never hide adverse evidence.
-
-## Reviewer-to-Manuscript Firewall
-
-A referee simulation is a diagnostic tool, not a source of automatic manuscript caveats. Classify each reviewer comment as:
-
-- **demonstrated defect**: a problem visible in the manuscript or evidence;
-- **verification question**: a concern that requires checking before it is accepted as a problem; or
-- **optional extension**: an additional analysis, discussion, or robustness request that is not necessary to support the current claim.
-
-Only demonstrated defects, and verification questions that are verified as real problems, create a presumption of manuscript change. Optional extensions should not become limitations or defensive sentences merely because a reviewer could imagine them.
-
-When a reviewer comment is accepted, repair the underlying claim, evidence, design explanation, or scope. Do not simply append a protective sentence.
-
-## One Primary Home
-
-For each material limitation, keep clear:
-
-- limitation;
-- claim affected;
-- function;
-- disposition;
-- primary manuscript location;
-- whether an earlier cross-reference is necessary; and
-- final calibrated wording.
-
-Default to one primary home and no repetition. Repeat only when the reader would otherwise materially misunderstand a later result.
-
-Allowed dispositions should ordinarily be one of:
-
-- `retain-here`;
-- `relocate`;
-- `positive-scope`;
-- `merge-duplicate`; or
-- `delete-noninformative`.
-
-Use `delete-noninformative` only for an `unnecessary-disclaimer` or `redundant-clarification`. A necessary scope condition, methodological limitation, evidence-based qualification, or useful conceptual contrast may be rewritten, relocated, or merged, but not deleted as noninformative when it changes the reader's inference.
-
-## Automated screening cannot enforce this guidance
-
-The optional prose scanner recognizes a limited set of literal/regex patterns. Many generic, unsupported, defensive, or disconnected arguments evade those rules, and legitimate prose can contain the flagged words. Zero matches cannot establish calibrated assertiveness or publication-quality finance writing. Never remove or paraphrase a flagged term solely to clear a scan. Diagnose and repair the economic object, substantive claim, evidence, inferential language, and placement of limitations in the actual paragraph and surrounding manuscript.
-
-## Search Heuristics
-
-Inspect concentrations of:
-
-- cannot, unable, need not, not designed to;
-- should not be interpreted;
-- we do not claim, we do not attempt;
-- this does not mean, this is not to say;
-- the goal is not, rather than arguing;
-- association is not causation;
-- appropriate test;
-- reviewers may worry;
-- merely, modest attempt, preliminary attempt;
-- to be clear, it is worth noting;
-- nevertheless, despite, although, while at the start of sections;
-- strings of `not X, not Y, and not Z`; and
-- stacked epistemic modifiers such as `may potentially`, `might possibly`, or multiple uncertainty markers in one clause.
-
-These terms are not forbidden. Flag density, placement, and function.
-
-## GPT-style rhetorical symmetry and empty importance claims
-
-GPT-family models and Codex must actively avoid rhetorical patterns that simulate an argument while leaving the economic content unstated. Apply this rule on **every** finance-manuscript prose edit, including small changes. Look for:
-
-- mechanical oppositions such as “not merely X, but Y” when Y repeats X at a more abstract level;
-- symmetrical “on the one hand / on the other hand” or “while X, Y” constructions that give unsupported alternatives equal billing;
-- generic adjectives (“important,” “complex,” “nuanced,” “multifaceted,” “novel,” “crucial”) used in place of a concrete economic implication;
-- ritual three-part lists, aphorisms, or “these findings underscore/highlight” endings that add no inference;
-- a repeated paragraph rhythm of claim, generic caveat, and praise of the contribution.
-
-Example of unhelpful rhetorical inflation:
-
-> Covenant headroom is not merely an accounting metric; it is a crucial lens into the complex interplay of credit and corporate decision-making.
-
-Economically meaningful prose:
-
-> Firms approaching their covenant thresholds invest less before a formal violation, and the investment gap is larger when debt matures soon. The pattern links diminishing covenant flexibility to the financing conditions surrounding real investment choices.
-
-The improved passage presents observable behavior and a mechanism-relevant comparison. Its verb strength must still match the underlying research design. A **genuine** conceptual contrast, asymmetric mechanism, or valid limitation remains appropriate, even if it uses “not,” “while,” a dash, or a list. Judge the sentence's economic job and evidentiary content rather than enforcing a mechanical word or punctuation ban. Preserve the author's natural voice when it communicates the substantive claim well.
-
-## High-Impact Positions
-
-Apply stricter scrutiny to defensive language in:
-
-- the abstract;
-- the first two introduction pages;
-- contribution paragraphs;
-- section-opening sentences;
-- the opening of the main empirical results; and
-- the conclusion.
-
-A necessary limitation can appear in a high-impact position when omitting it would materially misstate the claim. Otherwise state the supported result first and move the limitation to its primary home.
-
-## Repair Rule
-
-Do not simply delete qualifications or replace flagged words. Reconstruct the unit:
-
-1. diagnose the defensive unit's function;
-2. choose a disposition;
-3. state the supported claim or positive scope;
-4. present the evidence;
-5. give the economic interpretation; and
-6. include one limitation at the point where it changes inference.
-
-If the qualification overwhelms the supported claim, reconsider whether the result belongs in the headline argument. If removing the qualification makes the claim false or materially broader, keep the qualification and narrow the claim instead.
+Give particular attention to the abstract, opening introduction, contribution, main-results interpretation, section openings, and conclusion. Ask whether readers encounter the economic claim and evidence before repetitive qualifications. Revise the *paragraph's argument*, not a list of prohibited words. No script or automated wording screen can perform this judgment.

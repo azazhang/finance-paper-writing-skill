@@ -1,62 +1,29 @@
 # Finance Paper Writing Skill
 
-**A paper succeeds by making a clear, falsifiable economic argument and putting its sharpest quantitative evidence front and center.** This skill helps an AI agent draft and revise empirical finance papers around that standard.
+A compact Agent Skills package for writing and revising research manuscripts in **financial economics**. Its standard is a compelling economic argument, credible and interpretable evidence, and scholarly finance publication prose.
 
-It addresses an editorial failure that grammar tools miss: a technically correct manuscript can still hide its economic question, catalogue disconnected estimates, lead with qualifications, or sound like a development report. The remedy is an argument supported by interpretable evidence and natural finance prose.
+The writing agent develops the requested abstract, introduction, results interpretation, contribution, or complete manuscript. For substantive full-paper work, it reads the assembled paper and repairs inconsistencies before any optional independent cold reading. GPT-family models and Codex must apply the anti-defensive-prose guidance on **every** finance-manuscript prose edit, including proofreading a sentence.
 
-**GPT-family models and Codex must read and apply `skill/finance-paper-writing/references/anti-defensive-prose.md` for every manuscript-prose edit, including single-sentence changes.** When the model family is uncertain, apply it; models known to be neither GPT nor Codex may consult it as a reference. This is a writing standard throughout the edit, with no separate compliance ritual.
+## Package
 
-## What It Does
+- [SKILL.md](skill/finance-paper-writing/SKILL.md): core writing instructions, guidance routing, and required agentic manuscript review.
+- [Voice calibration](skill/finance-paper-writing/references/voice-calibration.md): finance-journal scholarly publication style, with published examples.
+- [Anti-defensive prose](skill/finance-paper-writing/references/anti-defensive-prose.md): calibrated claims and natural academic argumentation; mandatory for GPT/Codex.
+- [Evidence and claims](skill/finance-paper-writing/references/evidence-and-claims.md): quantitative interpretation, exhibit selection, attribution, and inferential boundaries.
+- [Independent reader](skill/finance-paper-writing/references/independent-reader.md): the writing agent's assembled-manuscript reading and one bounded optional fresh reading.
+- [Closest-paper positioning](skill/finance-paper-writing/references/closest-paper-positioning.md) and [text measures](skill/finance-paper-writing/references/text-measure-papers.md): consult for relevant writing tasks.
+- [Original illustrative passages](skill/finance-paper-writing/examples/model-passages.md): optional synthetic examples.
 
-- Develops the introduction, contribution, interpretation, and conclusion around a financially consequential economic question and an evidence-supported answer.
-- Organizes the abstract, introduction, results, exhibits, and conclusion around the same economic argument.
-- Selects main-text and Appendix evidence for its inferential role, while preserving exploration in the research record.
-- Uses direct claims calibrated to the design, with one primary home for material qualifications.
-- Represents neighboring literature fairly and distinguishes contributions economically.
-- Calibrates substantive writing to the scholarly publication register of financial economics, with individual author preferences preserved as a secondary consideration.
-- Requires the writing agent to read and repair the assembled manuscript after substantial whole-paper work, before an optional fresh independent reading.
-- Scales work to the requested revision instead of requiring process artifacts for every edit.
-
-The principle **one pass, one job** helps separate argument, interpretation, and reader context. For substantial full-paper work, the writer must read the actual assembled manuscript in reading order and repair contradictions, patchwork paragraphs, and broken transitions. One independent scholarly cold reading may follow when useful and permitted; its purpose is fresh comprehension and its feedback prompts targeted repairs. Neither activity requires a score threshold, acceptance gate, mandatory reviewer campaign, or repeated cycles.
-
-Installing a skill does not guarantee adherence. The revised manuscript is the deliverable. A linter pass, recorded workflow, page count, or successful compilation does not certify a scholarly contribution. The optional formal record validates evidence of completed record-keeping, not whether the writer truly read or improved the paper.
-
-## Limits of the Optional Prose Scanner
-
-The finance prose scanner uses finite regular expressions to find a few recognizable wording and local-path patterns. It cannot evaluate scholarly finance voice, the economic argument, evidence interpretation, or manuscript coherence. A manuscript can be very poorly written and still produce zero pattern matches. The scanner always says that it has performed no manuscript-quality or skill-compliance assessment. No zero-match result, successful exit status, or number of passing Python helper tests can validate the prose. Do not substitute synonyms merely to silence a flagged pattern; repair the actual scholarly writing. The writer's integrated reading remains essential for substantial revisions.
-
-## Repository Structure
-
-- `skill/finance-paper-writing/`: the single canonical skill package.
-- `references/` inside the package: core scholarly-finance voice calibration, writer-first manuscript integration and independent-reading guidance, prose standards, evidence checks, and conditional topic-specific guidance.
-- `examples/`: original, synthetic finance-manuscript passages illustrating argument construction and quantitative interpretation. The separate scholarly voice reference draws lessons from verified published examples; author-specific style is secondary.
-- `skill/finance-paper-writing/scripts/finance_prose_lint.py`: optional diagnostic aid; `manuscript_hash.py` supports LaTeX input discovery and hashing.
-- `init_run.py` and `validate_run_state.py`: optional tooling for a **deliberately selected** formal full-paper or section record. The new default schema v3 creates manuscript hashes, a writer-integrated-reading record, and independent-reader notes only with `--with-independent-reader`; validation checks record integrity without reviewer scores or mandatory passes. The historical v1/v2 format and its elaborate templates remain in `templates/legacy/` for compatibility through `--legacy-format`. Ordinary writing creates none of these records.
-- `evals/` and `tests/`: behavioral cases and deterministic helper tests.
-
-The same provider-neutral package is installed for Codex, Claude Code, or Cursor. No separate provider copies are maintained.
+**Manuscript validation is agentic.** The agent reads and repairs the actual scholarly manuscript against these instructions and the source evidence. The package contains no keyword scanner, programmatic manuscript validator, scoring system, reviewer-run harness, mandatory review forms, or writing-compliance certificates.
 
 ## Install
 
-```bash
-python3 scripts/install_local.py --dry-run
-python3 scripts/install_local.py --providers codex
-```
-
-For several supported roots:
+The **only executable tool** retained in this repository is the local installer:
 
 ```bash
 python3 scripts/install_local.py --providers agents,codex,claude,cursor
 ```
 
-Use `--mode copy` when preferred. Managed copies with local edits are protected from replacement unless explicitly discarded. The optional short rule in `docs/project-routing-rule.md` can improve routing in a finance project; installation does not modify global instructions.
+Installations use symlinks by default, keeping local agents current with the canonical skill. The installer supports `--dry-run` and managed copies via `--mode copy`; it protects existing unrecognized installations and modified copies. For other agents, use their verified Agent Skills discovery directory. The standalone Gemini App manages account-level skills separately from Mac-local agent installations.
 
-## Verify
-
-```bash
-python3 scripts/verify_repo.py
-python3 -m unittest discover -s tests -v
-python3 scripts/verify_local_install.py --providers agents,codex,claude,cursor
-```
-
-Skill-definition validation checks the package, not whether its advice produces a good paper. Use the task-relevant guidance in `docs/how-to-use.md`; do not treat the helper tests as a manuscript acceptance process.
+The full history of older programmatic tooling remains in Git revisions preceding v0.4.0. The active package contains writing guidance and examples, plus the installer.

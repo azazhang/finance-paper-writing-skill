@@ -14,9 +14,9 @@ A reader can identify whether the paper's question, result, and contribution are
 
 Do not turn a reader's imagined objections into a caveat catalogue. Do not repeat review until the paper earns a score. Review is useful for a specific question, not a substitute for the author's judgment or an automatic condition of every revision.
 
-## Optional formal run package
+## Optional formal full-manuscript run package
 
-The existing `scripts/init_run.py`, templates, `manuscript_hash.py`, and `validate_run_state.py` implement the earlier, detailed record format. Retain them for users who explicitly request that formal workflow or to inspect historical runs. They create and validate a structured package of charters, ledgers, passes, hashes, and reader records. Their strict schema applies to that chosen package, not to ordinary use of the skill.
+`init_run.py` is a script because it **creates files and records**: a run directory, copies of structured templates, a pass log, run metadata, and a baseline manuscript hash. Markdown guidance explains editorial practice; this executable helper initializes an optional formal record when the author explicitly requests one. It defaults to `full-manuscript`, with earlier `section-revision` and `prose-audit` modes preserved for existing uses. `validate_run_state.py` validates the selected formal record, including its required passes, reader records, and hashes. Its strict schema applies only to a deliberately initialized formal run. `manuscript_hash.py` also supports the standalone prose linter. The ordinary workflow is editing the manuscript directly; no formal run is implied by a full-paper writing request alone.
 
 A formal package is inappropriate when it would violate project prohibitions, repeat completed work, or displace the requested revision. A validator checks its record format; it cannot establish the economic contribution, validity, identification, or quality of the prose. Neither a passing package nor a manuscript length certifies publication readiness.
 

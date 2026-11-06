@@ -14,7 +14,7 @@ Use this rubric for empirical corporate finance, asset pricing, banking, househo
 6. how the paper differs from its closest literature; and
 7. why the result changes what the reader knows.
 
-If those answers are obscure, cleaner sentences do not solve the main prose problem.
+If those answers are obscure, cleaner sentences do not solve the main prose problem. The manuscript should identify the economic puzzle or consequential gap, explain why its resolution affects financial behavior or market understanding, advance an answer from decisive evidence, and state the incremental insight relative to the nearest actual research. Reconstruct the passage or section directly when those links are missing; another checklist is not the deliverable.
 
 ## Failure Taxonomy
 
@@ -33,6 +33,8 @@ If those answers are obscure, cleaner sentences do not solve the main prose prob
 | Epistemic drift | Association becomes mechanism or prediction becomes causality | What design feature licenses the chosen verb? | Use the strongest verb supported by the design |
 | Template accretion | Generic ethics, AI, authorship, funding, or limitations sections appear automatically | Is the section required or materially informative? | Apply a venue- and study-specific inclusion test |
 | Coefficient catalogue | The abstract lists subsamples and estimates with no connected interpretation | Can the reader say what the paper does after one reading? | Rebuild around tension, question, design, main finding, and meaning |
+| Empty contribution rhetoric | Novel data or methods are presented as the paper's economic contribution; broad importance claims lack a mechanism or implication | What substantive uncertainty is resolved, for whom, and by which comparison? | State the economic advance and show the evidence that earns it |
+| Formulaic model voice | Artificial antitheses, generic importance adjectives, ritual parallel lists, or grand claims displace specific reasoning | Does the rhetorical pattern convey a real financial mechanism, distinction, or inference? | Write the financial object, observed comparison, and interpretation directly in the author's voice |
 | Process capture | Logs, gates, reviews, and scores displace the requested revision | Did the manuscript argument actually improve? | Implement and check the substantive revision without another artifact cycle |
 | Literal repair | Flagged words disappear while the paragraph’s defensive job survives | Would this paragraph be written this way from a blank page? | Rebuild or remove the paragraph |
 
@@ -91,4 +93,3 @@ Review the following as one document:
 6. conclusion.
 
 Check whether the paper asks, finds, and contributes the same thing in these positions. Resolve a mismatch through argument and evidence order. This reading is an editorial aid, not a requirement for a new report, score, or repeated reviewer cycle.
-

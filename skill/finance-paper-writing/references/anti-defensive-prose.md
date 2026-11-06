@@ -1,5 +1,7 @@
 # Anti-Defensive Prose
 
+**Activation:** Mandatory whenever a GPT-family model or Codex drafts, edits, or revises finance-manuscript prose, regardless of revision size or whether defensiveness was mentioned in the request. If model identity is uncertain, apply this reference. Agents confirmed to be neither GPT-family nor Codex may use it selectively. Apply the principles while writing and reread the affected prose after editing; no separate audit or process artifact is required.
+
 Candor and persuasion are compatible. Defensive prose becomes a problem when rebuttal arrives before the reader understands the claim, when negative statements substitute for a precise description of scope, or when repeated qualifications make the reader reconstruct the result from what the paper denies.
 
 The objective is not stronger-sounding prose. It is **calibrated assertiveness**: state the strongest claim supported by the design, define its scope positively when possible, and place each material limitation where it changes inference.
@@ -216,6 +218,26 @@ Inspect concentrations of:
 - stacked epistemic modifiers such as `may potentially`, `might possibly`, or multiple uncertainty markers in one clause.
 
 These terms are not forbidden. Flag density, placement, and function.
+
+## GPT-style rhetorical symmetry and empty importance claims
+
+GPT-family models and Codex must actively avoid rhetorical patterns that simulate an argument while leaving the economic content unstated. Apply this rule on **every** finance-manuscript prose edit, including small changes. Look for:
+
+- mechanical oppositions such as “not merely X, but Y” when Y repeats X at a more abstract level;
+- symmetrical “on the one hand / on the other hand” or “while X, Y” constructions that give unsupported alternatives equal billing;
+- generic adjectives (“important,” “complex,” “nuanced,” “multifaceted,” “novel,” “crucial”) used in place of a concrete economic implication;
+- ritual three-part lists, aphorisms, or “these findings underscore/highlight” endings that add no inference;
+- a repeated paragraph rhythm of claim, generic caveat, and praise of the contribution.
+
+Example of unhelpful rhetorical inflation:
+
+> Covenant headroom is not merely an accounting metric; it is a crucial lens into the complex interplay of credit and corporate decision-making.
+
+Economically meaningful prose:
+
+> Firms approaching their covenant thresholds invest less before a formal violation, and the investment gap is larger when debt matures soon. The pattern links diminishing covenant flexibility to the financing conditions surrounding real investment choices.
+
+The improved passage presents observable behavior and a mechanism-relevant comparison. Its verb strength must still match the underlying research design. A **genuine** conceptual contrast, asymmetric mechanism, or valid limitation remains appropriate, even if it uses “not,” “while,” a dash, or a list. Judge the sentence's economic job and evidentiary content rather than enforcing a mechanical word or punctuation ban. Preserve the author's natural voice when it communicates the substantive claim well.
 
 ## High-Impact Positions
 

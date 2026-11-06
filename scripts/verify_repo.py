@@ -17,12 +17,14 @@ REQUIRED = {
     "docs/project-routing-rule.md",
     "skill/finance-paper-writing/SKILL.md",
     "skill/finance-paper-writing/references/finance-prose-rubric.md",
+    "skill/finance-paper-writing/references/authorial-voice.md",
     "skill/finance-paper-writing/references/multi-pass-adherence.md",
     "skill/finance-paper-writing/references/evidence-and-claims.md",
     "skill/finance-paper-writing/references/empirical-finance-section-jobs.md",
     "skill/finance-paper-writing/references/anti-defensive-prose.md",
     "skill/finance-paper-writing/references/closest-paper-positioning.md",
     "skill/finance-paper-writing/references/text-measure-papers.md",
+    "skill/finance-paper-writing/examples/before-after.md",
     "skill/finance-paper-writing/scripts/init_run.py",
     "skill/finance-paper-writing/scripts/finance_prose_lint.py",
     "skill/finance-paper-writing/scripts/manuscript_hash.py",
@@ -61,6 +63,16 @@ def main() -> int:
             errors.append("SKILL.md does not declare manuscript prose as primary capability")
         if "text-measure-papers.md" not in content:
             errors.append("SKILL.md does not route the optional text-measure module")
+        if "Mandatory anti-defensive guidance for GPT/Codex" not in content:
+            errors.append("SKILL.md is missing mandatory GPT/Codex prose routing")
+        version_line = next((line for line in content.splitlines() if line.strip().startswith("version:")), "")
+        if version_line:
+            version = version_line.split(":", 1)[1].strip().strip('"')
+            changelog = (root / "CHANGELOG.md").read_text(encoding="utf-8")
+            if f"## {version} " not in changelog:
+                errors.append(f"changelog has no entry for version {version}")
+        else:
+            errors.append("SKILL.md is missing version metadata")
 
     case_count = len(list((root / "evals" / "cases").glob("*.md")))
     if case_count < 5:
@@ -72,6 +84,8 @@ def main() -> int:
     readme = (root / "README.md").read_text(encoding="utf-8") if (root / "README.md").is_file() else ""
     if "one pass, one job" not in readme.lower():
         errors.append("README does not explain pass separation")
+    if "skill/finance-paper-writing/scripts/finance_prose_lint.py" not in readme:
+        errors.append("README does not identify the canonical prose linter")
 
     if errors:
         for error in errors:

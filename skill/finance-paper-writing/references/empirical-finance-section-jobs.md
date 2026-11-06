@@ -26,6 +26,8 @@ A common effective sequence is:
 6. closest-paper differentiation through the economic question;
 7. contributions and roadmap when useful.
 
+Build the introduction's economic argument rather than just completing the sequence. Explain why the unresolved question matters for firms, investors, lenders, prices, or allocation; what plausible mechanisms or theoretical forces make its answer uncertain; and how the reported comparison changes what finance readers should believe. Connect the headline estimate to its economically meaningful scale and the interpretation earned by the design. When existing research has a related result, identify the *new economic implication* that this paper's evidence establishes. An agent assigned the introduction must produce that coherent prose, including a substantive contribution paragraph, rather than handing back only critiques or an outline.
+
 Do not begin the empirical summary with what the design cannot identify. Do not make literature positioning a list of differences in data engineering.
 
 ## Economic Framework or Institutional Setting
@@ -57,7 +59,7 @@ For each principal table or figure:
 5. connect to the paper’s mechanism or boundary; and
 6. qualify once where necessary.
 
-Do not narrate every column mechanically.
+Use the comparison most capable of discriminating among relevant economic interpretations to organize the passage. Explain why that comparison is informative, report a magnitude against a meaningful benchmark when possible, and connect the timing, heterogeneity, or mechanism evidence to the central claim. Make clear what the evidence supports and which substantive alternatives remain when their distinction matters. The main results narrative should tell the reader **what the estimates teach finance**. Do not narrate every column mechanically.
 
 ## Closest Literature
 
@@ -76,5 +78,4 @@ Restate:
 - the supported boundary; and
 - the most important open question when useful.
 
-Do not introduce new results or repeat a long list of caveats.
-
+Close on the economic insight the paper earns: the behavior, price, allocation, or financing mechanism the evidence clarifies and its place in the closest literature. Preserve consequential uncertainty at its proper scope. Do not introduce new results or repeat a long list of caveats.

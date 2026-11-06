@@ -2,7 +2,7 @@
 name: finance-paper-writing
 description: "Draft and revise empirical finance manuscript prose around a clear economic argument and its strongest quantitative evidence. Apply whenever writing an abstract, introduction, literature positioning, results narrative, or finance paper revision, including defensive or development-oriented drafts. Not for literature discovery alone or generic proofreading."
 metadata:
-  version: "0.3.0"
+  version: "0.3.2"
   domain: empirical-finance
   primary_capability: manuscript-prose
 ---
@@ -11,7 +11,9 @@ metadata:
 
 **A paper succeeds by making a clear, falsifiable economic argument and putting its sharpest quantitative evidence front and center.** Write as an author explaining what the evidence teaches finance, with claims calibrated to the design. A polished catalogue of analyses or qualifications is still a weak paper.
 
-Apply this guidance throughout the assigned revision. Current user instructions, the agreed research plan, and project restrictions control. This skill supplies editorial judgment; it does not authorize new analysis, repeated reviews, or an alternative agenda.
+Apply this guidance throughout the assigned revision. Current user instructions, the agreed research plan, and project restrictions control. This skill supplies editorial judgment; it does not authorize new analysis, repeated reviews, or an alternative agenda. **The agent is responsible for developing and writing the economic argument, including the introduction, contribution, and interpretation when assigned.** Use the author's established question, evidence, and direction to exercise substantive editorial judgment and produce the draft itself. Identify a genuinely consequential unresolved scientific choice when necessary; do not defer writing to the author or substitute an outline of possible arguments for the requested prose.
+
+**Mandatory anti-defensive guidance for GPT/Codex:** When the agent is Codex or runs on a GPT-family model, read [anti-defensive-prose.md](references/anti-defensive-prose.md) and apply its standards throughout **every** finance-manuscript prose edit, even a one-sentence correction or a revision with no explicitly defensive language. If the model family is uncertain, apply the guidance. Agents that know they are neither GPT-family nor Codex may use this reference selectively. Apply the standards through the writing itself; do not launch a separate audit, review cycle, or compliance artifact to demonstrate adherence.
 
 ## Start with the paper, then revise it
 
@@ -19,11 +21,15 @@ Announce use of this skill. Recover the current manuscript, the author's request
 
 Scale effort to the revision. Edit an isolated passage directly. A section revision needs its argument, relevant evidence, and surrounding transitions. A whole-paper revision needs coherent abstract, introduction, exhibits, results, and conclusion. None automatically requires a run directory, ledger, scorecard, reviewer campaign, or acceptance certificate.
 
-Use [finance-prose-rubric.md](references/finance-prose-rubric.md) for the substantive standard. Read the other references only when their topic is relevant. [multi-pass-adherence.md](references/multi-pass-adherence.md) explains proportionate revision and the optional legacy workflow tools.
+Use [finance-prose-rubric.md](references/finance-prose-rubric.md) for the substantive standard. For GPT/Codex, the anti-defensive reference above is also always active. Read remaining references selectively when the assigned writing task needs them. [Authorial voice](references/authorial-voice.md) explains how to draw on existing author-approved prose when useful; it never requires a new voice-profile exercise. The [model passages](examples/before-after.md) illustrate finished finance prose and economic argumentation using explicitly synthetic results. [multi-pass-adherence.md](references/multi-pass-adherence.md) explains proportionate revision and the optional formal full-paper workflow.
 
 ## Make an economic argument
 
 The question is about an economically meaningful behavior, friction, allocation, or price. A regression specification, dataset, disclosure category, or institutional fact is not itself the question. The paper must advance an answer: decide what the reader should believe, why the economic mechanism yields that claim, which quantitative comparison most strongly supports it, and how it changes understanding relative to the closest literature. Use those judgments to write the argument directly; they do not require a new template or planning artifact. A claim-free summary or list of results is an unsuccessful manuscript deliverable, even when its individual statements are accurate.
+
+Build the argument around a concrete economic puzzle, competing force, unresolved prediction, or consequential gap in knowledge. Explain what is at stake for financing, investment, risk sharing, asset prices, or allocation and why the existing evidence leaves the answer interesting. Identify what the paper's strongest empirical comparison actually resolves, which alternatives remain viable, and what a finance reader learns as a result. Where theory supplies competing predictions, use them to explain why the comparison discriminates; do not manufacture disagreement solely to create a narrative.
+
+A new measure, dataset, model, or significant coefficient earns scholarly relevance through the economic question and inference it enables. State the resulting conceptual contribution directly, distinguishing it from the closest actual literature. Write the economic answer in the manuscript itself, including the introduction and contribution when assigned. Calibrate it to the evidence without making the reader infer the answer from a sequence of tests. These judgments are part of writing, not a preliminary charter, approval gate, or new empirical-work authorization.
 
 “Falsifiable” means that an economic claim can be confronted with evidence. It does not demand an axiom, theorem, deductive certainty, or a causal estimator for every contribution. An informative empirical characterization, predictive relation, mechanism comparison, or causal result can support an argument at its appropriate scope. Uncertainty calibrates that argument; it must not erase the claim or become the paper's central message. Several complementary comparisons may support one integrated interpretation.
 
@@ -54,7 +60,7 @@ Make the decisive exhibit visible and explain its economic magnitude, unit, timi
 
 ## Write as an author
 
-Default paragraph logic is **economic point → evidence → interpretation**, followed by a bounded qualification when needed. Vary this order when the passage reads more clearly another way. Results prose interprets evidence; it does not narrate each table column or the research process.
+Default paragraph logic is **economic point → evidence → interpretation**, followed by a bounded qualification when needed. Vary this order when the passage reads more clearly another way. Results prose interprets evidence; it does not narrate each table column or the research process. For a contribution paragraph, connect **unresolved economic question → what the evidence establishes → what changes in understanding** without formulaic announcements of novelty.
 
 Lead with the supported claim. Use the strongest verb earned by the design, such as documents, is associated with, predicts, or reduces. Give each material identification or measurement qualification one primary home where it changes inference. Elsewhere, calibrated verbs carry the scope. Preserve substantive uncertainty and contrary evidence while removing repeated self-protection.
 
@@ -68,13 +74,13 @@ Use firms, managers, investors, lenders, portfolios, prices, cash flows, and fin
 
 Translate internal development language into descriptions of the actual research. Headings such as “Financial definitions” or “Economic coverage,” when merely labels for internal organization, obscure what the reader will learn. Do not apply a word blacklist: source, historical, deployment, and similar words can be appropriate in context. Judge syntax and economic meaning rather than replacing tokens mechanically.
 
-Maintain the same standard after adding a table, incorporating a review, or making a later correction. An earlier prose pass does not protect later revisions from drift. Reread the affected paragraph or section as connected prose after editing; a successful word substitution says little about its argument.
+Maintain the same standard after adding a table, incorporating a review, or making a later correction. An earlier prose pass does not protect later revisions from drift. Reread the affected paragraph or section as connected prose after editing; a successful word substitution says little about its argument. When the author has supplied effective prior prose, preserve its stance, explanatory rhythm, and terminology while adapting to the current evidence. Use [authorial-voice.md](references/authorial-voice.md) selectively; an agent should improve the author's argument rather than overwrite the voice with generic AI rhetoric.
 
 ## Revise efficiently and stop
 
 For a broad revision, separate the intellectual jobs when useful: argument and evidence order first, interpretation and authorial voice next, then reader context, finance register, numbers, and rendering. “One pass, one job” is a way to focus attention, not a requirement to produce eight logs or repeat eight whole-paper reads.
 
-Use existing results to check changed quantitative claims. Verify changes to samples, units, references, and claim verbs. Compile edited LaTeX with the available compiler and inspect affected pages when layout matters. Ordinary computational traceability is sufficient unless a formal audit is explicitly assigned.
+Use existing results to check changed quantitative claims against the cited tables or figures: sample, outcome, coefficient or magnitude, scale, horizon, uncertainty, and exhibit reference. Check changed literature attributions against the actual source. For a broad revision, keep the headline claim coherent across title, abstract, introduction, main exhibits, and conclusion; for a small edit, check only affected claims and transitions. Compile edited LaTeX with the available compiler and inspect affected pages when layout matters. Ordinary computational traceability is sufficient unless a formal audit is explicitly assigned.
 
 An independent reader can help when requested or when one bounded reading would resolve a concrete structural issue. Do not launch serial reviewer cycles, use scores as publication certification, or make another review a dependency when the user has prohibited it. Finish when the requested substantive revision is implemented and checked; do not prolong it with taste-driven rewrites or process artifacts.
 
@@ -84,7 +90,7 @@ An independent reader can help when requested or when one bounded reading would 
 - Text-based measures: [text-measure-papers.md](references/text-measure-papers.md), only when relevant. Describe established constructs and completed validity evidence; writing is not authorization to restart measurement.
 - Lessons from repeated failures: [research-to-prose-lessons.md](references/research-to-prose-lessons.md), when a revision is drifting into process, caveats, or disconnected results.
 
-The bundled linter is an optional aid for recognizable prose problems. Its matches require editorial judgment. The initializer, templates, manuscript hashes, and run-state validator support a separately requested formal review workflow; passing them does not establish a persuasive argument or A* quality.
+The bundled prose linter is an optional aid for recognizable wording problems; its matches require editorial judgment. The manuscript-hash utility supports the linter. `init_run.py` and `validate_run_state.py` are executable helpers for an **optional, explicitly requested formal full-manuscript pass** that records passes and review artifacts. They also retain legacy section-revision and prose-audit modes for existing formal records. Ordinary editing uses the manuscript and established evidence directly; the formal package is never a prerequisite, and its validation does not establish a persuasive argument or A* quality.
 
 ## Report the substantive change
 

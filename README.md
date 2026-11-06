@@ -4,13 +4,16 @@
 
 It addresses an editorial failure that grammar tools miss: a technically correct manuscript can still hide its economic question, catalogue disconnected estimates, lead with qualifications, or sound like a development report. The remedy is an argument supported by interpretable evidence and natural finance prose.
 
+**GPT-family models and Codex must read and apply `skill/finance-paper-writing/references/anti-defensive-prose.md` for every manuscript-prose edit, including single-sentence changes.** When the model family is uncertain, apply it; models known to be neither GPT nor Codex may consult it as a reference. This is a writing standard throughout the edit, with no separate compliance ritual.
+
 ## What It Does
 
+- Develops the introduction, contribution, interpretation, and conclusion around a financially consequential economic question and an evidence-supported answer.
 - Organizes the abstract, introduction, results, exhibits, and conclusion around the same economic argument.
 - Selects main-text and Appendix evidence for its inferential role, while preserving exploration in the research record.
 - Uses direct claims calibrated to the design, with one primary home for material qualifications.
 - Represents neighboring literature fairly and distinguishes contributions economically.
-- Maintains finance register through later revisions, including headings and exhibit notes.
+- Maintains finance register and preserves the author's established writing voice through later revisions, including headings and exhibit notes.
 - Scales work to the requested revision instead of requiring process artifacts for every edit.
 
 The principle **one pass, one job** helps separate argument, interpretation, authorial voice, and reader context when a broad revision needs that attention. It does not require eight logs, repeated whole-paper reads, a score threshold, or a new review campaign.
@@ -20,10 +23,10 @@ Installing a skill does not guarantee adherence. The revised manuscript is the d
 ## Repository Structure
 
 - `skill/finance-paper-writing/`: the single canonical skill package.
-- `references/` inside the package: prose standards and topic-specific guidance.
-- `examples/`: before-and-after illustrations.
-- `scripts/finance_prose_lint.py`: optional diagnostic aid.
-- Other bundled scripts and templates: retained support for an explicitly requested formal review record or historical runs. They are not prerequisites for ordinary revision.
+- `references/` inside the package: core prose standards, conditional authorial-voice guidance, evidence checks, and topic-specific guidance.
+- `examples/`: synthetic, affirmative manuscript passages illustrating argument construction, quantitative interpretation, and finance prose. When real, author-approved passages are supplied, use them as style exemplars; the synthetic examples do not define the author's voice.
+- `skill/finance-paper-writing/scripts/finance_prose_lint.py`: optional diagnostic aid; `manuscript_hash.py` supports LaTeX input discovery and hashing.
+- `init_run.py`, `validate_run_state.py`, and templates: executable tooling for an **optional formal full-manuscript pass** when explicitly selected. The initializer automates files, pass logs, and hashes; its legacy section-revision and audit modes remain available for compatibility. Ordinary manuscript revisions are direct writing tasks.
 - `evals/` and `tests/`: behavioral cases and deterministic helper tests.
 
 The same provider-neutral package is installed for Codex, Claude Code, or Cursor. No separate provider copies are maintained.

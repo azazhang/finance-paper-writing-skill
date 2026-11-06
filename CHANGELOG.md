@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.3.2 — 2026-11-05
+
+- Strengthened the skill's mandate to construct economic arguments, introductions, contributions, and interpretation using the assigned study's evidence.
+- Added `references/authorial-voice.md`: selective extraction of stance, argument progression, evidence treatment, and rhythm from existing author-approved prose.
+- Extended GPT/Codex anti-defensive guidance to catch formulaic rhetorical symmetry, generic importance claims, and empty AI-style contrasts while preserving genuine economic comparisons.
+- Clarified section-level guidance for economic stakes, competing mechanisms, decisive comparisons, and the manuscript's contribution to financial understanding.
+- Added targeted checks of claims against cited exhibits and changed literature attributions, with full-paper consistency across headline passages and proportionate checks for small edits.
+- Kept optional formal reviews and run-state tooling separate from direct manuscript writing. Adaptation informed by Manish Jha's "AI for Finance Research" workshop presentation.
+
+## 0.3.1 — 2026-11-05
+
+- Made anti-defensive prose mandatory for GPT/Codex on every manuscript edit, regardless of scope; other confirmed model families may consult it selectively.
+- Replaced defensive before-and-after examples with substantive, affirmative, synthetic finance-manuscript passages.
+- Clarified optional formal full-paper runs, the role of run initialization and validation scripts, and the independent optional prose linter.
+- Updated routing, documentation, and repository-maintenance checks.
+
+## 0.3.0 — 2026-11-02
+
+- Made the economic argument and strongest quantitative evidence the primary standard for manuscript prose.
+- Scaled manuscript revisions to their assigned scope, with formal run records and reviewer cycles optional.
+- Improved evidence selection, connected abstract writing, and lessons from research-to-prose failures.
+
 ## 0.2.1 — 2026-10-04
 
 - Hardened the evidence gate so manuscript-facing claims must be backed by current, verified evidence with an explicit inferential status and allowed verbs.
@@ -32,4 +54,3 @@
 - Added a text-measure extension as an optional module.
 - Added generalized evaluation cases and unit tests.
 - Added safe local installation for Codex, Claude Code, and Cursor.
-

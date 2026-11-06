@@ -4,14 +4,14 @@ Load this module only when a finance paper constructs or validates a measure fro
 
 Do not import its terminology or checklist into ordinary empirical finance papers.
 
-Record the module when initializing a run:
+Only when an optional formal run has been **explicitly requested**, record the module during initialization:
 
 ```bash
 python3 <skill-directory>/scripts/init_run.py <main-file> \
   --mode <mode> --module text-measure
 ```
 
-Enable the same module when running the prose linter:
+If using the optional standalone prose linter, enable the corresponding module:
 
 ```bash
 python3 <skill-directory>/scripts/finance_prose_lint.py <source> \

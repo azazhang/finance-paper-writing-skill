@@ -57,6 +57,14 @@ Every quantitative sentence should identify or make recoverable:
 
 The sentence need not repeat every field when the surrounding text and table make them unambiguous.
 
+## Targeted claim-to-exhibit and citation consistency
+
+When drafting or revising a quantitative claim, compare the **affected** wording directly with the current table, figure, or established result it cites. Reconcile the sample and observation unit, outcome, variable scale and denominator, coefficient or spread, sign, reference category, timing, uncertainty (standard error, confidence interval, or test), and exhibit number or panel. Distinguish percentage points from percentages, monthly from annual quantities, and within-sample contrasts from population statements. Compute only the simple transformations needed for the interpretation and check the arithmetic.
+
+For changed literature claims, verify that each cited source actually supports the attributed economic question, result, design, and contribution; use the closest available primary source when feasible. A citation's presence does not establish support for the sentence. Preserve source uncertainty honestly if the specific attribution remains unresolved.
+
+For whole-paper revision, align the headline economic claim and quantitative magnitudes across the abstract, introduction, main exhibits, and conclusion. For a paragraph or section edit, check its affected claims and surrounding transitions. Use existing research outputs and sources for these comparisons; do not restart estimation, collect new data, or create a separate evidence ledger unless that is the assigned work. Repair the actual prose or exhibit reference when a discrepancy is demonstrated.
+
 ## Null and Adverse Results
 
 An informative null requires a credible design and sufficient precision to bear on an economic prediction. A wide interval is not evidence of no effect. Do not hide a material adverse result. Decide placement by relevance to the headline claim:
@@ -66,4 +74,3 @@ An informative null requires a credible design and sufficient precision to bear 
 - active-development record if the design remains incomplete and no result is claimed.
 
 Avoid speculative stories written solely to neutralize a null.
-

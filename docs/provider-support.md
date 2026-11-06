@@ -20,4 +20,4 @@ Symlink installation is the default because it remains current when the reposito
 
 The installer refuses to replace an unrecognized existing path, even with `--force`. For a recognized managed copy, `--force` also refuses to discard post-install local edits unless `--discard-local-changes` is supplied explicitly.
 
-The canonical frontmatter includes a least-privilege `allowed-tools` hint. Providers that do not recognize that field may ignore it; the workflow itself does not depend on provider-specific tool names.
+The canonical frontmatter declares a shared manuscript-prose capability and version. GPT-family agents and Codex must use the anti-defensive reference for every finance-manuscript prose edit; agents known to be from other model families may consult it selectively. The workflow uses provider-neutral guidance.

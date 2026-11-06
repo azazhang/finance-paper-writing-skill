@@ -12,12 +12,13 @@ Do not maintain separate provider copies of `SKILL.md`, references, templates, e
 
 - Treat finance-manuscript prose as the primary capability.
 - Keep the universal workflow applicable to empirical finance generally.
-- Keep text-measure and classifier guidance in the optional module.
+- Keep text-measure and classifier guidance in the optional module. Use the authorial-voice reference selectively with existing author-approved writing; do not make a new voice-profile stage mandatory.
 - Preserve the distinction between manuscript evidence, active development, legacy material, and replication records.
 - Scale revision to the assigned task. Keep formal run artifacts optional and use bounded independent reading only when it serves a concrete need within user restrictions.
-- Make the economic argument and strongest quantitative evidence the primary standard; do not certify prose or publication quality from helper-script success.
+- Make the economic argument and strongest quantitative evidence the primary standard. Agents assigned introductions, contribution paragraphs, and results interpretations must draft the substantive economic answer from the author's evidence rather than offering only reviewer comments or outlines. Do not certify prose or publication quality from helper-script success.
 - Never weaken a material limitation merely to make prose more persuasive.
 - Never add generic compliance sections without a venue or study-specific reason.
+- For Codex and GPT-family models, keep the anti-defensive-prose reference active on every finance-manuscript prose edit, including small edits; use it when model identity is uncertain. Other known model families can consult it selectively.
 - Keep provider instructions aligned with the canonical skill.
 - Add a regression case when fixing a recurring workflow failure.
 - Run repository verification and unit tests after changes.
@@ -30,4 +31,3 @@ python3 -m unittest discover -s tests -v
 ```
 
 Also run the external skill validator against `skill/finance-paper-writing/` when available.
-

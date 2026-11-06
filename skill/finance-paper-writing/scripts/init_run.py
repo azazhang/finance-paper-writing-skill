@@ -140,6 +140,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--venue", default="")
     parser.add_argument("--author-convention", default="")
     parser.add_argument("--scope", default="")
+    parser.add_argument("--with-independent-reader", action="store_true",
+                        help="Add a single optional independent scholarly reading to the formal record.")
+    parser.add_argument("--legacy-format", action="store_true",
+                        help="Create a deprecated schema-v2 archive-format run; use only for legacy compatibility.")
     parser.add_argument(
         "--module",
         action="append",
@@ -152,6 +156,8 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    if args.with_independent_reader and (args.mode == "prose-audit" or args.legacy_format):
+        raise SystemExit("--with-independent-reader is available for current writing records only")
     manuscript = args.manuscript.expanduser().resolve()
     if not manuscript.is_file():
         raise SystemExit(f"manuscript not found: {manuscript}")
@@ -173,7 +179,44 @@ def main() -> int:
 
     skill_root = Path(__file__).resolve().parents[1]
     templates = skill_root / "templates"
-    for source in sorted(templates.iterdir()):
+    baseline = manuscript_sha256(manuscript)
+
+    # The normal explicit formal record follows the writer-first publication workflow.
+    # No eight-pass log, mandatory cold reader, scores, or quality acceptance gates.
+    if not args.legacy_format:
+        record = json.loads((templates / "run.json").read_text(encoding="utf-8"))
+        record.update({
+            "mode": args.mode,
+            "scope": args.scope,
+            "project_root": str(project_root),
+            "manuscript": str(manuscript),
+            "created_at": datetime.now(timezone.utc).isoformat(),
+            "lead_editor": args.lead_editor,
+            "optional_modules": sorted(set(args.module)),
+            "baseline_manuscript_sha256": baseline,
+            "independent_reader": {
+                "requested": bool(args.with_independent_reader),
+                "identity": "",
+                "manuscript_sha256": "",
+            },
+        })
+        if args.mode != "prose-audit":
+            shutil.copy2(templates / "writer-integration.md", run_dir / "writer-integration.md")
+        else:
+            record["final_manuscript_sha256"] = baseline
+        if args.with_independent_reader:
+            shutil.copy2(templates / "independent-reader-notes.md", run_dir / "independent-reader-notes.md")
+        (run_dir / "run.json").write_text(
+            json.dumps(record, indent=2) + "\n", encoding="utf-8"
+        )
+        print(run_dir)
+        print(f"baseline_sha256={baseline}")
+        print("format=writer-first-optional-v3; record validation does not certify research quality")
+        return 0
+
+    # Archived schema-v2 runs remain available only by explicit legacy opt-in.
+    legacy_templates = templates / "legacy"
+    for source in sorted(legacy_templates.iterdir()):
         if source.is_file() and source.name in TEMPLATES_BY_MODE[args.mode]:
             shutil.copy2(source, run_dir / source.name)
 
@@ -212,8 +255,7 @@ def main() -> int:
                 ]
             )
 
-    run_data = json.loads((templates / "run.json").read_text(encoding="utf-8"))
-    baseline = manuscript_sha256(manuscript)
+    run_data = json.loads((legacy_templates / "run.json").read_text(encoding="utf-8"))
     run_data.update(
         {
             "mode": args.mode,

@@ -1,6 +1,6 @@
 # Cold Finance Reader Report — Legacy Formal-Run Template
 
-This template belongs **only to an explicitly selected formal run**. The ordinary scholarly cold reader follows [independent-reader.md](../references/independent-reader.md) and needs no scorecard or acceptance verdict. For a formal run, keep the schema block below for compatibility with the legacy validator; its scores document that formal run and **do not certify publication quality**.
+This template is **archived for schema-v1/v2 formal records only**. The current schema-v3 format uses `../independent-reader-notes.md` and never requires a score. The ordinary scholarly reader follows [independent-reader.md](../../references/independent-reader.md). The historical scorecard fields below are preserved for compatibility; **score values, critical-failure labels, and reader acceptance decisions are descriptive records and are not approval thresholds**.
 
 **Reader instructions:** The writing agent should already have read and repaired the assembled manuscript. Review the manuscript and relevant exhibits with fresh context, without relying on the writing agent's plans, development logs, or prior reviews. **Reconstruct the paper's question, main evidence, economic answer, and contribution before listing criticisms.** Identify only consequential, passage-grounded communication problems; avoid a minimum criticism count or a speculative scientific-referee campaign.
 

@@ -2,7 +2,7 @@
 name: finance-paper-writing
 description: "Draft and revise empirical finance manuscript prose around a clear economic argument and its strongest quantitative evidence. Apply whenever writing an abstract, introduction, literature positioning, results narrative, or finance paper revision, including defensive or development-oriented drafts. Not for literature discovery alone or generic proofreading."
 metadata:
-  version: "0.3.4"
+  version: "0.3.5"
   domain: empirical-finance
   primary_capability: manuscript-prose
 ---
@@ -92,7 +92,7 @@ Use existing results to check changed quantitative claims against the cited tabl
 - Text-based measures: [text-measure-papers.md](references/text-measure-papers.md), only when relevant. Describe established constructs and completed validity evidence; writing is not authorization to restart measurement.
 - Lessons from repeated failures: [research-to-prose-lessons.md](references/research-to-prose-lessons.md), when a revision is drifting into process, caveats, or disconnected results.
 
-The bundled prose linter is an optional aid for recognizable wording problems; its matches require editorial judgment. The manuscript-hash utility supports the linter. `init_run.py` and `validate_run_state.py` are executable helpers for an **optional, explicitly requested formal full-manuscript pass** that records passes and review artifacts. They also retain legacy section-revision and prose-audit modes for existing formal records. Ordinary editing uses the manuscript and established evidence directly; the formal package is never a prerequisite, and its validation does not establish a persuasive argument or A* quality.
+The bundled prose linter and manuscript-hash utility remain optional. When the author **explicitly requests a formal record**, `init_run.py` creates a concise writer-first record (schema v3): manuscript hashes, the writer’s integrated-reading notes, and **independent-reader notes only if separately selected**. `validate_run_state.py` checks provenance and recorded work, without an eight-pass log, reviewer score threshold, mandatory cold reader, or acceptance certificate. Archived v1/v2 records remain readable; their old templates are isolated in `templates/legacy/` and require an explicit `--legacy-format` option to initialize. Ordinary manuscript writing needs no formal package, and file validation cannot certify scholarly quality.
 
 ## Report the substantive change
 

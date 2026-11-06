@@ -51,6 +51,7 @@ class ValidateRunStateTests(unittest.TestCase):
         init_command = [
             sys.executable,
             str(INIT_SCRIPT),
+            "--legacy-format",
             str(manuscript),
             "--project-root",
             str(root),
@@ -318,7 +319,7 @@ Final manuscript: {current_hash}
             self.assertEqual(result.returncode, 1)
             self.assertIn("no disposition", result.stdout)
 
-    def test_low_cold_reader_score_fails(self) -> None:
+    def test_low_cold_reader_score_does_not_gate_legacy_record(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             run_dir, _ = self.build_valid_run(Path(temp_dir))
             report_path = run_dir / "cold-reader-report.md"
@@ -327,8 +328,19 @@ Final manuscript: {current_hash}
             report = report.replace("total_score: 16", "total_score: 8")
             report_path.write_text(report, encoding="utf-8")
             result = self.run_validation(run_dir)
-            self.assertEqual(result.returncode, 1)
-            self.assertIn("below threshold", result.stdout)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertNotIn("below threshold", result.stdout)
+
+    def test_legacy_reader_decision_is_descriptive_not_approval_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            run_dir, _ = self.build_valid_run(Path(temp_dir))
+            report_path = run_dir / "cold-reader-report.md"
+            report = report_path.read_text(encoding="utf-8")
+            report = report.replace("critical_failure: false", "critical_failure: true")
+            report = report.replace("decision: pass", "decision: reject")
+            report_path.write_text(report, encoding="utf-8")
+            result = self.run_validation(run_dir)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_prose_audit_initializes_nonapplicable_gates(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -340,6 +352,7 @@ Final manuscript: {current_hash}
                 [
                     sys.executable,
                     str(INIT_SCRIPT),
+                    "--legacy-format",
                     str(manuscript),
                     "--mode",
                     "prose-audit",
@@ -374,6 +387,7 @@ Final manuscript: {current_hash}
                 [
                     sys.executable,
                     str(INIT_SCRIPT),
+                    "--legacy-format",
                     str(manuscript),
                     "--mode",
                     "section-revision",
@@ -535,7 +549,7 @@ Final manuscript: {current_hash}
             manuscript = root / "main.tex"
             manuscript.write_text("\\section{Introduction}\nA finance question.\n", encoding="utf-8")
             init = subprocess.run(
-                [sys.executable, str(INIT_SCRIPT), str(manuscript), "--mode", "prose-audit", "--project-root", str(root), "--lead-editor", "auditor-a"],
+                [sys.executable, str(INIT_SCRIPT), "--legacy-format", str(manuscript), "--mode", "prose-audit", "--project-root", str(root), "--lead-editor", "auditor-a"],
                 text=True,
                 capture_output=True,
                 check=True,

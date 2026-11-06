@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -30,11 +31,16 @@ REQUIRED = {
     "skill/finance-paper-writing/scripts/finance_prose_lint.py",
     "skill/finance-paper-writing/scripts/manuscript_hash.py",
     "skill/finance-paper-writing/scripts/validate_run_state.py",
-    "skill/finance-paper-writing/templates/lint-dispositions.tsv",
+    "skill/finance-paper-writing/templates/run.json",
+    "skill/finance-paper-writing/templates/writer-integration.md",
+    "skill/finance-paper-writing/templates/independent-reader-notes.md",
+    "skill/finance-paper-writing/templates/legacy/run.json",
+    "skill/finance-paper-writing/templates/legacy/lint-dispositions.tsv",
     "scripts/install_local.py",
     "scripts/verify_local_install.py",
     "tests/test_finance_prose_lint.py",
     "tests/test_validate_run_state.py",
+    "tests/test_formal_record_v3.py",
     "evals/rubric.md",
 }
 
@@ -76,6 +82,14 @@ def main() -> int:
             changelog = (root / "CHANGELOG.md").read_text(encoding="utf-8")
             if f"## {version} " not in changelog:
                 errors.append(f"changelog has no entry for version {version}")
+            v3_template = root / "skill/finance-paper-writing/templates/run.json"
+            if v3_template.is_file():
+                formal = json.loads(v3_template.read_text(encoding="utf-8"))
+                if (formal.get("schema_version") != 3
+                        or formal.get("skill_version") != version
+                        or "gates" in formal
+                        or "required_edit_passes" in formal):
+                    errors.append("current formal-run template must use writer-first v3 without gates or pass chains")
         else:
             errors.append("SKILL.md is missing version metadata")
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.5 — 2026-11-06
+
+- Redesigned the explicitly selected formal-run default as schema v3 around the writer’s integrated reading of the assembled manuscript and current hash checks, with one independent reader only when deliberately chosen.
+- Removed score thresholds and reader acceptance decisions as workflow-approval criteria. The optional prose linter remains diagnostic.
+- Isolated schema-v1/v2 eight-pass and repeated-review templates in `templates/legacy/`; `--legacy-format` is offered strictly for historical compatibility, and the validator still reads older records.
+- Added twelve new deterministic tests for v3 record creation, writer-read freshness, included LaTeX files, optional reader identity and notes, read-only audit mode, and absence of score-driven gating.
+- Allowed a genuinely completed integrated reading to retain an unchanged manuscript without inventing a cosmetic edit or producing a reviewer-approval certificate.
+- Updated the main skill, research references, documentation, and verification checks to distinguish record validation from scholarly manuscript quality.
+
 ## 0.3.4 — 2026-11-05
 
 - Required the writing agent's substantive integrated reading of the assembled manuscript after major full-paper work, with direct repair of contradictory definitions, estimates, mechanisms, duplicated paragraphs, and patchwork transitions before optional independent reading.

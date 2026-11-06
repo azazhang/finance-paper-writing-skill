@@ -98,7 +98,7 @@ REVIEW_GENERATED_CLASSES = {
     "verification-question",
     "optional-extension",
 }
-SUPPORTED_SCHEMA_VERSIONS = {1, 2}
+SUPPORTED_SCHEMA_VERSIONS = {1, 2, 3}
 CAVEAT_FUNCTION_VALUES = {
     "unnecessary-disclaimer",
     "redundant-clarification",
@@ -305,15 +305,111 @@ def validate_scorecard(
         declared_total = -1
     if declared_total != total:
         errors.append("total_score does not match dimension scores")
-    if applicable and total / (2 * applicable) < 0.875:
-        errors.append(
-            f"cold reader score below threshold: {total}/{2 * applicable}"
-        )
-    if scorecard.get("critical_failure", "").lower() not in {"false", "no"}:
-        errors.append("cold reader reports or leaves open a critical failure")
-    if scorecard.get("decision", "").lower() not in {"pass", "passed", "accept"}:
-        errors.append("cold reader decision is not pass")
+    # Historical scorecard values may be retained as descriptive records.
+    # Neither scores nor reader acceptance decisions certify the manuscript.
     return errors
+
+
+
+def recorded_prose(path: Path) -> tuple[bool, str]:
+    """Validate presence of an actual editorial record, never scholarly quality."""
+    if not path.is_file():
+        return False, f"missing selected formal record: {path.name}"
+    text = path.read_text(encoding="utf-8", errors="replace")
+    body = text.split("## ", 1)[-1]
+    if re.search(r"(?m)^\[[^\n]+\]\s*$", body):
+        return False, f"unfilled template placeholder in {path.name}"
+    words = " ".join(
+        line.strip() for line in body.splitlines()
+        if line.strip() and not line.lstrip().startswith(("#", "<!--", "|"))
+    ).split()
+    if not words:
+        return False, f"selected formal record has no notes: {path.name}"
+    return True, ""
+
+
+def validate_v3(run_dir: Path, run: dict) -> int:
+    """The optional writer-first format validates provenance, not approval scores."""
+    errors: list[str] = []
+    warnings: list[str] = []
+    mode = run.get("mode", "")
+    if mode not in {"full-manuscript", "section-revision", "prose-audit"}:
+        errors.append(f"unknown v3 run mode: {mode}")
+    manuscript = Path(str(run.get("manuscript", ""))).expanduser()
+    current_hash = manuscript_sha256(manuscript) if manuscript.is_file() else ""
+    if not current_hash:
+        errors.append(f"manuscript not found: {manuscript}")
+    baseline = str(run.get("baseline_manuscript_sha256", ""))
+    final = str(run.get("final_manuscript_sha256", ""))
+    if not valid_hash(baseline):
+        errors.append("invalid baseline manuscript SHA-256")
+    if not valid_hash(final):
+        errors.append("final manuscript SHA-256 is missing or invalid")
+    elif current_hash and final != current_hash:
+        errors.append("final manuscript hash is stale")
+    if mode == "prose-audit":
+        if baseline != final:
+            errors.append("prose-audit may not change the manuscript")
+    # A completed integrated reading can legitimately recommend no textual change.
+    # Never incentivize cosmetic edits merely to produce a changed file hash.
+
+    lead = str(run.get("lead_editor", "")).strip()
+    if not lead:
+        errors.append("lead_editor is missing")
+    modules = run.get("optional_modules", [])
+    if not isinstance(modules, list) or set(modules) - KNOWN_MODULES:
+        errors.append("invalid optional modules")
+
+    if mode in {"full-manuscript", "section-revision"}:
+        read_hash = str(run.get("writer_read_sha256", ""))
+        if not valid_hash(read_hash) or read_hash != current_hash:
+            errors.append("writer's integrated reading is missing or stale for the assembled manuscript")
+        ok, detail = recorded_prose(run_dir / "writer-integration.md")
+        if not ok:
+            errors.append(detail)
+
+    reader = run.get("independent_reader", {})
+    if not isinstance(reader, dict):
+        errors.append("independent_reader must be an object")
+        reader = {}
+    requested = reader.get("requested", False)
+    if not isinstance(requested, bool):
+        errors.append("independent_reader.requested must be boolean")
+    if requested:
+        if mode == "prose-audit":
+            errors.append("independent reader is not part of prose-audit mode")
+        reader_id = str(reader.get("identity", "")).strip()
+        if not reader_id or reader_id == lead:
+            errors.append("independent reader identity is missing or matches the writer")
+        # The reader's examined draft can predate the writer's final repair.
+        if not valid_hash(str(reader.get("manuscript_sha256", ""))):
+            errors.append("independent reader's examined manuscript hash is missing")
+        ok, detail = recorded_prose(run_dir / "independent-reader-notes.md")
+        if not ok:
+            errors.append(detail)
+
+    # The standalone linter remains diagnostic; warnings and false-positive
+    # candidate phrases are never formal publication-approval gates.
+    lint_path = run_dir / "prose-lint.json"
+    if lint_path.exists():
+        try:
+            lint = json.loads(lint_path.read_text(encoding="utf-8"))
+            if lint.get("manuscript_sha256") != current_hash:
+                warnings.append("optional prose-linter results refer to an earlier manuscript")
+            if lint.get("hard_failure_count", 0):
+                warnings.append("optional prose linter has flagged findings; assess in context")
+        except (ValueError, OSError):
+            warnings.append("optional prose-linter result cannot be parsed")
+    for warning in warnings:
+        print(f"WARNING: {warning}")
+    for error in errors:
+        print(f"ERROR: {error}")
+    if errors:
+        print(f"formal record invalid: {len(errors)} error(s), {len(warnings)} warning(s)")
+        return 1
+    print("formal record valid: provenance and selected records checked; "
+          "not a manuscript-quality or publication-readiness certificate")
+    return 0
 
 
 def parse_args() -> argparse.Namespace:
@@ -335,6 +431,8 @@ def main() -> int:
         raise SystemExit(f"run.json not found: {run_dir}")
 
     run = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
+    if run.get("schema_version") == 3:
+        return validate_v3(run_dir, run)
     try:
         schema_version = int(run.get("schema_version", 1))
     except (TypeError, ValueError):

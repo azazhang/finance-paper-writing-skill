@@ -64,6 +64,6 @@ After repairing material issues, read the **affected prose and its transitions**
 - **Evidence consistency verification**: check affected quantitative statements and citations against their actual sources during writing.
 - **Scientific referee review**: separate user-authorized research assessment of identification, contribution, measurement, mechanisms, and potential additional analyses.
 
-The optional legacy `init_run.py` and `validate_run_state.py` machinery enforces requirements only inside a specifically initialized formal package. Its scorecard and old acceptance thresholds are **not applicable to ordinary manuscript writing**, and a passing record does not establish paper quality.
+The optional `init_run.py` and `validate_run_state.py` default to a concise writer-first formal record (schema v3) that requires no approval scores, reader cycles, or cold-reader acceptance. Independent reading has a record only if selected separately. Historic v1/v2 records and elaborate multi-pass templates remain accessible in the `templates/legacy/` archive. A passing validator result establishes record and hash consistency; it cannot establish research quality or prove that the agent truly read the manuscript.
 
 *The bounded-reader and non-convergence design draws on Manish Jha, “AI for Finance Research” (https://mjha91.github.io/pdf/AIFinanceResearch.pdf), and on repeated observed manuscript-workflow failures.*

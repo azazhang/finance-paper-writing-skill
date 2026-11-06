@@ -19,7 +19,7 @@ It addresses an editorial failure that grammar tools miss: a technically correct
 
 The principle **one pass, one job** helps separate argument, interpretation, and reader context. For substantial full-paper work, the writer must read the actual assembled manuscript in reading order and repair contradictions, patchwork paragraphs, and broken transitions. One independent scholarly cold reading may follow when useful and permitted; its purpose is fresh comprehension and its feedback prompts targeted repairs. Neither activity requires a score threshold, acceptance gate, mandatory reviewer campaign, or repeated cycles.
 
-Installing a skill does not guarantee adherence. The revised manuscript is the deliverable. A linter pass, recorded workflow, page count, or successful compilation does not certify a scholarly contribution.
+Installing a skill does not guarantee adherence. The revised manuscript is the deliverable. A linter pass, recorded workflow, page count, or successful compilation does not certify a scholarly contribution. The optional formal record validates evidence of completed record-keeping, not whether the writer truly read or improved the paper.
 
 ## Repository Structure
 
@@ -27,7 +27,7 @@ Installing a skill does not guarantee adherence. The revised manuscript is the d
 - `references/` inside the package: core scholarly-finance voice calibration, writer-first manuscript integration and independent-reading guidance, prose standards, evidence checks, and conditional topic-specific guidance.
 - `examples/`: original, synthetic finance-manuscript passages illustrating argument construction and quantitative interpretation. The separate scholarly voice reference draws lessons from verified published examples; author-specific style is secondary.
 - `skill/finance-paper-writing/scripts/finance_prose_lint.py`: optional diagnostic aid; `manuscript_hash.py` supports LaTeX input discovery and hashing.
-- `init_run.py`, `validate_run_state.py`, and templates: executable tooling for an **optional formal full-manuscript pass** when explicitly selected. The initializer automates files, pass logs, and hashes; its legacy section-revision and audit modes remain available for compatibility. Ordinary manuscript revisions are direct writing tasks.
+- `init_run.py` and `validate_run_state.py`: optional tooling for a **deliberately selected** formal full-paper or section record. The new default schema v3 creates manuscript hashes, a writer-integrated-reading record, and independent-reader notes only with `--with-independent-reader`; validation checks record integrity without reviewer scores or mandatory passes. The historical v1/v2 format and its elaborate templates remain in `templates/legacy/` for compatibility through `--legacy-format`. Ordinary writing creates none of these records.
 - `evals/` and `tests/`: behavioral cases and deterministic helper tests.
 
 The same provider-neutral package is installed for Codex, Claude Code, or Cursor. No separate provider copies are maintained.

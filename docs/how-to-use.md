@@ -4,7 +4,7 @@
 
 > Use finance-paper-writing to revise this empirical finance paper. Make the economic argument and sharpest evidence clear, preserve claim calibration, and keep the abstract, introduction, results, and conclusion coherent.
 
-The agent should read the current manuscript and relevant established evidence, construct and implement the requested economic argument and prose (including introduction and contribution), check affected quantitative claims against cited exhibits and literature statements against sources, compile edited LaTeX, and report the actual change. Argument and evidence order deserve attention before sentence polishing. A new charter, run directory, scorecard, or reviewer campaign is not required.
+The agent should read the current manuscript and relevant established evidence, construct and implement the requested economic argument and prose (including introduction and contribution), check affected quantitative claims against cited exhibits and literature statements against sources, and compile edited LaTeX. **Before delivery or an independent reader, the writer must read the assembled paper from title through conclusion**, preferably as a rendered PDF with exhibits encountered in context, and directly repair conflicting definitions, magnitudes, contradictory claims, incoherent transitions, duplicated paragraphs, and text left over from earlier drafts. Reread affected passages after repair. A new charter, run directory, scorecard, or reviewer campaign is not required.
 
 ## Section or passage
 
@@ -14,13 +14,13 @@ The agent should read the current manuscript and relevant established evidence, 
 
 > Rewrite this paragraph in empirical-finance register while preserving the supported claim.
 
-Read the affected section and transitions after editing. Scale checks to the substantive changes; do not promote a paragraph revision into a full research restart.
+Read the affected section and its necessary transitions after editing. A local change requires proportionate local coherence checks; the assembled-paper reading belongs to substantial whole-paper tasks. Do not promote a paragraph revision into a full research restart.
 
 ## Review when requested
 
 > Read this paper and identify the few structural problems that prevent its argument from being understood. Do not edit or start new empirical work.
 
-A bounded reader assessment is useful when requested or when it answers a concrete unresolved structural question. Distinguish demonstrated defects, verification questions, and optional extensions. The latter two do not automatically become manuscript caveats.
+Follow [independent-reader.md](../skill/finance-paper-writing/references/independent-reader.md). For a writing task, the authoring agent performs its integrated manuscript reading and repairs first. Then use one fresh reader when available, permitted, and useful, normally for a substantial whole-paper reconstruction. Give the reader the finished manuscript and relevant exhibits without development logs. The reader reconstructs question, evidence, answer, and contribution before identifying a few grounded communication defects. Distinguish demonstrated defects, verification questions, and optional extensions. The writer repairs justified problems and stops; do not run serial AI referees or optimize scores. For a direct, user-requested review, review the manuscript as requested without inventing a preparatory writing stage.
 
 ## Text-based measures
 
@@ -40,7 +40,7 @@ For every finance-manuscript prose revision by Codex or any GPT-family model, re
 
 ## Optional formal full-paper records
 
-The executable initializer `skill/finance-paper-writing/scripts/init_run.py` creates the structured files, pass log, and manuscript baseline for an explicitly requested formal full-paper pass. Its default mode is `full-manuscript`; other modes are retained for legacy use. The validator checks a selected package's record schema. Ordinary prose revision proceeds directly from the manuscript and its established evidence. The formal workflow remains optional even for a whole-paper revision and cannot override a project's prohibition on gates, audits, or repeated reviews.
+Independent-reading scores, cold-reader acceptance fields, and the legacy validator's thresholds belong only to explicitly selected formal runs. They never determine the completion of ordinary manuscript revisions. The executable initializer `skill/finance-paper-writing/scripts/init_run.py` creates the structured files, pass log, and manuscript baseline for an explicitly requested formal full-paper pass. Its default mode is `full-manuscript`; other modes are retained for legacy use. The validator checks a selected package's record schema. Ordinary prose revision proceeds directly from the manuscript and its established evidence. The formal workflow remains optional even for a whole-paper revision and cannot override a project's prohibition on gates, audits, or repeated reviews.
 
 ## Report back
 

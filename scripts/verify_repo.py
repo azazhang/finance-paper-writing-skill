@@ -18,6 +18,7 @@ REQUIRED = {
     "skill/finance-paper-writing/SKILL.md",
     "skill/finance-paper-writing/references/finance-prose-rubric.md",
     "skill/finance-paper-writing/references/voice-calibration.md",
+    "skill/finance-paper-writing/references/independent-reader.md",
     "skill/finance-paper-writing/references/multi-pass-adherence.md",
     "skill/finance-paper-writing/references/evidence-and-claims.md",
     "skill/finance-paper-writing/references/empirical-finance-section-jobs.md",
@@ -63,6 +64,8 @@ def main() -> int:
             errors.append("SKILL.md does not declare manuscript prose as primary capability")
         if "text-measure-papers.md" not in content:
             errors.append("SKILL.md does not route the optional text-measure module")
+        if "independent-reader.md" not in content or "Writer\'s integrated reading is required" not in content:
+            errors.append("SKILL.md lacks writer-first integrated reading before independent review")
         if "voice-calibration.md" not in content:
             errors.append("SKILL.md does not activate the scholarly publication voice standard")
         if "Mandatory anti-defensive guidance for GPT/Codex" not in content:

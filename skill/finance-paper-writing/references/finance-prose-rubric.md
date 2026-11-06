@@ -81,9 +81,9 @@ Avoid:
 - claims of novelty based mainly on file source, model version, or implementation detail; and
 - uniform claim–caveat–disclaimer paragraphs that sound like legal briefing.
 
-## Skimming Bundle
+## Skimming Bundle and Integrated Reading
 
-Review the following as one document:
+As an early argument check, review the following as one bundle:
 
 1. title;
 2. abstract;
@@ -92,4 +92,4 @@ Review the following as one document:
 5. main table and figure titles, panels, and notes;
 6. conclusion.
 
-Check whether the paper asks, finds, and contributes the same thing in these positions. Resolve a mismatch through argument and evidence order. This reading is an editorial aid, not a requirement for a new report, score, or repeated reviewer cycle.
+Check whether the paper asks, finds, and contributes the same thing in these positions. Resolve a mismatch through argument and evidence order. **For substantial whole-paper work this skim is only an initial check:** the writing agent must also read the **assembled full manuscript** in reading order and reconcile construct and sample definitions, estimates and horizons, inferential language, duplicated claims, and paragraph-to-paragraph continuity, repairing patchwork directly in the text. See [independent-reader.md](independent-reader.md). The writer's integrated reading is required substantive authorship; it does not create a new review report, score, or repeated referee cycle.

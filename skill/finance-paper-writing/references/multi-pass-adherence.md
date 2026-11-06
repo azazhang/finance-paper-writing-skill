@@ -4,15 +4,17 @@ Apply the prose standard continuously. A skill name, a plan, or recorded complia
 
 ## Default revision
 
-Use the current manuscript and established evidence. Make the requested substantive change, then read the affected prose and transitions. For a broad revision, focus attention on argument and evidence order before sentence-level work. Check numbers and references that changed, compile edited LaTeX, and inspect affected layout. Existing research notes can retain decisions; do not create another artifact set merely to show that attention was paid.
+Use the current manuscript and established evidence. Make the requested substantive change, then read the affected prose and transitions. For a broad revision, focus attention on argument and evidence order before sentence-level work. Check numbers and references that changed, compile edited LaTeX, and inspect affected layout. After substantive whole-paper writing, the same writer reads the assembled manuscript from beginning to end and fixes inconsistencies and stitched-together prose before a cold reader is considered. Existing research notes can retain decisions; do not create another artifact set merely to show that attention was paid.
 
 A useful separation is “one pass, one job”: economic architecture, evidence interpretation, authorial voice, reader context, and finance register are different editorial problems. Choose the work needed for the assignment. These are not mandatory logged stages, and a simple change does not require a whole-paper cycle.
 
-## Bounded independent reading
+## Writer-first integration and bounded independent reading
 
-A reader can identify whether the paper's question, result, and contribution are recoverable. Use one when requested or when it answers a concrete structural question efficiently and within the user's restrictions. Classify comments as a demonstrated defect, an unresolved verification question, or an optional extension before acting. Fix demonstrated problems; verify a consequential concern before treating it as true; keep optional work outside the manuscript unless the author expands the assignment.
+For a substantial full-manuscript revision, the writer must **read the assembled manuscript** (preferably its rendered PDF) and repair the argument across sections: conflicting definitions or estimates, mismatched conclusions, duplicated text, broken transitions, and patchwork paragraphs. This belongs to substantive manuscript completion; do not outsource it to another reader or replace it with a log, outline, or skim alone. For a local revision, inspect the affected text and transitions. Detailed instructions are in [independent-reader.md](independent-reader.md).
 
-Do not turn a reader's imagined objections into a caveat catalogue. Do not repeat review until the paper earns a score. Review is useful for a specific question, not a substitute for the author's judgment or an automatic condition of every revision.
+After the writer's integrated repair, a fresh reader may be used when requested or when one bounded reading would materially improve a substantial manuscript's communication, subject to user restrictions and availability. The reader first reconstructs the question, main evidence, economic answer, and contribution from the manuscript itself and reports only a few grounded communication issues. Classify any proposal as a demonstrated defect, verification question, or optional extension. The writer repairs demonstrated problems and verifies consequential questions without automatically launching more review rounds.
+
+Do not turn imagined objections into caveat catalogues or pursue reviewer scores. One independent read is normally enough; rerun only if explicitly requested or a substantial reconstruction makes the prior read obsolete. The legacy formal package's scores and review requirements do not govern ordinary manuscript work.
 
 ## Optional formal full-manuscript run package
 
@@ -24,4 +26,4 @@ The prose linter can be run independently without initializing a package. Treat 
 
 ## Completion
 
-Completion means the assigned revision has been implemented, its changed claims match the evidence, and the resulting prose and rendering have been checked at the scale of the task. Report the substantive change and remaining decision-relevant issues. Do not report a workflow certificate in place of the paper.
+Completion means the assigned revision has been implemented, its changed claims match the evidence, and the resulting prose and rendering have been checked at the scale of the task. For substantial full-paper work, the writer actually reads and repairs the assembled manuscript before considering independent reading. Report the substantive change and remaining decision-relevant issues. Do not report a workflow certificate in place of the paper.

@@ -14,16 +14,17 @@ It addresses an editorial failure that grammar tools miss: a technically correct
 - Uses direct claims calibrated to the design, with one primary home for material qualifications.
 - Represents neighboring literature fairly and distinguishes contributions economically.
 - Calibrates substantive writing to the scholarly publication register of financial economics, with individual author preferences preserved as a secondary consideration.
+- Requires the writing agent to read and repair the assembled manuscript after substantial whole-paper work, before an optional fresh independent reading.
 - Scales work to the requested revision instead of requiring process artifacts for every edit.
 
-The principle **one pass, one job** helps separate argument, interpretation, authorial voice, and reader context when a broad revision needs that attention. It does not require eight logs, repeated whole-paper reads, a score threshold, or a new review campaign.
+The principle **one pass, one job** helps separate argument, interpretation, and reader context. For substantial full-paper work, the writer must read the actual assembled manuscript in reading order and repair contradictions, patchwork paragraphs, and broken transitions. One independent scholarly cold reading may follow when useful and permitted; its purpose is fresh comprehension and its feedback prompts targeted repairs. Neither activity requires a score threshold, acceptance gate, mandatory reviewer campaign, or repeated cycles.
 
 Installing a skill does not guarantee adherence. The revised manuscript is the deliverable. A linter pass, recorded workflow, page count, or successful compilation does not certify a scholarly contribution.
 
 ## Repository Structure
 
 - `skill/finance-paper-writing/`: the single canonical skill package.
-- `references/` inside the package: core scholarly-finance voice calibration (with annotated real JF/JFE/RFS exemplars), prose standards, evidence checks, and conditional topic-specific guidance.
+- `references/` inside the package: core scholarly-finance voice calibration, writer-first manuscript integration and independent-reading guidance, prose standards, evidence checks, and conditional topic-specific guidance.
 - `examples/`: original, synthetic finance-manuscript passages illustrating argument construction and quantitative interpretation. The separate scholarly voice reference draws lessons from verified published examples; author-specific style is secondary.
 - `skill/finance-paper-writing/scripts/finance_prose_lint.py`: optional diagnostic aid; `manuscript_hash.py` supports LaTeX input discovery and hashing.
 - `init_run.py`, `validate_run_state.py`, and templates: executable tooling for an **optional formal full-manuscript pass** when explicitly selected. The initializer automates files, pass logs, and hashes; its legacy section-revision and audit modes remain available for compatibility. Ordinary manuscript revisions are direct writing tasks.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.4 — 2026-11-05
+
+- Required the writing agent's substantive integrated reading of the assembled manuscript after major full-paper work, with direct repair of contradictory definitions, estimates, mechanisms, duplicated paragraphs, and patchwork transitions before optional independent reading.
+- Added `references/independent-reader.md` to separate writer responsibility, bounded scholarly cold reading, evidence verification, and scientific referee work, with a no-review-loop stopping rule.
+- Reworked the legacy cold-reader template to emphasize reconstruction of the economic argument and a few material communication issues, retaining its formal-run schema for backward compatibility.
+- Removed the direct request to launch a read-only evaluator from closest-paper positioning and clarified that optional legacy scores/thresholds have no role in ordinary manuscript writing.
+- Added a targeted evaluation case and updated skill routing and repository documentation.
+
 ## 0.3.3 — 2026-11-05
 
 - Promoted scholarly financial-economics publication style to the primary voice standard; personal authorial preferences remain secondary.

@@ -53,9 +53,11 @@ Do not add a sentence listing implementation differences to the opening comparis
 
 ## Fairness Test
 
-Ask a read-only evaluator:
+The writing agent should check the actual manuscript against these questions:
 
 1. Would the neighboring paper’s authors recognize their question and result?
 2. Is the distinction stated before criticism or metric disagreement?
 3. Does the new contribution survive removal of implementation differences?
 4. Is the decisive comparison shown rather than asserted?
+
+Resolve demonstrable positioning problems directly in the affected prose. These questions are editorial tests the writer can perform; they do not trigger a second agent. When a fresh scholarly reader is warranted, use the common [independent-reader.md](independent-reader.md) policy **after** the writer's own manuscript integration.

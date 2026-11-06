@@ -1,4 +1,8 @@
-# Cold Finance Reader Report
+# Cold Finance Reader Report — Legacy Formal-Run Template
+
+This template belongs **only to an explicitly selected formal run**. The ordinary scholarly cold reader follows [independent-reader.md](../references/independent-reader.md) and needs no scorecard or acceptance verdict. For a formal run, keep the schema block below for compatibility with the legacy validator; its scores document that formal run and **do not certify publication quality**.
+
+**Reader instructions:** The writing agent should already have read and repaired the assembled manuscript. Review the manuscript and relevant exhibits with fresh context, without relying on the writing agent's plans, development logs, or prior reviews. **Reconstruct the paper's question, main evidence, economic answer, and contribution before listing criticisms.** Identify only consequential, passage-grounded communication problems; avoid a minimum criticism count or a speculative scientific-referee campaign.
 
 <!-- finance-writing-scorecard:start -->
 manuscript_sha256:
@@ -46,15 +50,16 @@ decision:
 ## What Is the Supported Boundary?
 
 
-## Where Did the Reader Become Confused or Defensive?
+## Where Did the Argument or Paragraph Continuity Become Unclear?
 
+Point to specific paragraph locations, contradictory definitions, unexplained transitions, or stitched-together passages; distinguish what the manuscript actually says from what the author may have intended.
 
 ## Is the Strongest Evidence Visible in a Skim?
 
 
-## Major Issues
+## Major Scholarly-Communication Issues
 
-For every material review comment that could trigger a manuscript change, classify it as `demonstrated-defect`, `verification-question`, or `optional-extension` before recommending an edit.
+List the **few material defects**, each with manuscript/exhibit location, what the passage conveys, why it prevents understanding the economic argument, and the kind of repair needed. An empty issue list is acceptable when there is no demonstrated defect. Classify any comment that could trigger a manuscript change as `demonstrated-defect`, `verification-question`, or `optional-extension`. Do not propose unrequested empirical extensions as defects.
 
 
 ## Reviewer-to-Manuscript Triage
@@ -65,6 +70,8 @@ For every material review comment that could trigger a manuscript change, classi
 
 ## Copy-Level Issues
 
+Record only errors that materially affect comprehension or finance publication register.
 
-## Acceptance Judgment
+## Formal-Run Disposition
 
+This is a record-format disposition required by the explicitly selected formal run, not a scientific referee's publication or acceptance judgment. After material findings, the writing agent owns the direct manuscript repair; a repeated independent review is not automatic.

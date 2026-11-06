@@ -7,7 +7,8 @@ The writing agent develops the requested abstract, introduction, results interpr
 ## Package
 
 - [SKILL.md](skill/finance-paper-writing/SKILL.md): core writing instructions, guidance routing, and required agentic manuscript review.
-- [Voice calibration](skill/finance-paper-writing/references/voice-calibration.md): finance-journal scholarly publication style, with published examples.
+- [Voice calibration](skill/finance-paper-writing/references/voice-calibration.md): finance-journal publication conventions, with six annotated published exemplars.
+- [Editorial diagnostics](skill/finance-paper-writing/references/editorial-diagnostics.md): concrete agentic recognition and repair of development-language leakage, research-memo writing, generic AI rhetoric, patchwork passages, and miscalibrated claims.
 - [Anti-defensive prose](skill/finance-paper-writing/references/anti-defensive-prose.md): calibrated claims and natural academic argumentation; mandatory for GPT/Codex.
 - [Evidence and claims](skill/finance-paper-writing/references/evidence-and-claims.md): quantitative interpretation, exhibit selection, attribution, and inferential boundaries.
 - [Independent reader](skill/finance-paper-writing/references/independent-reader.md): the writing agent's assembled-manuscript reading and one bounded optional fresh reading.

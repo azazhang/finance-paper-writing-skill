@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.1 — 2026-11-06
+
+- Repaired overcompression in v0.4.0 by restoring concrete, agentic editorial diagnoses for development-language leakage, memo-like writing, generic AI rhetoric, and cross-section manuscript inconsistency.
+- Added `references/editorial-diagnostics.md`, with concrete failure signatures, scholarly rewrites, claim-language distinctions, and a writer-first manuscript reading standard; no programmatic checks or review artifacts.
+- Strengthened the main skill's development-to-publication firewall and explicitly distinguished research-method calibration from editorial-process jargon.
+- Restored function-sensitive anti-defensive editing, the reviewer-to-manuscript firewall, and more detailed evidence status and inferential claim guidance.
+- Restored two JF/JFE publication exemplars and Jha-inspired stance, evidence, and style-pattern calibration, while retaining agents' responsibility for introductions, contributions, and results interpretations.
+- Preserved the short core, bounded independent reading, and installer-only executable policy.
+
 ## 0.4.0 — 2026-11-06
 
 - Rebuilt the skill as concise, manuscript-first scholarly writing guidance. The main skill is under 800 words and routes to six focused references.
